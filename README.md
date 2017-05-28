@@ -22,8 +22,8 @@ docker login
 
 1. Clone the Semsari Api repository:
 ```
-git@github.com:semsari/api.git && \
-cd api
+git@github.com:semsari/frontend.git && \
+cd frontend
 ```
 
 > A Vue.js project
@@ -31,7 +31,7 @@ cd api
 ### Start application
 ```docker run -d --name semsari-frontend -p 80:80 -v $(pwd):/opt/app semsari/frontend:develop``` 
 
-## Build Setup
+#### Build Setup (For self-development purposes only)
 
 ``` bash
 # install dependencies
