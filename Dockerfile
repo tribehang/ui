@@ -11,6 +11,6 @@ WORKDIR /opt/app
 
 ADD . /opt/app/
 
-EXPOSE 80, 443
+EXPOSE 80 443
 
 CMD ["/bin/bash", "docker/run.sh"]

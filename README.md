@@ -1,6 +1,35 @@
-# app
+# Semsari-Api
+
+## Install
+
+Semsari-Apiruns on Docker containers. That means that you'll have to install the docker engine
+
+[https://docs.docker.com/installation/](https://docs.docker.com/installation/)
+
+## Docker Hub
+
+After having docker installed and running (tested with `docker run hello-world`) you'll need an account on docker hub to be able to pull our container, since it is private.
+Go to [https://hub.docker.com/](https://hub.docker.com/) and create your account and talk with the team leader to get your access granted.
+To register or log in to a Docker registry server type
+
+```
+docker login
+```
+
+## Application
+
+### Prepare
+
+1. Clone the Semsari Api repository:
+```
+git@github.com:semsari/api.git && \
+cd api
+```
 
 > A Vue.js project
+
+### Start application
+```docker run -d --name semsari-frontend -p 80:80 -v $(pwd):/opt/app semsari/frontend:develop``` 
 
 ## Build Setup
 
