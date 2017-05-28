@@ -29,7 +29,7 @@ cd frontend
 > A Vue.js project
 
 ### Start application
-```docker run -d --name semsari-frontend -p 80:80 -v $(pwd):/opt/app semsari/frontend:develop``` 
+```docker run -it --name semsari-frontend -p 80:80 -v $(pwd):/opt/app semsari/frontend:develop``` 
 
 #### Build Setup (For self-development purposes only)
 
