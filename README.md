@@ -22,7 +22,7 @@ docker login
 
 1. Clone the Semsari Api repository:
 ```
-git@github.com:semsari/frontend.git && \
+git clone git@github.com:semsari/frontend.git && \
 cd frontend
 ```
 
