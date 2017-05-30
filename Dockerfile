@@ -5,8 +5,6 @@ RUN npm --user root --unsafe-perm true install npm -g
 
 ADD package.json /tmp/package.json
 
-RUN npm install
-
 WORKDIR /opt/app
 
 ADD . /opt/app/
