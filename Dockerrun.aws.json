@@ -1,0 +1,21 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "authentication": {
+    "bucket": "semsari-ecs",
+    "key": ".dockercfg"
+  },
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "semsari/frontend:develop",
+      "essential": true,
+      "memory": 2048,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ]
+    }
+  ]
+}

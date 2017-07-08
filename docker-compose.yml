@@ -1,0 +1,10 @@
+version: '2'
+services:
+  semsari-api:
+    container_name: semsari-frontend
+    image: semsari/frontend:develop
+    mem_limit: 2048m
+    volumes:
+      - .:/opt/app
+    ports:
+      - "80:80"
