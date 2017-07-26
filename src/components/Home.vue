@@ -1,12 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <p class="test">This is a test text from "test" class</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hellosss',
+  name: 'hello',
   data () {
     return {
       msg: 'Welcome to Semsari App'
