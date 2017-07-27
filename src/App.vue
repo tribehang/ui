@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <div id="header">This is header</div>
+    <div id="content">
+      <router-view></router-view>
+    </div>
+    <div id="footer">This is footer</div>
   </div>
 </template>
 
@@ -18,6 +21,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#app #content{
+  background-color: antiquewhite;
+}
+
+#app #header{
+  font-size: 33px;
+  background-color: aquamarine;
+}
+
+#app #footer{
+  font-size: 33px;
+  background-color: cadetblue;
 }
 </style>
