@@ -1,39 +1,171 @@
 <template>
   <div id="app">
-    <div id="header">This is header</div>
-    <div id="content">
-      <router-view></router-view>
-    </div>
-    <div id="footer">This is footer</div>
+      <div class="row head-One fix-row">
+        <div class="container">
+          <div class="col-xs-2">
+            <h4>آسان بفروش، مطمئن بخر.</h4>
+          </div>
+          <div class="col-xs-10">
+            <div class="main-menu">
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="collapse navbar-collapse">
+                    <form class="navbar-form navbar-left">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="جستجو ...">
+                      </div>
+                      <button type="submit" class="btn btn-default search-btn"></button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-left">
+                      <li><a href="#"> سعید  عزیز, خوش آمدید</a></li>
+                      <li><a href="#" class="fa fa-sign-out" aria-hidden="true"> خروج</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row head-Two fix-row">
+        <div class="container">
+          <div class="col-xs-2"> <div class="logo"><img src="./assets/images/logo.png" height="44" width="160"/></div></div>
+          <div class="col-xs-10">
+            <div class="main-menu">
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                      <li><a href="#">خانه</a></li>
+                      <li><a href="#">خرید</a></li>
+                      <li><a href="#">فروش</a></li>
+                      <li><a href="#">درباره ما</a></li>
+                      <li><a href="#">تماس با ما</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row head-Three fix-row">
+        <div class="container">
+          <div class="col-xs-10">
+            <div class="main-menu">
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header breadcrumbs">
+                    <a href="#">خانه </a> <a><i class="fa fa-angle-left" aria-hidden="true"></i></a>  <a href="#">خرید</a>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    <router-view></router-view>
+    <section id="footer">
+      <div class="container">
+        <div class="column column-center">
+          <ul>
+            <li>
+              <h3>
+                خبرنامه
+              </h3>
+            </li>
+            <li>
+              <span>
+                آدرس ایمیل خود را وارد کنید
+              </span>
+              <form>
+                <div class="group">
+                  <input autocomplete="off" type="email" />
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <span>   نام کاربری یا ایمیل</span>
+                  </label>
+                </div>
+
+                <button type="button" class="button buttonorng">ارسال
+                  <div class="ripples buttonRipples">
+                    <span class="ripplesCircle"></span>
+                  </div>
+              </button>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div class="column column-left">
+          <ul>
+            <li>
+              <h3>
+                چطور میتونیم کمکتون کنیم ؟
+              </h3>
+            </li>
+            <li>
+              <h3 class="orange">
+                 ۸۸۸۸۸۸۸۸ (۰۲۱) <br> info[at]semsari.net
+              </h3>
+            </li>
+            <li>
+              <span>
+                پشتیبانی ۲۴ ساعته
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="column column-right">
+          <ul>
+            <li>
+              <div class="logo"><img src="./assets/images/logo.png" height="44" width="160"/></div>
+            </li>
+            <li>
+              <span>
+                                رسالت و هدف سمساری و توضیحات در مورد وب سایت
+              </span>
+            </li>
+            <li>
+              <a href="#" class="fa fa-facebook social-btn"></a>
+              <a href="#" class="fa fa-twitter social-btn"></a>
+              <a href="#" class="fa fa-google social-btn"></a>
+              <a href="#" class="fa fa-instagram social-btn"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+  }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#app #content{
-  background-color: antiquewhite;
-}
+<style scoped>
+  .head-One{
+    background-color: #ed8323;
+    height:50px;
+  }
 
-#app #header{
-  font-size: 33px;
-  background-color: aquamarine;
-}
+  h4 {
+    font-size: 16px;
+    color: #fff;
+  }
 
-#app #footer{
-  font-size: 33px;
-  background-color: cadetblue;
-}
+  .head-Two .navbar-nav{
+    float: left;
+  }
+
+  .head-Two .navbar-nav li a{
+    color: #000;
+  }
+
+  .breadcrumbs i{
+      color: #ed8323;
+  }
 </style>

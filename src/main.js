@@ -3,7 +3,12 @@ import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
 
+require('./assets/css/bootstrap.css')
+require('./assets/css/bootstrap-rtl.min.css')
 require('./assets/css/main.css')
+require('jquery/dist/jquery.min.js')
+require('bootstrap/dist/js/bootstrap.min.js')
+require('./assets/css/font-awesome.min.css')
 
 Vue.use(vueResource)
 Vue.config.productionTip = false
