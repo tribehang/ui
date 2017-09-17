@@ -1,4 +1,4 @@
-// import router from './../router'
+import router from './../router'
 
 const REFRESH_TOKEN_PATH = 'authentication/refresh_token'
 const LOGIN_PATH = 'authentication/login'
@@ -7,6 +7,13 @@ export default {
 
   user: {
     authenticated: false
+  },
+
+  logout () {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    this.user.authenticated = false
+    router.push('/')
   },
 
   login (context, credentials, redirect) {
@@ -19,15 +26,10 @@ export default {
       localStorage.setItem('refresh_token', response.data.refresh_token)
       console.log(response.data.access_token)
       this.user.authenticated = true
+      router.push('/profile')
     }, response => {
       console.log('login Failed!')
     })
-  },
-
-  // To log out, we just need to remove the token
-  logout () {
-    localStorage.removeItem('access_token')
-    this.user.authenticated = false
   },
 
   refreshToken (context) {
@@ -42,6 +44,7 @@ export default {
       console.log(response.data.refresh_token)
       this.user.authenticated = true
     }, response => {
+      window.location.replace('/login')
       console.log('refresh token expired, back to login please!')
     })
   },

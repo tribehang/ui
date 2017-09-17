@@ -17,8 +17,8 @@
                       <button type="submit" class="btn btn-default search-btn"></button>
                     </form>
                     <ul class="nav navbar-nav navbar-left">
-                      <li><a href="#"> سعید  عزیز, خوش آمدید</a></li>
-                      <li><a href="#" class="fa fa-sign-out" aria-hidden="true"> خروج</a></li>
+                      <li><a href="#"> {{ userFirstName }}  عزیز, خوش آمدید</a></li>
+                      <li><a :href="userActionLink" class="fa fa-sign-out" aria-hidden="true"> {{ userActionName }}</a></li>
                     </ul>
                   </div>
                 </div>
@@ -36,11 +36,12 @@
                 <div class="container-fluid">
                   <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                      <li><a href="#">خانه</a></li>
+                      <li><a href="/">خانه</a></li>
                       <li><a href="#">خرید</a></li>
                       <li><a href="#">فروش</a></li>
                       <li><a href="#">درباره ما</a></li>
                       <li><a href="#">تماس با ما</a></li>
+                      <li v-html="userActionPanel"></li>
                     </ul>
                   </div>
                 </div>
@@ -141,7 +142,25 @@
 </template>
 
 <script>
+  import user from './auth/user.js'
+
   export default {
+    data () {
+      return {
+        userFirstName: 'کاربر',
+        userActionName: 'ورود',
+        userActionLink: '/login',
+        userActionPanel: ''
+      }
+    },
+    methods: {
+      getUser () {
+        user.getHomeUserData(this)
+      }
+    },
+    beforeMount () {
+      this.getUser()
+    }
   }
 </script>
 

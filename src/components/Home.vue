@@ -19,11 +19,12 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                      <li><a href="#">خانه</a></li>
+                      <li><a href="/">خانه</a></li>
                       <li><a href="#">خرید</a></li>
                       <li><a href="#">فروش</a></li>
                       <li><a href="#">درباره ما</a></li>
                       <li><a href="#">تماس با ما</a></li>
+                      <li v-html="userActionPanel"></li>
                     </ul>
                     <form class="navbar-form navbar-left">
                       <div class="form-group">
@@ -363,7 +364,29 @@
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<script>
+  import user from '../auth/user.js'
+
+  export default {
+    data () {
+      return {
+        userFirstName: 'کاربر',
+        userActionName: 'ورود',
+        userActionLink: '/login',
+        userActionPanel: ''
+      }
+    },
+    methods: {
+      getUser () {
+        user.getHomeUserData(this)
+      }
+    },
+    beforeMount () {
+      this.getUser()
+    }
+  }
+</script>
+
 <style>
   .navbar-default .navbar-nav > li > a{color:#fff !important;}
 
