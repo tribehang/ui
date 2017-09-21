@@ -171,6 +171,14 @@
     height:50px;
   }
 
+  .head-Three .container{
+    padding-bottom: 0px
+  }
+
+  .head-Three .navbar-default{
+    margin-bottom: 0px;
+  }
+
   h4 {
     font-size: 16px;
     color: #fff;
@@ -182,6 +190,10 @@
 
   .head-Two .navbar-nav li a{
     color: #000;
+  }
+
+  .head-Two .container{
+    padding-bottom:0px;
   }
 
   .breadcrumbs i{

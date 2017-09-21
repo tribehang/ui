@@ -253,7 +253,6 @@ h1{color:#fff;margin-top:6%;}
 input {
     font-size: 16px;
     padding: 5px 10px 10px 5px;
-    -webkit-appearance: none;
     display: block;
     background: #fafafa;
     color: #636363;
@@ -273,7 +272,6 @@ label {
     font-size: 14px;
     font-weight: normal;
     position: absolute;
-    pointer-events: none;
     right: 5px;
     top: 10px;
     transition: all 0.2s ease;
