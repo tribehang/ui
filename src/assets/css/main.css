@@ -271,7 +271,6 @@ label {
     color: #999;
     font-size: 14px;
     font-weight: normal;
-    position: absolute;
     right: 5px;
     top: 10px;
     transition: all 0.2s ease;
@@ -520,4 +519,9 @@ input:focus ~ .highlight {
     color: white;
     padding: 13px;
     font-size: 20px !important;
+}
+
+.radio-inline{
+    margin-bottom: 13px;
+    margin-top: 0px;
 }
