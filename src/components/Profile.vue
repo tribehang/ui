@@ -217,7 +217,6 @@
                                           </div>
                                       </li>
                                   </ul>
-
                               </div>
 
                               <h4>عکس های محصول</h4>
@@ -233,13 +232,79 @@
                               </div>
                           </v-tab>
                       </vue-tabs>
-
                   </div>
               </v-tab>
 
               <v-tab title="مشاهده کالای ثبت شده" icon="ti-check">
                   <div class="container">
-                    ddd
+                      <div v-for="items in user.sales">
+                          <div class="panel panel-default" v-for="sale in items" >
+                              <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                      {{ sale.category.data.parentName }} {{ sale.category.data.name }}
+                                  </h4>
+                              </div>
+                              <div class="panel-body my-sales">
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <img src="" alt="imageThumbnail" class="img-thumbnail">
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <i class="fa fa-question-circle-o"></i>
+                                          <strong  v-translate>STATUS</strong>:
+                                          <span :class="sale.saleStatus" style="pointer-events: none" v-translate>SL_{{sale.saleStatus}}</span>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <i class="fa fa-calendar"></i>
+                                          <strong  v-translate>SALE_CREATION_DATETIME</strong>:
+                                          <span>{{ sale.createdAt }}</span>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <i class="fa fa-clock-o"></i>
+                                          <strong  v-translate>SALE_USAGE_IN_MONTHS</strong>:
+                                          <span>{{sale.usageInMonths}} <span v-translate>MONTH</span></span>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <i class="fa fa-file-text-o"></i>
+                                          <strong  v-translate>CUSTOMER_NOTE</strong>:
+                                          <span> --- </span>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <i class="fa fa-gg"></i>
+                                          <strong  v-translate>SALE_INITIAL_PRICE</strong>:
+                                          <span> --- </span>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <i class="fa fa-pencil"></i>
+                                          <strong  v-translate>SEMSARI_NOTE</strong>:
+                                          <span> --- </span>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <i class="fa fa-gg-circle"></i>
+                                          <strong  v-translate>SALE_FINAL_PRICE</strong>:
+                                          <span> --- </span>
+                                      </div>
+                                      <div class="col-sm-6">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
               </v-tab>
           </vue-tabs>
@@ -333,7 +398,6 @@
       },
       isStepTwoFinished () {
         var isFinished = true
-
         $.each(this.selectedAttributes, function (index, attribute) {
           if (attribute.value.length === 0) {
             isFinished = false

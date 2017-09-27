@@ -14,11 +14,13 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "persianjs": "^0.3.0",
     "vue": "^2.3.3",
     "vue-base64-file-upload": "^1.0.4",
     "vue-nav-tabs": "^0.5.4",
     "vue-resource": "^1.3.4",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "vue-translate-plugin": "^1.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
