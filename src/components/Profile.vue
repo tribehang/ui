@@ -247,7 +247,7 @@
                               <div class="panel-body my-sales">
                                   <div class="row">
                                       <div class="col-sm-3">
-                                          <img src="" alt="imageThumbnail" class="img-thumbnail">
+                                          <img :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">
                                       </div>
                                       <div class="col-sm-3">
                                           <i class="fa fa-question-circle-o"></i>
@@ -377,7 +377,7 @@
         if (this.isStepOneFinished()) {
           this.stepOneError = ''
           $('#sell-steps .nav-pills li:nth-child(2)').click()
-          sale.getCategoryAttributes(this, this.selectedSubCategory.id)
+          sale.getCategoryAttributes(this, this.selectedCategory.id)
         } else {
           this.stepOneError = 'لطفا مرحله انتخاب نوع  کالا را کامل کنید'
         }
@@ -412,6 +412,9 @@
       },
       addSale () {
         sale.addItem(this)
+      },
+      getSaleImageLink ($saleId, $saleImageId) {
+        return sale.getSaleImageLink($saleId, $saleImageId)
       },
       clickOneMySales () {
         $('.left-vertical-tabs ul li:nth-child(3)').click()

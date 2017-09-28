@@ -54,6 +54,9 @@ export default {
       context.categories = []
     })
   },
+  getSaleImageLink ($saleId, $saleImageId) {
+    return '//s3.eu-central-1.amazonaws.com/semsari-staging/sales/' + $saleId + '/' + $saleImageId + '.jpg'
+  },
   addItem (context) {
     var data = {
       'category_id': context.selectedSubCategory.id,
