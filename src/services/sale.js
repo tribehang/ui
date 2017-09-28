@@ -55,7 +55,7 @@ export default {
     })
   },
   getSaleImageLink ($saleId, $saleImageId) {
-    return '//s3.eu-central-1.amazonaws.com/semsari-staging/sales/' + $saleId + '/' + $saleImageId + '.jpg'
+    return process.env.NODE_AWS_BUCKET_LINK + 'sales/' + $saleId + '/' + $saleImageId + '.jpg'
   },
   addItem (context) {
     var data = {
