@@ -46,7 +46,9 @@ export default {
         attributes[index] = {
           id: value.id,
           value: '',
-          name: value.name
+          name: value.name,
+          type: value.type,
+          label: ''
         }
       })
       context.selectedAttributes = attributes

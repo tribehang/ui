@@ -97,54 +97,42 @@
                               <ul class="category-attributes">
                                   <li v-for="(attribute, index) in attributes" >
                                       <div v-if="attribute.type === 'boolean'">
-                                          <div class="row">
-                                              <div class="form-group">
+                                          <div class="form-group">
+                                              <label style="line-height: 36px;">{{ attribute.name }} :</label>
+                                              <label class="radio-inline control-label radio">
+                                                  <input type='radio' :name="attribute.id" value="1" v-model="selectedAttributes[index].value"> بلی
+                                              </label>
 
-                                                  <label style="line-height: 36px;">{{ attribute.name }} :</label>
-                                                  <label class="radio-inline control-label radio">
-                                                      <input type='radio' :name="attribute.id" value="1" v-model="selectedAttributes[index].value"> بلی
-                                                  </label>
-
-                                                  <label class="radio-inline control-label radio">
-                                                      <input type='radio' :name="attribute.id" value="0" v-model="selectedAttributes[index].value">خیر
-                                                  </label>
-                                              </div>
-
+                                              <label class="radio-inline control-label radio">
+                                                  <input type='radio' :name="attribute.id" value="0" v-model="selectedAttributes[index].value">خیر
+                                              </label>
                                           </div>
                                       </div>
 
                                       <div v-if="attribute.type === 'select'">
-                                          <div class="row">
-                                              <div class="form-group">
-                                                  <select class="form-control" v-model="selectedAttributes[index].value">
-                                                      <option disabled selected>{{ attribute.name }}</option>
-                                                      <option v-for="option in attribute.options.data" :value="option.value">{{ option.name }}</option>
-                                                  </select>
-                                              </div>
+                                          <div class="form-group">
+                                              <select class="form-control" v-model="selectedAttributes[index].value" v-on:change="handleAttributeChange">
+                                                  <option disabled selected>{{ attribute.name }}</option>
+                                                  <option v-for="option in attribute.options.data" :data-attributeIndex="index" :value="option.value">{{ option.name }}</option>
+                                              </select>
                                           </div>
                                       </div>
 
                                       <div v-if="attribute.type === 'integer'">
-                                          <div class="row">
-                                              <div class="form-group">
-                                                  {{attribute.name}} <input v-model="selectedAttributes[index].value" type="number" name="quantity" min="0">
-                                              </div>
+                                          <div class="form-group">
+                                              {{attribute.name}} <input v-model="selectedAttributes[index].value" type="number" name="quantity" min="0">
                                           </div>
                                       </div>
 
                                       <div v-if="attribute.type === 'string'">
-                                          <div class="row">
-                                              <div class="form-group">
-                                                  <input  v-model="selectedAttributes[index].value" type="text" class="form-control" :placeholder="attribute.name">
-                                              </div>
+                                          <div class="form-group">
+                                              <input  v-model="selectedAttributes[index].value" type="text" class="form-control" :placeholder="attribute.name">
                                           </div>
                                       </div>
 
                                       <div v-if="attribute.type === 'text'">
-                                          <div class="row">
-                                              <div class="form-group">
-                                                  <textarea v-model="selectedAttributes[index].value" class="form-control" rows="3" :placeholder="attribute.name"></textarea>
-                                              </div>
+                                          <div class="form-group">
+                                              <textarea v-model="selectedAttributes[index].value" class="form-control" rows="3" :placeholder="attribute.name"></textarea>
                                           </div>
                                       </div>
                                   </li>
@@ -212,7 +200,11 @@
                               <div class="row review-box">
                                   <ul class="category-attributes">
                                       <li v-for="(selectedAttribute, index) in selectedAttributes" >
-                                          <div class="col-md-12">
+                                          <div class="col-md-12" v-if="selectedAttribute.type === 'select'">
+                                              <span>{{ selectedAttribute.name }}</span> : <i>{{ selectedAttribute.label }}</i>
+                                          </div>
+
+                                          <div class="col-md-12" v-else>
                                               <span>{{ selectedAttribute.name }}</span> : <i>{{ selectedAttribute.value }}</i>
                                           </div>
                                       </li>
@@ -328,7 +320,7 @@
         user: '',
         stepOneError: '',
         stepTwoError: '',
-        customImageMaxSize: 1,
+        customImageMaxSize: 2,
         imageUploadBase64: '',
         categories: '',
         subCategories: '',
@@ -418,6 +410,11 @@
       },
       clickOneMySales () {
         $('.left-vertical-tabs ul li:nth-child(3)').click()
+      },
+      handleAttributeChange (e) {
+        var label = e.target[e.target.options.selectedIndex].label
+        var attributeIndex = e.target.options[e.target.options.selectedIndex].dataset.attributeindex
+        this.selectedAttributes[attributeIndex].label = label
       }
     },
     beforeMount () {
@@ -589,5 +586,9 @@
         -webkit-column-rule: 1px solid #CCCBCB;
         -moz-column-rule: 1px solid #CCCBCB;
         column-rule: 1px solid #CCCBCB;
+    }
+
+   .category-attributes .form-group{
+        margin-bottom: 50px;
     }
 </style>
