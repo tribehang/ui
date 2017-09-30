@@ -1,29 +1,33 @@
 <template>
   <div class="container">
-    <div class="col-sm-4 col-sm-offset-4">
-      <h2>Log In</h2>
-      <p>Log in to your account to get some great quotes.</p>
-      <div class="alert alert-danger" v-if="error">
-        <p>{{ error }}</p>
-      </div>
-      <div class="form-group">
-        <input
-                type="text"
-                class="form-control"
-                placeholder="Enter your username"
-                v-model="credentials.username"
-        >
-      </div>
-      <div class="form-group">
-        <input
-                type="password"
-                class="form-control"
-                placeholder="Enter your password"
-                v-model="credentials.password"
-        >
-      </div>
-      <button class="btn btn-primary" @click="submit()">Access</button>
-    </div>
+        <div role="tabpanel" class="tab-pane" id="register" aria-labelledby="register-tab">
+            <form class="login">
+                <h4 class="fa fa-address-card-o fa-lg" v-translate>ENTER_TO_PROFILE</h4>
+                <div class="group">
+                    <input autocomplete="off" v-model="credentials.username" type="email">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+
+                    <label>
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <span>   نام کاربری یا ایمیل</span>
+                    </label>
+                </div>
+                <div class="group">
+                    <input autocomplete="off" v-model="credentials.password" type="password">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span>
+                    </label>
+                </div>
+                <button type="button" class="button buttonorng" @click="submit()">ورود
+                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                </button>
+                <a href="#" class="f-width forget-pass">رمز عبور خود را فراموش کرده ام.</a>
+                <p class="bg-danger fa fa-exclamation-triangle" v-if="loginError !== ''">{{ loginError }}</p>
+            </form>
+        </div>
   </div>
 
 </template>
@@ -38,7 +42,7 @@
           username: '',
           password: ''
         },
-        error: ''
+        loginError: ''
       }
     },
     methods: {
@@ -53,3 +57,29 @@
 
   }
 </script>
+
+<style scoped>
+    .login{
+        width:600px;
+    }
+
+    .login h4{
+        border-bottom: 2px solid #ed8324;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        display: block;
+        font-size: 18px;
+    }
+
+    .fa-address-card-o:before{
+        margin-left: 10px;
+    }
+
+    .fa-exclamation-triangle:before{
+        margin-left:5px;
+    }
+
+    .bg-danger{
+        padding: 10px
+    }
+</style>

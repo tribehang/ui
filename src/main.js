@@ -37,10 +37,7 @@ new Vue({
       'SALE_INITIAL_PRICE': 'قیمت اولیه',
       'SALE_FINAL_PRICE': 'قیمت نهایی',
       'SEMSARI_NOTE': 'توضیحات سمساری',
-      'ERROR_REGISTER_FULL_FORM': 'لطفا فرم ثبت نام را کامل کنید',
-      'ERROR_REGISTER_PASSWORD_MISMATCH': 'رمز عبور یکسان نیست',
-      'ERROR_REGISTER_INPUT': 'اطلاعات وارد شده اشتباه است. لطفا مجددا اقدام کنید',
-      'SUCCESSFUL_REGISTER': 'ثبت نام با موفقیت انجام شد'
+      'ENTER_TO_PROFILE': 'ورود به حساب کاربری'
     }
   }
 })

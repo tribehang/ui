@@ -87,7 +87,7 @@
                         </p>
                       </div>
                       <div class="f-width button buttonorng">
-                        <a href="#">ثبت کالا</a>
+                        <a href="/profile">ثبت کالا</a>
                       </div>
                     </div>
                   </div>
@@ -95,7 +95,7 @@
                     <p>sample text</p>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="register" aria-labelledby="register-tab">
-                    <form class="login">
+                    <form autocomplete="off" class="login">
                       <div class="group">
                         <input autocomplete="off" v-model="credentials.username" type="email">
                         <span class="highlight"></span>
@@ -429,7 +429,7 @@
     display: none;
   }
 
-  .fa-warning:before, .fa-exclamation-triangle:before, .fa-check-circle-o:before{
+  .fa-exclamation-triangle:before, .fa-check-circle-o:before{
     margin-left:5px;
   }
 
