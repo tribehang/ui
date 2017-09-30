@@ -92,13 +92,14 @@
                     </div>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="buy" aria-labelledby="buy-tab">
-                    <p>
-                      یییبلف </p>
+                    <p>sample text</p>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="register" aria-labelledby="register-tab">
                     <form class="login">
                       <div class="group">
-                        <input autocomplete="off" type="email"><span class="highlight"></span><span class="bar"></span>
+                        <input autocomplete="off" v-model="credentials.username" type="email">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
 
                         <label>
                           <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -106,20 +107,24 @@
                         </label>
                       </div>
                       <div class="group">
-                        <input autocomplete="off" type="password"><span class="highlight"></span><span class="bar"></span>
-
-                        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span></label>
+                        <input autocomplete="off" v-model="credentials.password" type="password">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>
+                          <i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span>
+                        </label>
                       </div>
-                      <button type="button" class="button buttonorng">ورود
+                      <button type="button" class="button buttonorng" @click="login()">ورود
                         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                       </button>
                       <a href="#" class="f-width forget-pass">رمز عبور خود را فراموش کرده ام.</a>
+                      <p class="bg-danger fa fa-exclamation-triangle" v-if="loginError !== ''">{{ loginError }}</p>
                     </form>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="login" aria-labelledby="login-tab">
                     <form class="login">
                       <div class="group">
-                        <input autocomplete="off" type="email"><span class="highlight"></span><span class="bar"></span>
+                        <input autocomplete="off" type="email" v-model="registerCredentials.email"><span class="highlight"></span><span class="bar"></span>
 
                         <label>
                           <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -127,18 +132,20 @@
                         </label>
                       </div>
                       <div class="group">
-                        <input autocomplete="off" type="password"><span class="highlight"></span><span class="bar"></span>
+                        <input autocomplete="off" type="password" v-model="registerCredentials.password"><span class="highlight"></span><span class="bar"></span>
 
                         <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span></label>
                       </div>
                       <div class="group">
-                        <input autocomplete="off" type="password"><span class="highlight"></span><span class="bar"></span>
+                        <input autocomplete="off" type="password" v-model="registerCredentials.password_confirm"><span class="highlight"></span><span class="bar"></span>
 
                         <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>تکرار رمز عبور</span></label>
                       </div>
-                      <button type="button" class="button buttonorng">ثبت نام
+                      <button type="button" class="button buttonorng" @click="register()">ثبت نام
                         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                       </button>
+                      <p class="bg-danger fa fa-exclamation-triangle" v-if="registerError !== ''">{{ registerError }}</p>
+                      <p class="bg-success fa fa-check-circle-o" v-if="registerSuccess !== ''">{{ registerSuccess }}</p>
                     </form>
                   </div>
                 </div>
@@ -365,7 +372,8 @@
 </template>
 
 <script>
-  import user from '../auth/user.js'
+  import user from '../auth/user'
+  import auth from '../auth'
 
   export default {
     data () {
@@ -373,12 +381,39 @@
         userFirstName: 'کاربر',
         userActionName: 'ورود',
         userActionLink: '/login',
-        userActionPanel: ''
+        userActionPanel: '',
+        credentials: {
+          username: '',
+          password: ''
+        },
+        registerCredentials: {
+          email: '',
+          password: '',
+          password_confirm: ''
+        },
+        registerError: '',
+        registerSuccess: '',
+        loginError: ''
       }
     },
     methods: {
       getUser () {
         user.getHomeUserData(this)
+      },
+      login () {
+        var credentials = {
+          username: this.credentials.username,
+          password: this.credentials.password
+        }
+        auth.login(this, credentials)
+      },
+      register () {
+        var credential = {
+          email: this.registerCredentials.email,
+          password: this.registerCredentials.password,
+          password_confirm: this.registerCredentials.password_confirm
+        }
+        auth.register(this, credential)
       }
     },
     beforeMount () {
@@ -392,5 +427,13 @@
 
   .fix-row {
     display: none;
+  }
+
+  .fa-warning:before, .fa-exclamation-triangle:before, .fa-check-circle-o:before{
+    margin-left:5px;
+  }
+
+  .bg-danger, .bg-success{
+    padding: 10px
   }
 </style>

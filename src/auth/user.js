@@ -32,6 +32,8 @@ export default {
         context.userActionLink = '/logout'
         context.userActionPanel = '<a href="/profile">کنترل پنل</a>'
       }, response => {
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('refresh_token')
       })
     }
   }
