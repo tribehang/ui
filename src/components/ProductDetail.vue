@@ -11,7 +11,6 @@
                     <gallery :images="images" :index="index" @close="index = null"></gallery>
                     <div
                             class="image"
-                            :title="hhhhh"
                             v-for="image, imageIndex in images"
                             @click="index = imageIndex"
                             :style="{ backgroundImage: 'url(' + image + ')', width: '93px', height: '93px' }"
