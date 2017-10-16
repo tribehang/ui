@@ -1,35 +1,34 @@
 <template>
   <div class="container">
-        <div role="tabpanel" class="tab-pane" id="register" aria-labelledby="register-tab">
-            <form class="login">
-                <h4 class="fa fa-address-card-o fa-lg" v-translate>ENTER_TO_PROFILE</h4>
-                <div class="group">
-                    <input autocomplete="off" v-model="credentials.username" type="email">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
+    <div role="tabpanel" class="tab-pane" id="register" aria-labelledby="register-tab">
+        <form class="login">
+            <h4 class="fa fa-address-card-o fa-lg" v-translate>ENTER_TO_PROFILE</h4>
+            <div class="group">
+                <input autocomplete="off" v-model="credentials.username" type="email">
+                <span class="highlight"></span>
+                <span class="bar"></span>
 
-                    <label>
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <span>   نام کاربری یا ایمیل</span>
-                    </label>
-                </div>
-                <div class="group">
-                    <input autocomplete="off" v-model="credentials.password" type="password">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span>
-                    </label>
-                </div>
-                <button type="button" class="button buttonorng" @click="submit()">ورود
-                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-                </button>
-                <a href="#" class="f-width forget-pass">رمز عبور خود را فراموش کرده ام.</a>
-                <p class="bg-danger fa fa-exclamation-triangle" v-if="loginError !== ''">{{ loginError }}</p>
-            </form>
-        </div>
+                <label>
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <span>   نام کاربری یا ایمیل</span>
+                </label>
+            </div>
+            <div class="group">
+                <input autocomplete="off" v-model="credentials.password" type="password">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span>
+                </label>
+            </div>
+            <button type="button" class="button buttonorng" @click="submit()">ورود
+                <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+            </button>
+            <a href="#" class="f-width forget-pass">رمز عبور خود را فراموش کرده ام.</a>
+            <p class="bg-danger fa fa-exclamation-triangle" v-if="loginError !== ''">{{ loginError }}</p>
+        </form>
+    </div>
   </div>
-
 </template>
 
 <script>

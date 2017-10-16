@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <div class="row head-One fix-row">
+      <div class="head-One fix-row">
         <div class="container">
           <div class="col-xs-2">
             <h4>آسان بفروش، مطمئن بخر.</h4>
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="row head-Two fix-row">
+      <div class="head-Two fix-row">
         <div class="container">
           <div class="col-xs-2"> <div class="logo"><img src="./assets/images/logo.png" height="44" width="160"/></div></div>
           <div class="col-xs-10">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div class="row head-Three fix-row">
+      <div class="head-Three fix-row">
         <div class="container">
           <div class="col-xs-10">
             <div class="main-menu">
