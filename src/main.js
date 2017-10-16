@@ -35,9 +35,13 @@ new Vue({
       'SALE_USAGE_IN_MONTHS': 'کارکرد',
       'CUSTOMER_NOTE': 'توضیحات مشتری',
       'SALE_INITIAL_PRICE': 'قیمت اولیه',
+      'PRICE': 'قیمت',
       'SALE_FINAL_PRICE': 'قیمت نهایی',
       'SEMSARI_NOTE': 'توضیحات سمساری',
-      'ENTER_TO_PROFILE': 'ورود به حساب کاربری'
+      'ENTER_TO_PROFILE': 'ورود به حساب کاربری',
+      'PRODUCT_DETAILS_ATTRIBUTES': 'مشخصات اختصاصی محصول ',
+      'BUY_PRODUCT': 'خرید محصول',
+      'SIMILAR_PRODUCTS': 'محصولات مشابه'
     }
   }
 })
