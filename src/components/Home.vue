@@ -46,8 +46,6 @@
         <div class="row head-three">
           <div class="wrapper">
             <div class="container">
-
-
               <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul class="nav nav-tabs nav-tabs-responsive myTab" role="tablist">
                   <li role="presentation" class="active">
@@ -100,7 +98,6 @@
                         <input autocomplete="off" v-model="credentials.username" type="email">
                         <span class="highlight"></span>
                         <span class="bar"></span>
-
                         <label>
                           <i class="fa fa-user-circle" aria-hidden="true"></i>
                           <span>   نام کاربری یا ایمیل</span>
@@ -160,12 +157,10 @@
         <div class="row">
           <div class="col-xs-7">
             <div class="f-width adv">
-
               <img src="../assets/images/adv-laptop.jpg" height="231" width="668"/></div>
           </div>
           <div class="col-xs-5">
             <div class="f-width adv">
-
               <img src="../assets/images/adv-mobile.jpg" height="231" width="451"/></div>
           </div>
         </div>
@@ -178,12 +173,11 @@
                     <span class="text">آخرین محصولات</span>
                   </a>
                 </li>
-
               </ul>
               <div class="tab-content myTabContent myprotab">
                 <div role="tabpanel" class="tab-pane fade in active" id="sale1" aria-labelledby="sale-tab">
                   <section class="center slider">
-                    <div>
+                    <slick ref="slick" :options="slickOptions">
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
@@ -205,8 +199,6 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
-                    <div>
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
@@ -228,7 +220,49 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
+                      <div class="f-width pro-cart">
+                        <div class="f-width pro-pic">
+                          <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <div class="f-width pro-ttl">
+                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
+                        </div>
+                        <div class="f-width pro-time">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="bold black">کارکرد : </span>
+                          <span>1 سال</span>
+                        </div>
+                        <div class="f-width pro-price">
+                          <i class="fa fa-money"></i>
+                          <span class="bold black">قیمت :</span>
+                          <span>1350000 تومان</span>
+                        </div>
+                        <div class="f-width pro-buy-more">
+                          <a href="#" class="pro-more">توضیحات بیشتر</a>
+                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                      </div>
+                      <div class="f-width pro-cart">
+                        <div class="f-width pro-pic">
+                          <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <div class="f-width pro-ttl">
+                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
+                        </div>
+                        <div class="f-width pro-time">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="bold black">کارکرد : </span>
+                          <span>1 سال</span>
+                        </div>
+                        <div class="f-width pro-price">
+                          <i class="fa fa-money"></i>
+                          <span class="bold black">قیمت :</span>
+                          <span>1350000 تومان</span>
+                        </div>
+                        <div class="f-width pro-buy-more">
+                          <a href="#" class="pro-more">توضیحات بیشتر</a>
+                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                      </div>
+                    </slick>
                   </section>
                 </div>
               </div>
@@ -258,13 +292,12 @@
               <div class="tab-content myTabContent myprotab">
                 <div role="tabpanel" class="tab-pane fade in active" id="iphone5" aria-labelledby="iphone5-tab">
                   <section class="center slider">
-                    <div>
+                    <slick ref="slick" :options="slickOptions">
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
-
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
                         <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 16 گيگابايت</a>
+                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 64 گيگابايت</a>
                         </div>
                         <div class="f-width pro-time">
                           <i class="fa fa-clock-o"></i>
@@ -281,15 +314,77 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
-                  </section>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="iphone5s" aria-labelledby="iphone5s-tab">
-                  <section class="center slider">
-                    <div>
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
-
+                          <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <div class="f-width pro-ttl">
+                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
+                        </div>
+                        <div class="f-width pro-time">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="bold black">کارکرد : </span>
+                          <span>1 سال</span>
+                        </div>
+                        <div class="f-width pro-price">
+                          <i class="fa fa-money"></i>
+                          <span class="bold black">قیمت :</span>
+                          <span>1350000 تومان</span>
+                        </div>
+                        <div class="f-width pro-buy-more">
+                          <a href="#" class="pro-more">توضیحات بیشتر</a>
+                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                      </div>
+                      <div class="f-width pro-cart">
+                        <div class="f-width pro-pic">
+                          <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <div class="f-width pro-ttl">
+                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
+                        </div>
+                        <div class="f-width pro-time">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="bold black">کارکرد : </span>
+                          <span>1 سال</span>
+                        </div>
+                        <div class="f-width pro-price">
+                          <i class="fa fa-money"></i>
+                          <span class="bold black">قیمت :</span>
+                          <span>1350000 تومان</span>
+                        </div>
+                        <div class="f-width pro-buy-more">
+                          <a href="#" class="pro-more">توضیحات بیشتر</a>
+                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                      </div>
+                    </slick>
+                  </section>
+                </div>
+                <div role="tabpanel" class="tab-pane fade active" id="iphone5s" aria-labelledby="iphone5s-tab">
+                  <section class="center slider">
+                    <slick ref="slick" :options="slickOptions">
+                      <div class="f-width pro-cart">
+                        <div class="f-width pro-pic">
+                          <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <div class="f-width pro-ttl">
+                          <a href="#">گوشي موبايل اپل مدل iPhone 5s ظرفيت 64 گيگابايت</a>
+                        </div>
+                        <div class="f-width pro-time">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="bold black">کارکرد : </span>
+                          <span>1 سال</span>
+                        </div>
+                        <div class="f-width pro-price">
+                          <i class="fa fa-money"></i>
+                          <span class="bold black">قیمت :</span>
+                          <span>1350000 تومان</span>
+                        </div>
+                        <div class="f-width pro-buy-more">
+                          <a href="#" class="pro-more">توضیحات بیشتر</a>
+                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                      </div>
+                      <div class="f-width pro-cart">
+                        <div class="f-width pro-pic">
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
                         <div class="f-width pro-ttl">
                           <a href="#">گوشي موبايل اپل مدل iPhone 5s ظرفيت 32 گيگابايت</a>
@@ -309,12 +404,12 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
+                    </slick>
                   </section>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="iphone6" aria-labelledby="iphone6-tab">
+                <div role="tabpanel" class="tab-pane fade active" id="iphone6" aria-labelledby="iphone6-tab">
                   <section class="center slider">
-                    <div>
+                    <slick ref="slick" :options="slickOptions">
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
@@ -336,8 +431,6 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
-                    <div>
                       <div class="f-width pro-cart">
                         <div class="f-width pro-pic">
                           <img src="../assets/images/product.png" height="100" width="75"/></div>
@@ -359,7 +452,7 @@
                           <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                       </div>
-                    </div>
+                    </slick>
                   </section>
                 </div>
               </div>
@@ -367,15 +460,21 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
+  require('slick-carousel/slick/slick.css')
+  require('slick-carousel/slick/slick-theme.css')
+
   import user from '../auth/user'
   import auth from '../auth'
+  import Slick from 'vue-slick'
 
   export default {
+    components: { Slick },
     data () {
       return {
         userFirstName: 'کاربر',
@@ -393,7 +492,11 @@
         },
         registerError: '',
         registerSuccess: '',
-        loginError: ''
+        loginError: '',
+        slickOptions: {
+          dots: true,
+          slidesToShow: 3
+        }
       }
     },
     methods: {
@@ -414,15 +517,34 @@
           password_confirm: this.registerCredentials.password_confirm
         }
         auth.register(this, credential)
+      },
+      next () {
+        this.$refs.slick.next()
+      },
+      prev () {
+        this.$refs.slick.prev()
+      },
+      reInit () {
+        this.$nextTick(() => {
+          this.$refs.slick.reSlick()
+        })
       }
     },
     beforeMount () {
       this.getUser()
+    },
+    beforeUpdate () {
+      $('#iphone5s').removeClass('active')
+      $('#iphone6').removeClass('active')
     }
   }
 </script>
 
 <style>
+  .slick-next{
+    right: -28px;
+  }
+
   .navbar-default .navbar-nav > li > a{color:#fff !important;}
 
   .fix-row {
