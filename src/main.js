@@ -41,7 +41,8 @@ new Vue({
       'ENTER_TO_PROFILE': 'ورود به حساب کاربری',
       'PRODUCT_DETAILS_ATTRIBUTES': 'مشخصات اختصاصی محصول ',
       'BUY_PRODUCT': 'خرید محصول',
-      'SIMILAR_PRODUCTS': 'محصولات مشابه'
+      'SIMILAR_PRODUCTS': 'محصولات مشابه',
+      'TODAY': 'امروز'
     }
   }
 })

@@ -292,6 +292,7 @@
                                           <span> --- </span>
                                       </div>
                                       <div class="col-sm-6">
+                                          <pdatepicker name="date" :id="sale.id" headerBackgroundColor="orange" availableDaysNum="20"></pdatepicker>
                                       </div>
                                   </div>
                               </div>
@@ -313,6 +314,7 @@
 
   import user from '../auth/user'
   import sale from '../services/sale'
+  import PDatePicker from '@/components/PDatePicker'
 
   export default {
     data () {
@@ -337,7 +339,8 @@
     components: {
       VueTabs,
       VTab,
-      VueBase64FileUpload
+      VueBase64FileUpload,
+      'pdatepicker': PDatePicker
     },
     methods: {
       onFile (file) {
