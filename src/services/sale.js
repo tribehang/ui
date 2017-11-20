@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 const SALE_MAIN_CATEGORIES_API = 'categories?filter[active]=1&filter[parent_id]='
 const SALE_SUB_CATEGORIES_API = 'categories?filter[active]=1&filter[parent_id]='
+const SALE_API = 'sales'
 
 export default {
   data () {
@@ -23,6 +24,14 @@ export default {
         {title: 'خراب', value: 'kharab'}
       ]
     }
+  },
+  getSale (context, $saleId = '') {
+    Vue.http.get(process.env.NODE_API_HOST + SALE_API + '/' + $saleId, {'headers': auth.getAuthHeader()}).then(response => {
+      context.sale = response.data.data
+    }, response => {
+      context.sale = ''
+      window.location.replace('/profile')
+    })
   },
   getCategories (context) {
     Vue.http.get(process.env.NODE_API_HOST + SALE_MAIN_CATEGORIES_API, {'headers': auth.getAuthHeader()}).then(response => {

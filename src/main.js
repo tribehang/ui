@@ -42,7 +42,11 @@ new Vue({
       'PRODUCT_DETAILS_ATTRIBUTES': 'مشخصات اختصاصی محصول ',
       'BUY_PRODUCT': 'خرید محصول',
       'SIMILAR_PRODUCTS': 'محصولات مشابه',
-      'TODAY': 'امروز'
+      'TODAY': 'امروز',
+      'CLOSE': 'بستن',
+      'CONFIRM': 'تایید',
+      'SET_APPOINTMENT': 'تایین تاریخ و زمان ملاقات',
+      'SELECT_LOCATION': 'لطفا  شهر خود را انتخاب کنید'
     }
   }
 })

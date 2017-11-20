@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import Profile from '@/components/Profile'
 import ProductDetail from '@/components/ProductDetail'
+import SaleAppointment from '@/components/SaleAppointment'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/details',
       name: 'ProductDetail',
       component: ProductDetail
+    },
+    {
+      path: '/sale/:sale_id/appointment',
+      name: 'SaleAppointment',
+      component: SaleAppointment
     }
   ]
 })

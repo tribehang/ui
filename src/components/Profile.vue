@@ -291,9 +291,14 @@
                                           <strong  v-translate>SALE_FINAL_PRICE</strong>:
                                           <span> --- </span>
                                       </div>
-                                      <div class="col-sm-6">
-                                          <pdatepicker name="date" :id="sale.id" headerBackgroundColor="orange" availableDaysNum="20"></pdatepicker>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <div v-if="sale.saleStatus === 'created'">
+                                              <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-info" style="float: right;">SET_APPOINTMENT</a>
+                                          </div>
                                       </div>
+
                                   </div>
                               </div>
                           </div>
@@ -314,7 +319,6 @@
 
   import user from '../auth/user'
   import sale from '../services/sale'
-  import PDatePicker from '@/components/PDatePicker'
 
   export default {
     data () {
@@ -339,10 +343,12 @@
     components: {
       VueTabs,
       VTab,
-      VueBase64FileUpload,
-      'pdatepicker': PDatePicker
+      VueBase64FileUpload
     },
     methods: {
+      getSaleAppointmentLink (saleId) {
+        return 'sale/' + saleId + '/appointment'
+      },
       onFile (file) {
       },
       onLoad (dataUri) {
@@ -594,4 +600,8 @@
    .category-attributes .form-group{
         margin-bottom: 50px;
     }
+
+   .vue-tabs a {
+       color: #FFF
+   }
 </style>

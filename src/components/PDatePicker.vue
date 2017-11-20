@@ -1,6 +1,5 @@
 <template>
-    <div class="pdatepicker" v-bind:class="{ 'inline' : inlineMode, wrapperClass }"
-               >
+    <div class="pdatepicker" v-bind:class="{ 'inline' : inlineMode, wrapperClass }">
         <input :id="id"
             type="text"
                @click="inputClicked"
@@ -34,6 +33,7 @@
                     </div>
                     <div class='dialog-today'>
                        <span v-translate @click='goToTodayAndClose'>TODAY</span>
+                       <span style="float: left; margin-left: 5px;" v-translate @click='closeDialog'>CLOSE</span>
                     </div>
                 </div>
                 <div class='year-view' v-if='isMonthView'>
@@ -285,6 +285,8 @@ export default {
       this.closeDialog()
       var formattedMonth = this.chosenMonth.length === 2 ? this.chosenMonth : '0' + this.chosenMonth
       this.dateValue = this.chosenYear + '-' + formattedMonth + '-' + this.chosenDay
+      var chosenGregorianDate = this.jalali_to_gregorian(this.chosenYear, formattedMonth, this.chosenDay)
+      this.$emit('dateChosen', chosenGregorianDate[0] + '-' + chosenGregorianDate[1] + '-' + chosenGregorianDate[2])
     },
     monthClicked (month) {
       this.displayingMonthNum = month
@@ -389,6 +391,9 @@ export default {
         input{
             text-align: right;
             direction: rtl;
+            padding: 0;
+            border-bottom:none;
+            cursor: pointer;
         }
         .dialog{
             position: absolute;
