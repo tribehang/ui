@@ -11,9 +11,9 @@ export default {
     }
   },
   createAppointment (saleId, addressId, startAt, endAt, dayNumber, user, selectedAddress) {
-    //create appointment
+    // create appointment
 
-    //update sale's appointment ID
+    // update sale's appointment ID
     console.log('creating appointment')
   },
   getAppointmentDates (context, locationId) {
