@@ -284,9 +284,12 @@ export default {
       this.updateInput()
       this.closeDialog()
       var formattedMonth = this.chosenMonth.length === 2 ? this.chosenMonth : '0' + this.chosenMonth
-      this.dateValue = this.chosenYear + '-' + formattedMonth + '-' + this.chosenDay
+      var dateValueGreogrian = this.jalali_to_gregorian(this.chosenYear, formattedMonth, this.chosenDay)
       var chosenGregorianDate = this.jalali_to_gregorian(this.chosenYear, formattedMonth, this.chosenDay)
-      this.$emit('dateChosen', chosenGregorianDate[0] + '-' + chosenGregorianDate[1] + '-' + chosenGregorianDate[2])
+      var chosenGregorianDateMonth = chosenGregorianDate[1].toString().length === 2 ? chosenGregorianDate[1] : '0' + chosenGregorianDate[1]
+      var chosenGregorianDateDay = chosenGregorianDate[2].toString().length === 2 ? chosenGregorianDate[2] : '0' + chosenGregorianDate[2]
+      this.dateValue = dateValueGreogrian[0] + '-' + chosenGregorianDateMonth + '-' + chosenGregorianDateDay
+      this.$emit('dateChosen', chosenGregorianDate[0] + '-' + chosenGregorianDateMonth + '-' + chosenGregorianDateDay)
     },
     monthClicked (month) {
       this.displayingMonthNum = month

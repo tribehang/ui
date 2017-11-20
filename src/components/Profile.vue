@@ -27,6 +27,17 @@
                   </dl>
               </v-tab>
 
+              <v-tab title="آدرسهای من">
+                  <div class="container">
+                      <div v-for="address in user.addresses.data">
+                          <p>
+                              <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                              {{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )
+                          </p>
+                      </div>
+                  </div>
+              </v-tab>
+
               <v-tab title="فروش کالای جدید" icon="ti-settings">
                   <div id="sell-steps">
                       <vue-tabs active-tab-color="#e74c3c"

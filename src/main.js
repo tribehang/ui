@@ -46,7 +46,9 @@ new Vue({
       'CLOSE': 'بستن',
       'CONFIRM': 'تایید',
       'SET_APPOINTMENT': 'تایین تاریخ و زمان ملاقات',
-      'SELECT_LOCATION': 'لطفا  شهر خود را انتخاب کنید'
+      'SELECT_LOCATION': 'لطفا  شهر خود را انتخاب کنید',
+      'CONTACT_NUMBER': 'شماره تماس',
+      'POSTAL_CODE': 'کد پستی'
     }
   }
 })

@@ -63,28 +63,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group col-sm-6">
-                        <select v-model="selectedLocationId" class="form-control" v-on:change="changeLocation">
-                            <option disabled value="" v-translate>SELECT_LOCATION</option>
-                            <option v-for="location in locations" :value="location.id">{{ location.name }}</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-sm-6" v-if="selectedLocationId !== ''">
-                        <pdatepicker class="form-control" @dateChosen="onClickDateChosen(sale.id, $event)" name="date" :id="sale.id" headerBackgroundColor="orange" :availableDaysNum="appointmentAvailableDaysNum"></pdatepicker>
-                    </div>
-
-                    <div class="form-group col-sm-4" v-if="daysHours[sale.id]" >
-                        <select class="form-control" v-on:change="changeHour" v-model.trim="selectedHour">
-                            <option :value="daysHour"  v-for="daysHour in daysHours[sale.id][dayChosenForSale[sale.id]]">{{ daysHour }}</option>
-                        </select>
-                    </div>
-
-                    <label v-if="daysHours[sale.id]" class="form-group">
-                        <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: left;">CONFIRM</button>
-                    </label>
+                <div class="form-group col-sm-3">
+                    <select v-model="selectedLocationId" class="form-control" v-on:change="changeLocation">
+                        <option disabled value="" v-translate>SELECT_LOCATION</option>
+                        <option v-for="location in locations" :value="location.id">{{ location.name }}</option>
+                    </select>
                 </div>
+
+                <div class="form-group col-sm-3" v-if="selectedLocationId !== ''">
+                    <pdatepicker class="form-control" @dateChosen="onClickDateChosen(sale.id, $event)" name="date" :id="sale.id" headerBackgroundColor="orange" :availableDaysNum="appointmentAvailableDaysNum"></pdatepicker>
+                </div>
+
+                <div class="form-group col-sm-2" v-if="daysHours[sale.id]" >
+                    <select class="form-control" v-on:change="changeHour" v-model.trim="selectedHour">
+                        <option :value="daysHour"  v-for="daysHour in daysHours[sale.id][dayChosenForSale[sale.id]]">{{ daysHour }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label v-if="daysHours[sale.id]" class="form-group">
+
+                    <div v-if="getSelectedHourLength() > 0">
+                        <div v-for="address in user.addresses.data">
+                            <input type="radio" :value="address.id" v-model="selectedAddressId" v-on:change="updateAddress">
+                            <label>
+                                {{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )
+                            </label>
+                        </div>
+                    </div>
+
+                    <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
+                </label>
             </div>
         </div>
     </div>
@@ -112,10 +121,15 @@
         appointmentDays: [],
         dayChosenForSale: [],
         selectedHour: '',
-        selectedLocationId: ''
+        selectedLocationId: '',
+        selectedAddress: '',
+        selectedAddressId: ''
       }
     },
     methods: {
+      updateAddress () {
+        user.getUserAddress(this, this.selectedAddressId)
+      },
       getSelectedHourLength () {
         return this.selectedHour === undefined ? 0 : this.selectedHour.length
       },
@@ -134,26 +148,21 @@
         appointment.getAppointmentDates(this, this.selectedLocationId)
       },
       setAppointment () {
-        console.log('Location ID: ' + this.selectedLocationId)
-        console.log('Sale ID: ' + this.sale.id)
-
         var selectedDate = $('#' + this.sale.id).attr('date-value')
         var startAt = selectedDate + ' ' + appointment.getFormattedStartAt(this.selectedHour)
         var endAt = selectedDate + ' ' + appointment.getFormattedEndAt(this.selectedHour)
+        console.log(selectedDate)
+        var dayNumber = moment(selectedDate).isoWeekday()
 
-        console.log('startAt : ' + startAt)
-        console.log('endAt: ' + endAt)
-        console.log('dayNumber: ' + moment(selectedDate).isoWeekday())
-        console.log('name: ' + this.user.firstName + ' ' + this.user.lastName)
-        console.log('phoneNumber: 12345678')
-        console.log('emailAddress: ' + this.user.email)
-
-        // todo - must come from one of user's addresses
-        console.log('country: iran')
-        console.log('state: tehran')
-        console.log('city: tehran')
-        console.log('street: street')
-        console.log('postcode: postal code')
+        appointment.createAppointment(
+          this.sale.id,
+          this.selectedLocationId,
+          startAt,
+          endAt,
+          dayNumber,
+          this.user,
+          this.selectedAddress
+        )
       }
     },
     created () {
@@ -171,5 +180,12 @@
         padding: 30px;
         box-shadow: 2px 2px 6px #CCC;
         padding-top: 10px;
+    }
+
+    input[type="radio"]{
+        float: right;
+        display: inline-block;
+        width: 15px;
+        margin-left: 10px;
     }
 </style>

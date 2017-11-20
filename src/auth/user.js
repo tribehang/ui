@@ -3,6 +3,7 @@ import Vue from 'vue'
 import router from './../router'
 
 const USER_PATH = 'user'
+const ADDRESS_PATH = 'addresses'
 
 export default {
   data () {
@@ -36,5 +37,11 @@ export default {
         localStorage.removeItem('refresh_token')
       })
     }
+  },
+  getUserAddress (context, addressId) {
+    Vue.http.get(process.env.NODE_API_HOST + ADDRESS_PATH + '/' + addressId, {'headers': auth.getAuthHeader()}).then(response => {
+      context.selectedAddress = response.data.data
+    }, response => {
+    })
   }
 }

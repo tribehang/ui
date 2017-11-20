@@ -10,6 +10,12 @@ export default {
     return {
     }
   },
+  createAppointment (saleId, addressId, startAt, endAt, dayNumber, user, selectedAddress) {
+    //create appointment
+
+    //update sale's appointment ID
+    console.log('creating appointment')
+  },
   getAppointmentDates (context, locationId) {
     Vue.http.get(process.env.NODE_APPOINTMENT_API_HOST + APPOINTMENT_DATES_API + locationId).then(response => {
       var appointmentDays = response.data
