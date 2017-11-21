@@ -136,8 +136,7 @@ export default {
   methods: {
     goToTodayAndClose () {
       this.goToToday()
-      this.updateInput()
-      this.closeDialog()
+      this.dayClicked(this.chosenDay)
     },
     transformYear (yearNumber) {
       return this.convertDigitsETP(yearNumber.toString())

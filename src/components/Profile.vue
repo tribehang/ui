@@ -28,7 +28,7 @@
               </v-tab>
 
               <v-tab title="آدرسهای من">
-                  <div class="container">
+                  <div class="container" v-if="user.addresses">
                       <div v-for="address in user.addresses.data">
                           <p>
                               <i class="fa fa-address-card-o" aria-hidden="true"></i>
