@@ -308,8 +308,23 @@
                                           <div v-if="sale.saleStatus === 'created'">
                                               <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-info" style="float: right;">SET_APPOINTMENT</a>
                                           </div>
+
+                                          <div v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
+                                              <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-success" style="float: right;">APPOINTMENT_DETAILS</a>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="suggestedPriceContainer" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
+                                      <h4 v-translate>ESTIMATED_PRICE</h4>
+
+                                      <div class="container">
+                                          <span class="bold" v-translate>MINIMUM_PRICE</span> : <span> {{sale.minimumSuggestedPrice}}</span>
                                       </div>
 
+                                      <div class="container">
+                                          <span class="bold" v-translate>MAXIMUM_PRICE</span> : <span> {{sale.maximumSuggestedPrice}}</span>
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -614,5 +629,14 @@
 
    .vue-tabs a {
        color: #FFF
+   }
+
+   .suggestedPriceContainer {
+       background-color: #ffffff;
+       margin-bottom: 20px;
+       margin-top:10px;
+       padding: 30px;
+       box-shadow: 2px 2px 6px #CCC;
+       padding-top: 10px;
    }
 </style>

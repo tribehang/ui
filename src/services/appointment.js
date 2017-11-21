@@ -102,6 +102,13 @@ export default {
       console.log(response)
     })
   },
+  getAppointment (context, appointmentId) {
+    Vue.http.get(process.env.NODE_APPOINTMENT_API_HOST + APPOINTMENT + '/' + appointmentId).then(response => {
+      context.saleAppointment = response.data.data
+    }, response => {
+      console.log(response)
+    })
+  },
   getFormattedStartAt (selectedTime) {
     return PDatePicker.methods.convertDigitsPTE(selectedTime).split(' - ')[1]
   },

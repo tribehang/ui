@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="sale.saleStatus === 'created'">
                 <div class="form-group col-sm-3">
                     <select v-model="selectedLocationId" class="form-control" v-on:change="changeLocation">
                         <option disabled value="" v-translate>SELECT_LOCATION</option>
@@ -80,7 +80,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="sale.saleStatus === 'created'">
                 <label v-if="daysHours[sale.id]" class="form-group">
 
                     <div v-if="getSelectedHourLength() > 0">
@@ -94,6 +94,20 @@
 
                     <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
                 </label>
+            </div>
+
+            <div class="container row" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
+                <h4 v-translate>APPOINTMENT_DATE_AND_TIME</h4>
+
+                <div class="row">
+                    {{ saleAppointment.state }}, {{ saleAppointment.city }}, {{ saleAppointment.street }}, <span v-translate>POSTAL_CODE</span> {{ saleAppointment.postalCode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ saleAppointment.phoneNumber }} )
+                </div>
+                <br>
+                <div class="row">
+                    <span class="alert alert-info">
+                       {{ getFormattedDateAndTime(saleAppointment.startAt) }}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +137,8 @@
         selectedHour: '',
         selectedLocationId: '',
         selectedAddress: '',
-        selectedAddressId: ''
+        selectedAddressId: '',
+        saleAppointment: ''
       }
     },
     methods: {
@@ -151,7 +166,6 @@
         var selectedDate = $('#' + this.sale.id).attr('date-value')
         var startAt = selectedDate + ' ' + appointment.getFormattedStartAt(this.selectedHour)
         var endAt = selectedDate + ' ' + appointment.getFormattedEndAt(this.selectedHour)
-        console.log(selectedDate)
         var dayNumber = moment(selectedDate).isoWeekday()
 
         appointment.createAppointment(
@@ -163,6 +177,24 @@
           this.user,
           this.selectedAddress
         )
+      },
+      getAppointment () {
+        console.log(this.saleId)
+      },
+      getFormattedDateAndTime (dateTime) {
+        if (dateTime !== undefined) {
+          var dateAndTimeSplit = dateTime.split(' ')
+          var timeSplit = dateAndTimeSplit[1].split(':')
+          var timeFormatted = PDatePicker.methods.convertDigitsETP(timeSplit[0] + ':' + timeSplit[1])
+
+          var dateSplit = dateAndTimeSplit[0].split('-')
+          var dateSplitFormatted = PDatePicker.methods.gregorian_to_jalali(parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(dateSplit[2]))
+
+          var dateFormatted = PDatePicker.methods.convertDigitsETP(dateSplitFormatted[2].toString()) +
+            ' ' + PDatePicker.data()['monthNames'][dateSplitFormatted[1] - 1] +
+            ' ' + PDatePicker.methods.convertDigitsETP(dateSplitFormatted[0].toString())
+          return dateFormatted + ' - ساعت ' + timeFormatted
+        }
       }
     },
     created () {

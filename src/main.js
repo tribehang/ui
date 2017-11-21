@@ -48,7 +48,12 @@ new Vue({
       'SET_APPOINTMENT': 'تایین تاریخ و زمان ملاقات',
       'SELECT_LOCATION': 'لطفا  شهر خود را انتخاب کنید',
       'CONTACT_NUMBER': 'شماره تماس',
-      'POSTAL_CODE': 'کد پستی'
+      'POSTAL_CODE': 'کد پستی',
+      'APPOINTMENT_DATE_AND_TIME': 'تاریخ و زمان ملاقات حضوری :',
+      'APPOINTMENT_DETAILS': 'اطلاعات ملاقات حضوری',
+      'ESTIMATED_PRICE': 'قیمت پیشنهادی :',
+      'MINIMUM_PRICE': 'حداقل قیمت',
+      'MAXIMUM_PRICE': 'حداکثر قیمت '
     }
   }
 })
