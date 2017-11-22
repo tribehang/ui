@@ -477,7 +477,7 @@
         this.toShowAddAddressForm = true
       },
       getSaleAppointmentLink (saleId) {
-        return 'sale/' + saleId + '/appointment'
+        return '/sale/' + saleId + '/appointment'
       },
       onFile (file) {
       },
