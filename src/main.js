@@ -53,7 +53,23 @@ new Vue({
       'APPOINTMENT_DETAILS': 'اطلاعات ملاقات حضوری',
       'ESTIMATED_PRICE': 'قیمت پیشنهادی :',
       'MINIMUM_PRICE': 'حداقل قیمت',
-      'MAXIMUM_PRICE': 'حداکثر قیمت '
+      'MAXIMUM_PRICE': 'حداکثر قیمت ',
+      'ADD_NEW_ADDRESS': '  افزودن آدرس جدید',
+      'NEW_ADDRESS_INFORMATION': 'اطلاعات آدرس جدید',
+      'STATE': 'استان',
+      'CITY': 'شهر',
+      'FULL_ADDRESS': 'آدرس کامل',
+      'REGISTER_NEW_ADDRESS': 'ثبت آدرس جدید',
+      'CANCEL': 'انصراف',
+      'NAME': 'نام',
+      'FAMILY_NAME': 'نام خانوادگی',
+      'EMAIL_ADDRESS': 'آدرس ایمیل',
+      'DATE_OF_BIRTH': 'تاریخ تولد',
+      'UPDATE_PROFILE_INFORMATION': 'ویرایش اطلاعات پروفایل',
+      'MY_ADDRESSES': 'آدرسهای من',
+      'SELL_NEW_ITEM': 'فروش کالای جدید',
+      'VIEW_SOLD_ITEMS': 'مشاهده کالای ثبت شده',
+      'BACK_TO_ITEMS': 'بازگشت به کالاهای فروخته شده'
     }
   }
 })

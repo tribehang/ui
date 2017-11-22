@@ -109,6 +109,9 @@
                     </span>
                 </div>
             </div>
+
+            <a href="/profile/#items" v-translate class="btn btn-success" style="float: left;">BACK_TO_ITEMS</a>
+
         </div>
     </div>
 </template>
