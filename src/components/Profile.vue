@@ -661,7 +661,7 @@
     }
 
     .panel{
-        margin-bottom:0;
+        margin-bottom: 10px;
     }
 
     #sell-steps .nav-tabs-wrapper{
