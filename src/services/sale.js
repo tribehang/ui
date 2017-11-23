@@ -96,7 +96,8 @@ export default {
     }
     Vue.http.post(process.env.NODE_API_HOST + 'sale_images', data, {'headers': auth.getAuthHeader()}).then(response => {
       if (response.status === 201) {
-        context.clickOneMySales()
+        window.location.hash = '#items'
+        location.reload()
       }
     }, response => {
       console.log('sale image creation failed...')

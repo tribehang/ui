@@ -30,6 +30,7 @@ new Vue({
       'MONTH': 'ماه',
       'STATUS': 'وضعیت',
       'SL_created': 'در حال بررسی',
+      'SL_PRICE_ESTIMATED': 'ملاقات ثبت شده',
       'CREATION_YEAR': 'سال تولید',
       'SALE_CREATION_DATETIME': 'تاریخ و زمان ثبت محصول',
       'SALE_USAGE_IN_MONTHS': 'کارکرد',
@@ -69,7 +70,8 @@ new Vue({
       'MY_ADDRESSES': 'آدرسهای من',
       'SELL_NEW_ITEM': 'فروش کالای جدید',
       'VIEW_SOLD_ITEMS': 'مشاهده کالای ثبت شده',
-      'BACK_TO_ITEMS': 'بازگشت به کالاهای فروخته شده'
+      'BACK_TO_ITEMS': 'بازگشت به کالاهای فروخته شده',
+      'DELETE': 'حذف'
     }
   }
 })

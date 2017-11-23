@@ -2,7 +2,7 @@ import auth from '../auth'
 import Vue from 'vue'
 import router from './../router'
 
-const USER_PATH = 'user'
+const USER_PATH = 'users'
 const ADDRESS_PATH = 'addresses'
 
 export default {
@@ -11,13 +11,17 @@ export default {
     }
   },
   setProfileDate (context) {
-    if (localStorage.getItem('access_token') == null) {
+    if (localStorage.getItem('access_token') === null) {
       router.push('/login')
       return false
     }
 
     Vue.http.get(process.env.NODE_API_HOST + USER_PATH, {'headers': auth.getAuthHeader()}).then(response => {
       context.user = response.data.data
+      context.userFirstName = response.data.data.firstName
+      context.userLastName = response.data.data.lastName
+      context.userEmail = response.data.data.email
+      context.userDateOfBirth = response.data.data.dateOfBirth
     }, response => {
       auth.refreshToken(context)
       setTimeout(() => {
@@ -25,8 +29,24 @@ export default {
       }, 1000)
     })
   },
+  updateUser (firstName, lastName, email, dateOfBirth) {
+    var userData = {
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'dateOfBirth': dateOfBirth
+    }
+
+    Vue.http.patch(process.env.NODE_API_HOST + USER_PATH, userData, {'headers': auth.getAuthHeader()}).then(response => {
+      if (response.status === 200) {
+        window.location.replace('/profile')
+      }
+    }, response => {
+      console.log(response.data)
+    })
+  },
   getHomeUserData (context) {
-    if (localStorage.getItem('access_token') != null) {
+    if (localStorage.getItem('access_token') !== null) {
       Vue.http.get(process.env.NODE_API_HOST + USER_PATH, {'headers': auth.getAuthHeader()}).then(response => {
         context.userFirstName = response.data.data.firstName
         context.userActionName = 'خروج'

@@ -6,37 +6,51 @@
           </h4>
 
           <div class="tab">
-              <button id="my-profile-tab-btn" v-translate class="tablinks active" v-on:click="openCity('tab-update-profile', $event)">UPDATE_PROFILE_INFORMATION</button>
-              <button id="sell-new-item-tab-btn" v-translate class="tablinks" v-on:click="openCity('tab-sell-new-item', $event)">SELL_NEW_ITEM</button>
-              <button id="my-addresses-tab-btn" v-translate class="tablinks" v-on:click="openCity('tab-my-addresses', $event)">MY_ADDRESSES</button>
-              <button id="items-tab-btn" v-translate class="tablinks" v-on:click="openCity('tab-view-sold-items', $event)">VIEW_SOLD_ITEMS</button>
+              <button id="my-profile-tab-btn" v-translate class="tablinks active" v-on:click="openTab('tab-update-profile', $event)">UPDATE_PROFILE_INFORMATION</button>
+              <button id="sell-new-item-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-sell-new-item', $event)">SELL_NEW_ITEM</button>
+              <button id="my-addresses-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-my-addresses', $event)">MY_ADDRESSES</button>
+              <button id="items-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-view-sold-items', $event)">VIEW_SOLD_ITEMS</button>
           </div>
 
           <div id="tab-update-profile" class="tabcontent">
               <div class="panel panel-default">
                   <div class="panel-heading">ویرایش اطلاعات پروفایل</div>
                   <div class="panel-body">
-                      <div class="form-group">
+                      <form>
                           <div class="row">
-                              <div class="col-sm-2 bold" v-translate>NAME</div>
-                              <div class="col-sm-6">{{ user.firstName }}</div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label for="name" v-translate>NAME</label>
+                                      <input v-model="userFirstName" type="text" class="form-control" id="name">
+                                  </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label for="family_name" v-translate>FAMILY_NAME</label>
+                                      <input v-model="userLastName" type="text" class="form-control" id="family_name">
+                                  </div>
+                              </div>
                           </div>
 
                           <div class="row">
-                              <div class="col-sm-2 bold" v-translate>FAMILY_NAME</div>
-                              <div class="col-sm-6">{{ user.lastName }}</div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label for="email_address" v-translate>EMAIL_ADDRESS</label>
+                                      <input v-model="userEmail" type="text" class="form-control" id="email_address">
+                                  </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <label for="date_of_birth" v-translate>DATE_OF_BIRTH</label>
+                                      <input v-model="userDateOfBirth" type="text" class="form-control" id="date_of_birth">
+                                  </div>
+                              </div>
                           </div>
 
-                          <div class="row">
-                              <div class="col-sm-2 bold" v-translate>EMAIL_ADDRESS</div>
-                              <div class="col-sm-6">{{ user.email }}</div>
-                          </div>
-
-                          <div class="row">
-                              <div class="col-sm-2 bold" v-translate>DATE_OF_BIRTH</div>
-                              <div class="col-sm-6">{{ user.dateOfBirth }}</div>
-                          </div>
-                      </div>
+                          <button v-on:click="updateUser" type="button" class="btn btn-success" v-translate>CONFIRM</button>
+                      </form>
                   </div>
               </div>
           </div>
@@ -255,6 +269,10 @@
                               <p>
                                   <i class="fa fa-address-card-o" aria-hidden="true"></i>
                                   {{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )
+
+                                  <button type="button" class="btn btn-danger" v-on:click="deleteAddress(address.id)">
+                                      <span v-translate>DELETE</span>
+                                  </button>
                               </p>
                           </div>
                       </div>
@@ -274,7 +292,7 @@
                                   <label class="control-label col-sm-2 bold" for="state" v-translate>STATE</label>
                                   <div class="col-sm-10">
                                       <label class="col-md-4">
-                                          <select class="form-control">
+                                          <select class="form-control" v-model="addressState">
                                               <option value="تهران">تهران</option>
                                           </select>
                                       </label>
@@ -285,7 +303,7 @@
                                   <label class="control-label col-sm-2 bold" for="city" v-translate>CITY</label>
                                   <div class="col-sm-10">
                                       <label class="col-md-4">
-                                          <select class="form-control">
+                                          <select class="form-control" v-model="addressCity">
                                               <option value="تهران">تهران</option>
                                           </select>
                                       </label>
@@ -296,7 +314,7 @@
                                   <label class="control-label col-sm-2 bold" for="contact_number" v-translate>CONTACT_NUMBER</label>
                                   <div class="col-sm-10">
                                       <label class="col-md-4">
-                                          <input type="text" class="form-control" id="contact_number" name="contact_number">
+                                          <input v-model="addressPhoneNumber" type="text" class="form-control" id="contact_number" name="contact_number">
                                       </label>
                                   </div>
                               </div>
@@ -305,7 +323,7 @@
                                   <label class="control-label col-sm-2 bold" for="postal_code" v-translate>POSTAL_CODE</label>
                                   <div class="col-sm-10">
                                       <label class="col-md-4">
-                                          <input type="text" class="form-control" id="postal_code" name="postal_code">
+                                          <input v-model="addressPostcode" type="text" class="form-control" id="postal_code" name="postal_code">
                                       </label>
                                   </div>
                               </div>
@@ -314,14 +332,14 @@
                                   <label class="control-label col-sm-2 bold" for="full_address" v-translate>FULL_ADDRESS</label>
                                   <div class="col-sm-10">
                                       <label class="col-md-12">
-                                          <input type="text" class="form-control" id="full_address" name="full_address">
+                                          <input v-model="addressAddress" type="text" class="form-control" id="full_address" name="full_address">
                                       </label>
                                   </div>
                               </div>
 
                               <br>
 
-                              <button type="button" class="btn btn-success" >
+                              <button type="button" class="btn btn-success" v-on:click="createAddress">
                                   <span v-translate>REGISTER_NEW_ADDRESS</span>
                               </button>
 
@@ -442,6 +460,7 @@
 
   import user from '../auth/user'
   import sale from '../services/sale'
+  import profile from '../services/profile'
 
   export default {
     data () {
@@ -461,7 +480,16 @@
         selectedAttributes: '',
         creationYears: sale.data().availableCreationYears,
         conditions: sale.data().availableConditions,
-        toShowAddAddressForm: false
+        toShowAddAddressForm: false,
+        addressState: 'تهران',
+        addressCity: 'تهران',
+        addressAddress: '',
+        addressPostcode: '',
+        addressPhoneNumber: '',
+        userFirstName: '',
+        userLastName: '',
+        userEmail: '',
+        userDateOfBirth: ''
       }
     },
     components: {
@@ -470,6 +498,15 @@
       VueBase64FileUpload
     },
     methods: {
+      updateUser () {
+        user.updateUser(this.userFirstName, this.userLastName, this.userEmail, this.userDateOfBirth)
+      },
+      deleteAddress (addressId) {
+        profile.deleteAddress(this, addressId)
+      },
+      createAddress () {
+        profile.createAddress(this, this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
+      },
       cancelAddNewAddressForm () {
         this.toShowAddAddressForm = false
       },
@@ -562,7 +599,7 @@
         jQuery('.tabcontent').hide()
         jQuery('.tabcontent')[0].style.display = 'block'
       },
-      openCity (cityName, event) {
+      openTab (cityName, event) {
         var i, tabcontent
 
         tabcontent = jQuery('.tabcontent')
@@ -805,5 +842,18 @@
        float: left;
        width: 78%;
        border-left: none;
+   }
+
+   .my-sales .created{
+       background-color: #f0ad4ea6;
+       padding: 2px 8px;
+       border-radius: 5px;
+   }
+
+
+   .my-sales .PRICE_ESTIMATED {
+       background-color: #0099ff61;
+       padding: 2px 8px;
+       border-radius: 5px;
    }
 </style>
