@@ -16,7 +16,7 @@
                     <div class="dialog-header" v-bind:style='{background : headerBackgroundColor, color: headerColor}'>
                         <div class='dialog-month'>
                             <div class="nextMonth" @click='nextMonthClicked'><</div>
-                            <div class="monthName">{{ displayingMonth }} {{ transformYear(displayingYear) }}</div>
+                            <div class="monthName" v-bind:class="{pointer: showAllMonthsNavigation }" @click='monthNameClicked'>{{ displayingMonth }} {{ transformYear(displayingYear) }}</div>
                             <div class="preMonth" @click='preMonthClicked'>></div>
                         </div>
                     </div>
@@ -32,16 +32,21 @@
                     </template>
                     </div>
                     <div class='dialog-today'>
-                       <span v-translate @click='goToTodayAndClose'>TODAY</span>
+                       <span v-if="showTodayButton === true" v-translate @click='goToTodayAndClose'>TODAY</span>
                        <span style="float: left; margin-left: 5px;" v-translate @click='closeDialog'>CLOSE</span>
                     </div>
                 </div>
                 <div class='year-view' v-if='isMonthView'>
                     <div class="dialog-header" v-bind:style='{background : headerBackgroundColor, color: headerColor}'>
                         <div class='dialog-year'>
-                            <div class="preYear" @click='preYearClicked'><</div>
-                            <div class="cyear">{{ displayingYear }}</div>
-                            <div class="nextYear" @click='nextYearClicked'>></div>
+                            <!--<div class="preYear" @click='nextYearClicked'><</div>-->
+                            <div class="cyear">
+                              <label>
+                                <select class="" v-on:click="updateYearSelectedMenu" v-model="yearSelectedMenu">
+                                    <option :value="option" v-for="option in yearsSelectMenu">{{ transformYear(option) }}</option>
+                                </select>
+                            </label></div>
+                            <!--<div class="nextYear" @click='preYearClicked'>></div>-->
                         </div>
                     </div>
                     <div class='dialog-months'>
@@ -91,7 +96,11 @@ export default {
     },
     'openTransitionAnimation': {'default': 'slide-fade', String},
     'persianDigits': true,
-    'availableDaysNum': {'default': 30}
+    'availableDaysNum': {'default': 30},
+    'showTodayButton': {'default': true, Boolean},
+    'showAllMonthsNavigation': {'default': false, Boolean},
+    'minimumYear': {'default': 1395},
+    'dateValue': {'default': '', String}
   },
   data () {
     return {
@@ -113,9 +122,9 @@ export default {
       chosenDay: 1,
       chosenMonth: 1,
       chosenYear: 1396,
-      minimumYear: 1395,
       maximumYear: 1397,
-      dateValue: ''
+      yearsSelectMenu: [],
+      yearSelectedMenu: 1396
     }
   },
   mounted () {
@@ -127,6 +136,8 @@ export default {
     if (this.inlineMode) {
       this.openDialog()
     }
+    this.updateYearsSelectMenu()
+    this.updateDefaultValue()
   },
   watch: {
     value: function (value) {
@@ -134,6 +145,23 @@ export default {
     }
   },
   methods: {
+    updateDefaultValue () {
+//      if (this.dateValue) {
+//        this.formatedChosenDate = '۵ آذر ۱۳۹۶'
+//      }
+//
+//      console.log(this.dateValue)
+    },
+    updateYearSelectedMenu () {
+      this.displayingYear = this.yearSelectedMenu
+    },
+    updateYearsSelectMenu () {
+      let i
+
+      for (i = this.chosenYear; i >= this.minimumYear; i--) {
+        this.yearsSelectMenu.push(i)
+      }
+    },
     goToTodayAndClose () {
       this.goToToday()
       this.dayClicked(this.chosenDay)
@@ -219,6 +247,10 @@ export default {
       var timeDiff = date2.getTime() - date1.getTime()
       var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
 
+      if (this.showAllMonthsNavigation) {
+        return false
+      }
+
       return (diffDays < 0 || diffDays >= this.availableDaysNum)
     },
     ifMonthBoxChosenMonth (month) {
@@ -260,6 +292,10 @@ export default {
         newYear--
       }
 
+      if (this.showAllMonthsNavigation) {
+        this.goToMonth(newYear, newMonth)
+      }
+
       if (newYear >= this.minimumYear) {
         this.goToMonth(newYear, newMonth)
       }
@@ -270,6 +306,10 @@ export default {
       if (newMonth > 11 && newYear + 2 >= this.maximumYear) {
         newMonth = 0
         newYear++
+      }
+
+      if (this.showAllMonthsNavigation) {
+        this.goToMonth(newYear, newMonth)
       }
 
       if (newYear <= this.maximumYear) {
@@ -316,10 +356,12 @@ export default {
       }
     },
     monthNameClicked () {
-      this.isDayView = false
-      this.isMonthView = true
-      this.chosenMonth = this.displayingMonthNum + 1
-      this.$emit('monthChanged', this.value)
+      if (this.showAllMonthsNavigation) {
+        this.isDayView = false
+        this.isMonthView = true
+        this.chosenMonth = this.displayingMonthNum + 1
+        this.$emit('monthChanged', this.value)
+      }
     },
     toFormatDate (year, month, day) {
       let elements = this.formatDate.split('/')
@@ -500,7 +542,6 @@ export default {
                         width: 10%;
                     }
                     .cyear{
-                        float: right;
                         width: 80%;
                     }
                 }
@@ -572,6 +613,10 @@ export default {
     }
 
     .dialog-today span {
+        cursor: pointer;
+    }
+    
+    .pointer {
         cursor: pointer;
     }
 </style>

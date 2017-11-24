@@ -29,7 +29,9 @@ export default {
   getSale (context, $saleId = '') {
     Vue.http.get(process.env.NODE_API_HOST + SALE_API + '/' + $saleId, {'headers': auth.getAuthHeader()}).then(response => {
       context.sale = response.data.data
-      appointment.getAppointment(context, response.data.data.appointment_id)
+      if (response.data.data.appointment_id !== null) {
+        appointment.getAppointment(context, response.data.data.appointment_id)
+      }
     }, response => {
       context.sale = ''
       window.location.replace('/profile')

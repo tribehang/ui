@@ -44,7 +44,17 @@
                               <div class="col-sm-6">
                                   <div class="form-group">
                                       <label for="date_of_birth" v-translate>DATE_OF_BIRTH</label>
-                                      <input v-model="userDateOfBirth" type="text" class="form-control" id="date_of_birth">
+                                      {{userDateOfBirth}}
+                                      <pdatepicker
+                                        id="date_of_birth"
+                                        class="form-control"
+                                        @dateChosen="onClickDateChosen('', $event)"
+                                        headerBackgroundColor="orange"
+                                        :showTodayButton="false"
+                                        :showAllMonthsNavigation="true"
+                                        :minimumYear="1320"
+                                        :dateValue="userDateOfBirth">
+                                      </pdatepicker>
                                   </div>
                               </div>
                           </div>
@@ -461,6 +471,7 @@
   import user from '../auth/user'
   import sale from '../services/sale'
   import profile from '../services/profile'
+  import PDatePicker from '@/components/PDatePicker'
 
   export default {
     data () {
@@ -495,7 +506,8 @@
     components: {
       VueTabs,
       VTab,
-      VueBase64FileUpload
+      VueBase64FileUpload,
+      'pdatepicker': PDatePicker
     },
     methods: {
       updateUser () {
