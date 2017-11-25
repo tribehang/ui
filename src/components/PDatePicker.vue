@@ -39,14 +39,12 @@
                 <div class='year-view' v-if='isMonthView'>
                     <div class="dialog-header" v-bind:style='{background : headerBackgroundColor, color: headerColor}'>
                         <div class='dialog-year'>
-                            <!--<div class="preYear" @click='nextYearClicked'><</div>-->
                             <div class="cyear">
                               <label>
-                                <select class="" v-on:click="updateYearSelectedMenu" v-model="yearSelectedMenu">
+                                <select class="form-control" v-on:click="updateYearSelectedMenu" v-model="yearSelectedMenu">
                                     <option :value="option" v-for="option in yearsSelectMenu">{{ transformYear(option) }}</option>
                                 </select>
                             </label></div>
-                            <!--<div class="nextYear" @click='preYearClicked'>></div>-->
                         </div>
                     </div>
                     <div class='dialog-months'>
