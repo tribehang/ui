@@ -64,8 +64,6 @@ export default {
       }
     }, response => {
     })
-
-    console.log('list updated')
   },
   getAppointmentAvailableDaysNum (futureDate) {
     return moment(futureDate).diff(moment(), 'days') + 3

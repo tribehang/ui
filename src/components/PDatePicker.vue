@@ -7,7 +7,7 @@
                @change="inputChanged($event.target.value)"
                :class="inputClass"
                :name="name"
-               :date-value="dateValue"
+               :dateValueProp="dateValue"
                :placeholder="placeholder">
         <transition :name="openTransitionAnimation">
             <div class='dialog' :class="dialogClass" v-if='isDialogOpen' v-bind:style="{ background: dialogBackgroundColor, color: dialogColor}">
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class='dialog-days'>
-                        <span class='day-box day-name' v-for='dayName in dayNames'>
+                        <span v-if="showDaysName" class='day-box day-name' v-for='dayName in dayNames'>
                             {{ dayName }}
                         </span>
                         <span class='day-box empty-box' v-for='n in firstDayOfMonth'></span><template v-for='n in daysInMonth'>
@@ -55,6 +55,9 @@
                                 v-bind:class='{ chosenMonth : ifMonthBoxChosenMonth(i) }'
                                 @click='monthClicked(i)'>{{ n }}</div>
                         </template>
+                    </div>
+                    <div class='dialog-today'>
+                        <span style="float: left; margin-left: 5px;" v-translate @click='closeDialog'>CLOSE</span>
                     </div>
                 </div>
             </div>
@@ -100,7 +103,8 @@ export default {
     'showTodayButton': {'default': true, Boolean},
     'showAllMonthsNavigation': {'default': false, Boolean},
     'minimumYear': {'default': 1395},
-    'dateValue': {'default': '', String}
+    'showDaysName': {'default': true, Boolean},
+    'dateValueProp': {'default': '', String}
   },
   data () {
     return {
@@ -124,7 +128,8 @@ export default {
       chosenYear: 1396,
       maximumYear: 1397,
       yearsSelectMenu: [],
-      yearSelectedMenu: 1396
+      yearSelectedMenu: 1396,
+      dateValue: ''
     }
   },
   mounted () {
@@ -137,7 +142,6 @@ export default {
       this.openDialog()
     }
     this.updateYearsSelectMenu()
-    this.updateDefaultValue()
   },
   watch: {
     value: function (value) {
@@ -145,13 +149,6 @@ export default {
     }
   },
   methods: {
-    updateDefaultValue () {
-//      if (this.dateValue) {
-//        this.formatedChosenDate = '۵ آذر ۱۳۹۶'
-//      }
-//
-//      console.log(this.dateValue)
-    },
     updateYearSelectedMenu () {
       this.displayingYear = this.yearSelectedMenu
     },
@@ -407,12 +404,19 @@ export default {
     jalali_to_gregorian (gy, gm, gd) {
       var jalaliDate = jalali.toGregorian(gy, gm, gd)
       return [jalaliDate['gy'], jalaliDate['gm'], jalaliDate['gd']]
+    },
+    transformGregorianDate (date) {
+      if (date) {
+        var months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند']
+        var dateSplit = date.split('-')
+        var jalaliDate = this.gregorian_to_jalali(parseInt(dateSplit[0]), parseInt(dateSplit[1]), parseInt(dateSplit[2]))
+        return this.convertDigitsETP(jalaliDate[2].toString()) + ' ' + months[jalaliDate[1] - 1] + ' ' + this.convertDigitsETP(jalaliDate[0].toString())
+      }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
     @mixin clearfix() {
         &::after {

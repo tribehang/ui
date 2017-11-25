@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <a href="/profile/#items" v-translate class="btn btn-success" style="float: left;">BACK_TO_ITEMS</a>
+            <a href="/profile#items" v-translate class="btn btn-success" style="float: left;">BACK_TO_ITEMS</a>
 
         </div>
     </div>
@@ -166,7 +166,7 @@
         appointment.getAppointmentDates(this, this.selectedLocationId)
       },
       setAppointment () {
-        var selectedDate = $('#' + this.sale.id).attr('date-value')
+        var selectedDate = $('#' + this.sale.id).attr('datevalueprop')
         var startAt = selectedDate + ' ' + appointment.getFormattedStartAt(this.selectedHour)
         var endAt = selectedDate + ' ' + appointment.getFormattedEndAt(this.selectedHour)
         var dayNumber = moment(selectedDate).isoWeekday()

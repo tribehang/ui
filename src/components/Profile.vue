@@ -6,10 +6,10 @@
           </h4>
 
           <div class="tab">
-              <button id="my-profile-tab-btn" v-translate class="tablinks active" v-on:click="openTab('tab-update-profile', $event)">UPDATE_PROFILE_INFORMATION</button>
-              <button id="sell-new-item-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-sell-new-item', $event)">SELL_NEW_ITEM</button>
-              <button id="my-addresses-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-my-addresses', $event)">MY_ADDRESSES</button>
-              <button id="items-tab-btn" v-translate class="tablinks" v-on:click="openTab('tab-view-sold-items', $event)">VIEW_SOLD_ITEMS</button>
+              <button id="my-profile-tab-btn" v-translate class="tablinks active" v-on:click="openTab('my-profile', 'tab-update-profile', $event)">UPDATE_PROFILE_INFORMATION</button>
+              <button id="sell-new-item-tab-btn" v-translate class="tablinks" v-on:click="openTab('sell-new-item', 'tab-sell-new-item', $event)">SELL_NEW_ITEM</button>
+              <button id="my-addresses-tab-btn" v-translate class="tablinks" v-on:click="openTab('my-addresses', 'tab-my-addresses', $event)">MY_ADDRESSES</button>
+              <button id="items-tab-btn" v-translate class="tablinks" v-on:click="openTab('items', 'tab-view-sold-items', $event)">VIEW_SOLD_ITEMS</button>
           </div>
 
           <div id="tab-update-profile" class="tabcontent">
@@ -43,17 +43,16 @@
 
                               <div class="col-sm-6">
                                   <div class="form-group">
-                                      <label for="date_of_birth" v-translate>DATE_OF_BIRTH</label>
-                                      {{userDateOfBirth}}
+                                      <label v-translate>DATE_OF_BIRTH</label>
                                       <pdatepicker
                                         id="date_of_birth"
                                         class="form-control"
-                                        @dateChosen="onClickDateChosen('', $event)"
                                         headerBackgroundColor="orange"
                                         :showTodayButton="false"
                                         :showAllMonthsNavigation="true"
                                         :minimumYear="1320"
-                                        :dateValue="userDateOfBirth">
+                                        :showDaysName="false"
+                                        :placeholder="transformGregorianDate(userDateOfBirth)">
                                       </pdatepicker>
                                   </div>
                               </div>
@@ -511,7 +510,8 @@
     },
     methods: {
       updateUser () {
-        user.updateUser(this.userFirstName, this.userLastName, this.userEmail, this.userDateOfBirth)
+        var dateOfBirth = $('#date_of_birth').attr('datevalueprop') ? $('#date_of_birth').attr('datevalueprop') : this.userDateOfBirth
+        user.updateUser(this.userFirstName, this.userLastName, this.userEmail, dateOfBirth)
       },
       deleteAddress (addressId) {
         profile.deleteAddress(this, addressId)
@@ -611,7 +611,7 @@
         jQuery('.tabcontent').hide()
         jQuery('.tabcontent')[0].style.display = 'block'
       },
-      openTab (cityName, event) {
+      openTab (hash, cityName, event) {
         var i, tabcontent
 
         tabcontent = jQuery('.tabcontent')
@@ -622,6 +622,11 @@
         jQuery('.tablinks').removeClass('active')
         document.getElementById(cityName).style.display = 'block'
         event.currentTarget.className += ' active'
+
+        window.location.hash = '#' + hash
+      },
+      transformGregorianDate (date) {
+        return PDatePicker.methods.transformGregorianDate(date)
       }
     },
     beforeMount () {
