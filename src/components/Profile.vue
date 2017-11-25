@@ -152,7 +152,7 @@
                                           <div v-if="attribute.type === 'select'">
                                               <div class="form-group">
                                                   <select class="form-control" v-model="selectedAttributes[index].value" v-on:change="handleAttributeChange">
-                                                      <option disabled selected>{{ attribute.name }}</option>
+                                                      <option disabled value="" selected>{{ attribute.name }}</option>
                                                       <option v-for="option in attribute.options.data" :data-attributeIndex="index" :value="option.value">{{ option.name }}</option>
                                                   </select>
                                               </div>
@@ -384,7 +384,7 @@
                                   <div class="col-sm-6">
                                       <i class="fa fa-calendar"></i>
                                       <strong  v-translate>SALE_CREATION_DATETIME</strong>:
-                                      <span>{{ sale.createdAt }}</span>
+                                      <span>{{ transformGregorianDate(sale.createdAt) }}</span>
                                   </div>
                               </div>
 
