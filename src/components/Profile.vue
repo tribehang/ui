@@ -429,12 +429,9 @@
                               </div>
                               <div class="row">
                                   <div class="col-sm-3">
-                                      <div v-if="sale.saleStatus === 'created'">
-                                          <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-info" style="float: right;">SET_APPOINTMENT</a>
-                                      </div>
 
                                       <div v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
-                                          <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-success" style="float: right;">APPOINTMENT_DETAILS</a>
+                                          <a :href="getSaleAppointmentLink(sale.id)" v-translate class="btn btn-success" style="float: right;">SET_APPOINTMENT</a>
                                       </div>
                                   </div>
                               </div>

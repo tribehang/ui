@@ -62,8 +62,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-if="sale.saleStatus === 'created'">
-                <div class="form-group col-sm-3">
+            <div class="row" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
+                <div class="form-group col-sm-3" v-if="!sale.saleInternalLogistic">
                     <select v-model="selectedLocationId" class="form-control" v-on:change="changeLocation">
                         <option disabled value="" v-translate>SELECT_LOCATION</option>
                         <option v-for="location in locations" :value="location.id">{{ location.name }}</option>
@@ -80,7 +80,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row" v-if="sale.saleStatus === 'created'">
+            <div class="row" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
                 <label v-if="daysHours[sale.id]" class="form-group">
 
                     <div v-if="getSelectedHourLength() > 0">
@@ -96,7 +96,7 @@
                 </label>
             </div>
 
-            <div class="container row" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
+            <div class="container row" v-if="sale.saleInternalLogistic">
                 <h4 v-translate>APPOINTMENT_DATE_AND_TIME</h4>
 
                 <div class="row">
