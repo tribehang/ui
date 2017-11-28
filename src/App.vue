@@ -50,14 +50,15 @@
           </div>
         </div>
       </div>
+
       <div class="head-Three fix-row">
         <div class="container">
           <div class="col-xs-10">
             <div class="main-menu">
               <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                  <div class="navbar-header breadcrumbs">
-                    <a href="#">خانه </a> <a><i class="fa fa-angle-left" aria-hidden="true"></i></a>  <a href="#">خرید</a>
+                  <div class="navbar-header breadcrumbs" v-if="this.$route.meta.breadcrumbs">
+                    <breadcrumbs :path="this.$route.path" :title="this.$route.meta.breadcrumbs"></breadcrumbs>
                   </div>
                 </div>
               </nav>
@@ -143,8 +144,12 @@
 
 <script>
   import user from './auth/user.js'
+  import Breadcrumbs from '@/components/Breadcrumbs'
 
   export default {
+    components: {
+      'breadcrumbs': Breadcrumbs
+    },
     data () {
       return {
         userFirstName: 'کاربر',

@@ -21,7 +21,10 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        breadcrumbs: 'ورود به حساب کاربری'
+      }
     },
     {
       path: '/logout',
@@ -31,7 +34,10 @@ export default new Router({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      meta: {
+        breadcrumbs: 'کنترل پنل'
+      }
     },
     {
       path: '/details',
@@ -46,7 +52,10 @@ export default new Router({
     {
       path: '/sale/:sale_id/appointment',
       name: 'SaleAppointment',
-      component: SaleAppointment
+      component: SaleAppointment,
+      meta: {
+        breadcrumbs: 'کنترل پنل'
+      }
     }
   ]
 })
