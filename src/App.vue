@@ -3,7 +3,7 @@
       <div class="head-One fix-row">
         <div class="container">
           <div class="col-xs-2">
-            <h4>آسان بفروش، مطمئن بخر.</h4>
+            <h4 v-translate>COMPANY_SLOGAN</h4>
           </div>
           <div class="col-xs-10">
             <div class="main-menu">
@@ -17,7 +17,7 @@
                       <button type="submit" class="btn btn-default search-btn"></button>
                     </form>
                     <ul class="nav navbar-nav navbar-left">
-                      <li><a href="#"> {{ userFirstName }}  عزیز, خوش آمدید</a></li>
+                      <li><a href="#"> {{ userFirstName }}  <span v-translate>HOME_WELCOME_NOTE</span></a></li>
                       <li><a :href="userActionLink" class="fa fa-sign-out" aria-hidden="true"> {{ userActionName }}</a></li>
                     </ul>
                   </div>
@@ -36,11 +36,11 @@
                 <div class="container-fluid">
                   <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                      <li><a href="/">خانه</a></li>
-                      <li><a href="#">خرید</a></li>
-                      <li><a href="#">فروش</a></li>
-                      <li><a href="#">درباره ما</a></li>
-                      <li><a href="#">تماس با ما</a></li>
+                      <li><a href="/" v-translate>HOME</a></li>
+                      <li><a href="#" v-translate>BUY</a></li>
+                      <li><a href="/profile#sell-new-item" v-translate>SELL</a></li>
+                      <li><a href="/about-us" v-translate>ABOUT_US</a></li>
+                      <li><a href="/contact-us" v-translate>CONTACT_US</a></li>
                       <li v-html="userActionPanel"></li>
                     </ul>
                   </div>
@@ -72,14 +72,10 @@
         <div class="column column-center">
           <ul>
             <li>
-              <h3>
-                خبرنامه
-              </h3>
+              <h3 v-translate>NEWSLETTER</h3>
             </li>
             <li>
-              <span>
-                آدرس ایمیل خود را وارد کنید
-              </span>
+              <span v-translate>INSERT_YOUR_EMAIL_ADDRESS</span>
               <form>
                 <div class="group">
                   <input autocomplete="off" type="email" />
@@ -87,11 +83,12 @@
                   <span class="bar"></span>
                   <label>
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    <span>   نام کاربری یا ایمیل</span>
+                    <span v-translate>INSERT_EMAIL_OR_USERNAME</span>
                   </label>
                 </div>
 
-                <button type="button" class="button buttonorng">ارسال
+                <button type="button" class="button buttonorng">
+                  <span v-translate>SEND</span>
                   <div class="ripples buttonRipples">
                     <span class="ripplesCircle"></span>
                   </div>
@@ -103,19 +100,13 @@
         <div class="column column-left">
           <ul>
             <li>
-              <h3>
-                چطور میتونیم کمکتون کنیم ؟
-              </h3>
+              <h3 v-translate>FOOTER_HOW_CAN_I_HELP_YOU</h3>
             </li>
             <li>
-              <h3 class="orange">
-                 ۸۸۸۸۸۸۸۸ (۰۲۱) <br> info[at]semsari.net
-              </h3>
+              <h3 class="orange" v-translate>FOOTER_CONTACT_MESSAGE</h3>
             </li>
             <li>
-              <span>
-                پشتیبانی ۲۴ ساعته
-              </span>
+              <span v-translate>FOOTER_24_SUPPORT</span>
             </li>
           </ul>
         </div>
@@ -125,9 +116,7 @@
               <div class="logo"><img src="./assets/images/logo.png" height="44" width="160"/></div>
             </li>
             <li>
-              <span>
-                                رسالت و هدف سمساری و توضیحات در مورد وب سایت
-              </span>
+              <h3 v-translate>FOOTER_FOLLOW_US</h3>
             </li>
             <li>
               <a href="#" class="fa fa-facebook social-btn"></a>

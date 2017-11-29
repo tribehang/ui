@@ -19,11 +19,11 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                      <li><a href="/">خانه</a></li>
-                      <li><a href="#">خرید</a></li>
-                      <li><a href="#">فروش</a></li>
-                      <li><a href="#">درباره ما</a></li>
-                      <li><a href="#">تماس با ما</a></li>
+                      <li><a href="/" v-translate>HOME</a></li>
+                      <li><a href="#" v-translate>BUY</a></li>
+                      <li><a href="/profile#sell-new-item" v-translate>SELL</a></li>
+                      <li><a href="#" v-translate>ABOUT_US</a></li>
+                      <li><a href="#">CONTACT_US</a></li>
                       <li v-html="userActionPanel"></li>
                     </ul>
                     <form class="navbar-form navbar-left">
@@ -40,7 +40,7 @@
         </div>
         <div class="row head-two">
           <div class="col-xs-12">
-            <h1>آسان بفروش، مطمئن بخر.</h1>
+            <h1 v-translate>COMPANY_SLOGAN</h1>
           </div>
         </div>
         <div class="row head-three">
@@ -50,22 +50,22 @@
                 <ul class="nav nav-tabs nav-tabs-responsive myTab" role="tablist">
                   <li role="presentation" class="active">
                     <a href="#sale" id="sale-tab" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                      <span class="text">میخوام بفروشم</span>
+                      <span class="text" v-translate>HOME_I_WANT_TO_SELL</span>
                     </a>
                   </li>
                   <li role="presentation" class="next">
                     <a href="#buy" role="tab" id="buy-tab" data-toggle="tab" aria-controls="buy">
-                      <span class="text">میخوام بخرم</span>
+                      <span class="text" v-translate>HOME_I_WANT_TO_BUY</span>
                     </a>
                   </li>
                   <li role="presentation" class="fl">
                     <a href="#login" role="tab" id="register-tab" data-toggle="tab" aria-controls="register">
-                      <span class="text">ثبت نام</span>
+                      <span class="text" v-translate>REGISTER</span>
                     </a>
                   </li>
                   <li role="presentation" class="fl">
                     <a href="#register" role="tab" id="login-tab" data-toggle="tab" aria-controls="login">
-                      <span class="text">ورود</span>
+                      <span class="text" v-translate>LOGIN</span>
                     </a>
                   </li>
                 </ul>
@@ -76,16 +76,10 @@
                       <img src="../assets/images/sale-steps.png"/></div>
                     <div class="col-xs-2">
                       <div class="f-width tab-txt">
-                        <p>
-                          به راحتی و در کمترین زمان
-                          کالای مورد نظر خود را
-                          بفروشید.
-                          ما آن را برای شما گارانتی
-                          خواهیم کرد.
-                        </p>
+                        <p v-translate>HOME_BANNER_MESSAGE</p>
                       </div>
                       <div class="f-width button buttonorng">
-                        <a href="/profile">ثبت کالا</a>
+                        <a href="/profile#sell-new-item" v-translate>SELL_ITEM</a>
                       </div>
                     </div>
                   </div>
@@ -100,7 +94,7 @@
                         <span class="bar"></span>
                         <label>
                           <i class="fa fa-user-circle" aria-hidden="true"></i>
-                          <span>   نام کاربری یا ایمیل</span>
+                          <span v-translate>INSERT_EMAIL_OR_USERNAME</span>
                         </label>
                       </div>
                       <div class="group">
@@ -108,13 +102,13 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>
-                          <i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span>
+                          <i class="fa fa-unlock-alt" aria-hidden="true"></i><span v-translate>PASSWORD</span>
                         </label>
                       </div>
-                      <button type="button" class="button buttonorng" @click="login()">ورود
+                      <button type="button" class="button buttonorng" @click="login()"><span v-translate>LOGIN</span>
                         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                       </button>
-                      <a href="#" class="f-width forget-pass">رمز عبور خود را فراموش کرده ام.</a>
+                      <a href="#" class="f-width forget-pass" v-translate>FORGOT_PASSWORD_MESSAGE</a>
                       <p class="bg-danger fa fa-exclamation-triangle" v-if="loginError !== ''">{{ loginError }}</p>
                     </form>
                   </div>
@@ -125,20 +119,21 @@
 
                         <label>
                           <i class="fa fa-envelope" aria-hidden="true"></i>
-                          <span>ایمیل</span>
+                          <span v-translate>EMAIL_ADDRESS</span>
                         </label>
                       </div>
                       <div class="group">
                         <input autocomplete="off" type="password" v-model="registerCredentials.password"><span class="highlight"></span><span class="bar"></span>
 
-                        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>رمز عبور</span></label>
+                        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span v-translate>PASSWORD</span></label>
                       </div>
                       <div class="group">
                         <input autocomplete="off" type="password" v-model="registerCredentials.password_confirm"><span class="highlight"></span><span class="bar"></span>
 
-                        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>تکرار رمز عبور</span></label>
+                        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i><span v-translate>PASSWORD_REPEAT</span></label>
                       </div>
-                      <button type="button" class="button buttonorng" @click="register()">ثبت نام
+                      <button type="button" class="button buttonorng" @click="register()">
+                        <span v-translate>REGISTER</span>
                         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                       </button>
                       <p class="bg-danger fa fa-exclamation-triangle" v-if="registerError !== ''">{{ registerError }}</p>
@@ -170,7 +165,7 @@
               <ul class="nav nav-tabs nav-tabs-responsive myTab protab" role="tablist">
                 <li role="presentation" class="active">
                   <a href="#sale1" id="sale-tab1" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                    <span class="text">آخرین محصولات</span>
+                    <span class="text" v-translate>LATEST_PRODUCTS</span>
                   </a>
                 </li>
               </ul>

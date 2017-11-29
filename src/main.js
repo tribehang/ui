@@ -74,7 +74,47 @@ new Vue({
       'DELETE': 'حذف',
       '404_MESSAGE': 'صفحه مورد نظر یافت نشد !',
       '404_TITLE': 'سمساری را در صفحات اجتماعی دنبال کنید:',
-      'HOME': 'خانه'
+      'HOME': 'خانه',
+      'COMPANY_SLOGAN': 'آسان بفروش، مطمئن بخر.',
+      'HOME_WELCOME_NOTE': 'عزیز, خوش آمدید',
+      'SELL': 'فروش',
+      'BUY': 'خرید',
+      'CONTACT_US': 'تماس با ما',
+      'ABOUT_US': 'درباره ما',
+      'NEWSLETTER': 'خبرنامه',
+      'INSERT_YOUR_EMAIL_ADDRESS': 'آدرس ایمیل خود را وارد کنید',
+      'INSERT_EMAIL_OR_USERNAME': 'نام کاربری یا ایمیل',
+      'SEND': 'ارسال',
+      'FOOTER_HOW_CAN_I_HELP_YOU': 'چطور میتونیم کمکتون کنیم ؟',
+      'FOOTER_CONTACT_MESSAGE': '۸۸۸۸۸۸۸۸ (۰۲۱) info[at]semsari.net',
+      'FOOTER_24_SUPPORT': 'پشتیبانی ۲۴ ساعته',
+      'FOOTER_FOLLOW_US': 'ما را دنبال کنید',
+      'HOME_I_WANT_TO_SELL': 'میخوام بفروشم',
+      'HOME_I_WANT_TO_BUY': 'میخوام بخرم',
+      'REGISTER': 'ثبت نام',
+      'LOGIN': 'ورود',
+      'HOME_BANNER_MESSAGE': 'به راحتی و در کمترین زمان\n' +
+      '                          کالای مورد نظر خود را\n' +
+      '                          بفروشید.\n' +
+      '                          ما آن را برای شما گارانتی\n' +
+      '                          خواهیم کرد.',
+      'SELL_ITEM': 'ثبت کالا',
+      'PASSWORD': 'رمز عبور',
+      'FORGOT_PASSWORD_MESSAGE': 'رمز عبور خود را فراموش کرده ام',
+      'PASSWORD_REPEAT': 'تکرار رمز عبور',
+      'LATEST_PRODUCTS': 'آخرین محصولات',
+      'CONTROL_PANEL': 'کنترل پنل',
+      'UPDATE_PROFILE': 'ویرایش اطلاعات پروفایل',
+      'NEXT_STEP': 'مرحله بعد',
+      'PREVIOUS_STEP': 'مرحله قبل',
+      'MAIN_INFORMATION': 'اطلاعات اصلی',
+      'CATEGORY': 'دسته',
+      'SUB_CATEGORY': 'زیرمجموعه',
+      'CREATE_YEAR': 'سال تولید',
+      'CURRENT_CONDITION': 'وضعیت کنونی',
+      'FURTHER_INFORMATION': 'اطلاعات تکمیلی',
+      'PRODUCT_IMAGES': 'عکس های محصول',
+      'SUBMIT': 'تائید'
     }
   }
 })

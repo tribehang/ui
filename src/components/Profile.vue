@@ -2,7 +2,7 @@
   <div class="container">
       <div class="row">
           <h4>
-              <i class="fa fa-bar-chart" aria-hidden="true"> کنترل پنل</i>
+              <i class="fa fa-bar-chart" aria-hidden="true" v-translate>CONTROL_PANEL</i>
           </h4>
 
           <div class="tab">
@@ -14,7 +14,7 @@
 
           <div id="tab-update-profile" class="tabcontent">
               <div class="panel panel-default">
-                  <div class="panel-heading">ویرایش اطلاعات پروفایل</div>
+                  <div class="panel-heading" v-translate>UPDATE_PROFILE</div>
                   <div class="panel-body">
                       <form>
                           <div class="row">
@@ -66,7 +66,7 @@
 
           <div id="tab-sell-new-item" class="tabcontent">
               <div class="panel panel-default">
-                  <div class="panel-heading">فروش کالای جدید</div>
+                  <div class="panel-heading" v-translate>SELL_NEW_ITEM</div>
                   <div class="panel-body">
                       <div id="sell-steps">
                           <vue-tabs active-tab-color="#e74c3c"
@@ -182,7 +182,7 @@
                                       <div class="col-md-6">
                                           <br>
                                           <div class="form-group">
-                                              <h4>تصویر کالا:</h4>
+                                              <h4 v-translate>PRODUCT_IMAGES</h4>
                                               <vue-base64-file-upload
                                                       class="image-upload-thumbnail"
                                                       accept="image/png,image/jpeg"
@@ -201,8 +201,8 @@
 
                                   <div class="row">
                                       <div class="col-md-12" style="text-align: left;">
-                                          <button type="button" class="btn btn-info" v-on:click="showStepOne">مرحله قبل</button>
-                                          <button type="button" class="btn btn-info" v-on:click="showStepThree">مرحله بعد</button>
+                                          <button type="button" class="btn btn-info" v-on:click="showStepOne" v-translate>PREVIOUS_STEP</button>
+                                          <button type="button" class="btn btn-info" v-on:click="showStepThree" v-translate>NEXT_STEP</button>
                                       </div>
                                   </div>
 
@@ -213,30 +213,30 @@
                               </v-tab>
 
                               <v-tab title="۳. ثبت کالا">
-                                  <h4>اطلاعات اصلی</h4>
+                                  <h4 v-translate>MAIN_INFORMATION</h4>
 
                                   <div class="row review-box">
                                       <div class="col-md-12">
                                           <div class="col-md-6">
-                                              <span>دسته</span> : <i>{{ selectedCategory.name }}</i>
+                                              <span v-translate>CATEGORY</span> : <i>{{ selectedCategory.name }}</i>
                                           </div>
                                           <div class="col-md-6">
-                                              <span>زیرمجموعه</span> : <i>{{ selectedSubCategory.name }}</i>
+                                              <span v-translate>SUB_CATEGORY</span> : <i>{{ selectedSubCategory.name }}</i>
                                           </div>
                                       </div>
 
                                       <div class="col-md-12">
                                           <div class="col-md-6" v-if="creationYears[selectedYearIndex]">
-                                              <span>سال تولید</span> : <i>{{ creationYears[selectedYearIndex].title}}</i>
+                                              <span v-translate>CREATE_YEAR</span> : <i>{{ creationYears[selectedYearIndex].title}}</i>
                                           </div>
                                           <div class="col-md-6" v-if="conditions[selectedConditionIndex]">
-                                              <span>وضعیت کنونی</span> : <i>{{ conditions[selectedConditionIndex].title}}</i>
+                                              <span v-translate>CURRENT_CONDITION</span> : <i>{{ conditions[selectedConditionIndex].title}}</i>
                                           </div>
                                       </div>
 
                                   </div>
 
-                                  <h4>اطلاعات تکمیلی</h4>
+                                  <h4 v-translate>FURTHER_INFORMATION</h4>
                                   <div class="row review-box">
                                       <ul class="category-attributes">
                                           <li v-for="(selectedAttribute, index) in selectedAttributes" >
@@ -251,15 +251,15 @@
                                       </ul>
                                   </div>
 
-                                  <h4>عکس های محصول</h4>
+                                  <h4 v-translate>PRODUCT_IMAGES</h4>
                                   <div class="row review-box">
                                       <img :src="imageUploadBase64">
                                   </div>
 
                                   <div class="row">
                                       <div class="col-md-12" style="text-align: left;">
-                                          <button type="button" class="btn btn-info" v-on:click="showStepTwoLast">مرحله قبل</button>
-                                          <button type="button" class="btn btn-warning" v-on:click="addSale">تائید</button>
+                                          <button type="button" class="btn btn-info" v-on:click="showStepTwoLast" v-translate>PREVIOUS_STEP</button>
+                                          <button type="button" class="btn btn-warning" v-on:click="addSale" v-translate>SUBMIT</button>
                                       </div>
                                   </div>
                               </v-tab>
@@ -271,7 +271,7 @@
 
           <div id="tab-my-addresses" class="tabcontent">
               <div class="panel panel-default">
-                  <div class="panel-heading">آدرسهای من</div>
+                  <div class="panel-heading" v-translate>MY_ADDRESSES</div>
                   <div class="panel-body">
                       <div v-if="user.addresses">
                           <div v-for="address in user.addresses.data">
