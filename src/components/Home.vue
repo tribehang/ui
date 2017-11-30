@@ -23,7 +23,7 @@
                       <li><a href="#" v-translate>BUY</a></li>
                       <li><a href="/profile#sell-new-item" v-translate>SELL</a></li>
                       <li><a href="#" v-translate>ABOUT_US</a></li>
-                      <li><a href="#">CONTACT_US</a></li>
+                      <li><a href="#" v-translate>CONTACT_US</a></li>
                       <li v-html="userActionPanel"></li>
                     </ul>
                     <form class="navbar-form navbar-left">
@@ -159,303 +159,261 @@
               <img src="../assets/images/adv-mobile.jpg" height="231" width="451"/></div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-xs-12">
-            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-              <ul class="nav nav-tabs nav-tabs-responsive myTab protab" role="tablist">
-                <li role="presentation" class="active">
-                  <a href="#sale1" id="sale-tab1" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                    <span class="text" v-translate>LATEST_PRODUCTS</span>
-                  </a>
-                </li>
-              </ul>
-              <div class="tab-content myTabContent myprotab">
-                <div role="tabpanel" class="tab-pane fade in active" id="sale1" aria-labelledby="sale-tab">
-                  <section class="center slider">
-                    <slick ref="slick" :options="slickOptions">
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 64 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+            <ul class="nav nav-tabs">
+              <li class="latest-items-tablinks active" id="latest-items" v-on:click="openTab('latest-items', 'tab-latest-items', $event)" v-translate>LATEST_PRODUCTS</li>
+            </ul>
+            <div id="tab-latest-items" class="latest-items-tabcontent">
+              <div class="tab-content myTabContent">
+                <section class="center slider">
+                  <slick ref="slick" :options="slickOptions">
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 64 گيگابايت</a>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                       </div>
-                    </slick>
-                  </section>
-                </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 6s ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                  </slick>
+                </section>
               </div>
             </div>
           </div>
         </div>
+
+        <br>
+
         <div class="row">
           <div class="col-xs-12">
-            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-              <ul class="nav nav-tabs nav-tabs-responsive myTab protab" role="tablist">
-                <li role="presentation" class="active">
-                  <a href="#iphone5" id="iphone5-tab1" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                    <span class="text">آیفون 5</span>
-                  </a>
-                </li>
-                <li role="presentation" >
-                  <a href="#iphone5s" id="iphone5s-tab1" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                    <span class="text">آیفون 5s</span>
-                  </a>
-                </li>
-                <li role="presentation" >
-                  <a href="#iphone6" id="iphone6-tab1" role="tab" data-toggle="tab" aria-controls="sale" aria-expanded="true">
-                    <span class="text">آیفون 6</span>
-                  </a>
-                </li>
-              </ul>
-              <div class="tab-content myTabContent myprotab">
-                <div role="tabpanel" class="tab-pane fade in active" id="iphone5" aria-labelledby="iphone5-tab">
-                  <section class="center slider">
-                    <slick ref="slick" :options="slickOptions">
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 64 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+            <ul class="nav nav-tabs">
+              <li class="categories-tablinks active" id="iphone5" v-on:click="openTab('categories', 'tab-iphone5', $event)">iphone5</li>
+              <li class="categories-tablinks" id="iphone5s" v-on:click="openTab('categories', 'tab-iphone5s', $event)">iphone5s</li>
+            </ul>
+            <div id="tab-iphone5" class="categories-tabcontent">
+              <div class="tab-content myTabContent">
+                <section class="center slider">
+                  <slick ref="slick" :options="slickOptionsOne">
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 64 گيگابايت</a>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
                       </div>
-                    </slick>
-                  </section>
-                </div>
-                <div role="tabpanel" class="tab-pane fade active" id="iphone5s" aria-labelledby="iphone5s-tab">
-                  <section class="center slider">
-                    <slick ref="slick" :options="slickOptions">
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5s ظرفيت 64 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 5s ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
                       </div>
-                    </slick>
-                  </section>
-                </div>
-                <div role="tabpanel" class="tab-pane fade active" id="iphone6" aria-labelledby="iphone6-tab">
-                  <section class="center slider">
-                    <slick ref="slick" :options="slickOptions">
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6 ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
                       </div>
-                      <div class="f-width pro-cart">
-                        <div class="f-width pro-pic">
-                          <img src="../assets/images/product.png" height="100" width="75"/></div>
-                        <div class="f-width pro-ttl">
-                          <a href="#">گوشي موبايل اپل مدل iPhone 6 ظرفيت 32 گيگابايت</a>
-                        </div>
-                        <div class="f-width pro-time">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="bold black">کارکرد : </span>
-                          <span>1 سال</span>
-                        </div>
-                        <div class="f-width pro-price">
-                          <i class="fa fa-money"></i>
-                          <span class="bold black">قیمت :</span>
-                          <span>1350000 تومان</span>
-                        </div>
-                        <div class="f-width pro-buy-more">
-                          <a href="#" class="pro-more">توضیحات بیشتر</a>
-                          <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
                       </div>
-                    </slick>
-                  </section>
-                </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                  </slick>
+                </section>
+              </div>
+            </div>
+
+            <div id="tab-iphone5s" class="categories-tabcontent">
+              <div class="tab-content myTabContent">
+                <section class="center slider">
+                  <slick ref="slick" :options="slickOptions">
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 64 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>1350000 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                    <div class="f-width pro-cart">
+                      <div class="f-width pro-pic">
+                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                      <div class="f-width pro-ttl">
+                        <a href="#">گوشي موبايل اپل مدل iPhone 5 ظرفيت 32 گيگابايت</a>
+                      </div>
+                      <div class="f-width pro-time">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="bold black">کارکرد : </span>
+                        <span>1 سال</span>
+                      </div>
+                      <div class="f-width pro-price">
+                        <i class="fa fa-money"></i>
+                        <span class="bold black">قیمت :</span>
+                        <span>222222222222 تومان</span>
+                      </div>
+                      <div class="f-width pro-buy-more">
+                        <a href="#" class="pro-more">توضیحات بیشتر</a>
+                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                    </div>
+                  </slick>
+                </section>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -491,6 +449,10 @@
         slickOptions: {
           dots: true,
           slidesToShow: 3
+        },
+        slickOptionsOne: {
+          dots: true,
+          slidesToShow: 3
         }
       }
     },
@@ -523,14 +485,30 @@
         this.$nextTick(() => {
           this.$refs.slick.reSlick()
         })
+      },
+      openTab (section, targetDiv, event) {
+        var i, tabcontent
+
+        tabcontent = jQuery('.' + section + '-tabcontent')
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = 'none'
+        }
+
+        jQuery('.' + section + '-tablinks').removeClass('active')
+        document.getElementById(targetDiv).style.display = 'block'
+        event.currentTarget.className += ' active'
+        jQuery('.slick-slider').get(2).slick.setPosition()
+      },
+      checkMainTabs () {
+        jQuery('.categories-tabcontent').hide()
+        jQuery('.categories-tabcontent')[0].style.display = 'block'
       }
     },
     beforeMount () {
       this.getUser()
     },
-    beforeUpdate () {
-      $('#iphone5s').removeClass('active')
-      $('#iphone6').removeClass('active')
+    mounted () {
+      this.checkMainTabs()
     }
   }
 </script>
@@ -552,5 +530,27 @@
 
   .bg-danger, .bg-success{
     padding: 10px
+  }
+
+  li.latest-items-tablinks, li.categories-tablinks {
+    background-color: #CCC;
+    padding: 12px 20px;
+    right: 3px;
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+  }
+
+  li.latest-items-tablinks:hover, li.categories-tablinks:hover{
+    background-color: #FFF;
+  }
+
+  li.latest-items-tablinks.active, li.categories-tablinks.active{
+    background: #fff;
+    color: #ed8323;
+    border-top: 2px solid #ed8323 !important;
+  }
+
+  .myTabContent{
+    padding:15px 30px;
   }
 </style>

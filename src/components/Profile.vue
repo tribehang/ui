@@ -608,7 +608,7 @@
         jQuery('.tabcontent').hide()
         jQuery('.tabcontent')[0].style.display = 'block'
       },
-      openTab (hash, cityName, event) {
+      openTab (hash, targetDiv, event) {
         var i, tabcontent
 
         tabcontent = jQuery('.tabcontent')
@@ -617,7 +617,7 @@
         }
 
         jQuery('.tablinks').removeClass('active')
-        document.getElementById(cityName).style.display = 'block'
+        document.getElementById(targetDiv).style.display = 'block'
         event.currentTarget.className += ' active'
 
         window.location.hash = '#' + hash
