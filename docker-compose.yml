@@ -1,6 +1,6 @@
 version: '2'
 services:
-  semsari-api:
+  semsari-frontend:
     container_name: semsari-frontend
     image: semsari/frontend:develop
     mem_limit: 2048m
