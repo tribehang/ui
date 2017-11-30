@@ -80,7 +80,7 @@
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <select v-model="selectedCategory" class="form-control" v-on:change="changeSubCategories">
-                                                  <option disabled value="">لطفا دسته بندی کالای خود  را انتخاب کنید</option>
+                                                  <option disabled value="" v-translate>PLEASE_CHOOSE_CATEGORY</option>
                                                   <option v-for="category in categories" :value="category">{{ category.name }}</option>
                                               </select>
                                           </div>
@@ -91,7 +91,7 @@
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <select v-model="selectedSubCategory" class="form-control">
-                                                  <option disabled value="">لطفا زیرمجموعه کالای  خود را انتخاب کنید</option>
+                                                  <option disabled value="" v-translate>PLEASE_CHOOSE_SUB_CATEGORY</option>
                                                   <option v-for="subCategory in subCategories" :value="subCategory">{{ subCategory.name }}</option>
                                               </select>
                                           </div>
@@ -102,18 +102,61 @@
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <select v-model="selectedYearIndex" class="form-control">
-                                                  <option disabled value="">لطفا سال تولید کالای خود را انتخاب کنید</option>
+                                                  <option disabled value="" v-translate>PLEASE_CHOOSE_CREATE_YEAR</option>
                                                   <option v-for="(creationYear, index) in creationYears" :value="index">{{ creationYear.title }}</option>
                                               </select>
                                           </div>
                                       </div>
                                       <div class="col-md-6">سال تولید کالا چیست</div>
                                   </div>
+
+                                  <div class="row">
+                                      <div class="col-md-3">
+                                          <div class="form-group">
+                                              <select v-model="selectedUsageYear" class="form-control">
+                                                  <option value="" disabled selected v-translate>YEAR</option>
+                                                  <option value="0">۰ <span v-translate>YEAR</span></option>
+                                                  <option value="1">۱ <span v-translate>YEAR</span></option>
+                                                  <option value="2">۲ <span v-translate>YEAR</span></option>
+                                                  <option value="3">۳ <span v-translate>YEAR</span></option>
+                                                  <option value="4">۴ <span v-translate>YEAR</span></option>
+                                                  <option value="5">۵ <span v-translate>YEAR</span></option>
+                                                  <option value="6">۶ <span v-translate>YEAR</span></option>
+                                                  <option value="7">۷ <span v-translate>YEAR</span></option>
+                                                  <option value="8">۸ <span v-translate>YEAR</span></option>
+                                                  <option value="9">۹ <span v-translate>YEAR</span></option>
+                                                  <option value="10">۱۰ <span v-translate>YEAR</span></option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <div class="form-group">
+                                              <select v-model="selectedUsageMonth" class="form-control">
+                                                  <option value="" disabled selected v-translate>MONTH</option>
+                                                  <option value="0">۰ <span v-translate>MONTH</span></option>
+                                                  <option value="1">۱ <span v-translate>MONTH</span></option>
+                                                  <option value="2">۲ <span v-translate>MONTH</span></option>
+                                                  <option value="3">۳ <span v-translate>MONTH</span></option>
+                                                  <option value="4">۴ <span v-translate>MONTH</span></option>
+                                                  <option value="5">۵ <span v-translate>MONTH</span></option>
+                                                  <option value="6">۶ <span v-translate>MONTH</span></option>
+                                                  <option value="7">۷ <span v-translate>MONTH</span></option>
+                                                  <option value="8">۸ <span v-translate>MONTH</span></option>
+                                                  <option value="9">۹ <span v-translate>MONTH</span></option>
+                                                  <option value="10">۱۰ <span v-translate>MONTH</span></option>
+                                                  <option value="11">۱۱ <span v-translate>MONTH</span></option>
+                                                  <option value="12">۱۲ <span v-translate>MONTH</span></option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6" v-translate>PLEASE_CHOOSE_USAGE</div>
+                                  </div>
+
                                   <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <select v-model="selectedConditionIndex" class="form-control">
-                                                  <option disabled value="">لطفا وضعیت کنونی کالای خود را انتخاب کنید</option>
+                                                  <option disabled value="" v-translate="">PLEASE_CHOOSE_CONDITION</option>
                                                   <option v-for="(condition, index) in conditions" :value="index">{{ condition.title }}</option>
                                               </select>
                                           </div>
@@ -126,7 +169,7 @@
 
                                   <div class="row">
                                       <br>
-                                      <p class="bg-danger">{{ stepOneError }}</p>
+                                      <p v-if="stepOneError !== ''" class="alert alert-danger">{{ stepOneError }}</p>
                                   </div>
                               </v-tab>
 
@@ -208,7 +251,7 @@
 
                                   <div class="row">
                                       <br>
-                                      <p class="bg-danger">{{ stepTwoError }}</p>
+                                      <p v-if="stepTwoError !== ''" class="alert alert-danger">{{ stepTwoError }}</p>
                                   </div>
                               </v-tab>
 
@@ -234,6 +277,12 @@
                                           </div>
                                       </div>
 
+                                      <div class="col-md-12">
+                                          <div class="col-md-6">
+                                              <span v-translate>SALE_USAGE_IN_MONTHS</span> : <i>{{ selectedUsageYear}}</i> <span v-translate>YEAR</span> <i>{{ selectedUsageMonth}}</i> <span v-translate>MONTH</span>
+                                          </div>
+                                      </div>
+
                                   </div>
 
                                   <h4 v-translate>FURTHER_INFORMATION</h4>
@@ -242,6 +291,10 @@
                                           <li v-for="(selectedAttribute, index) in selectedAttributes" >
                                               <div class="col-md-12" v-if="selectedAttribute.type === 'select'">
                                                   <span>{{ selectedAttribute.name }}</span> : <i>{{ selectedAttribute.label }}</i>
+                                              </div>
+
+                                              <div class="col-md-12" v-else-if="selectedAttribute.type === 'boolean'">
+                                                  <span>{{ selectedAttribute.name }}</span> : <i v-if="selectedAttribute.value === '1'" v-translate>YES</i> <i v-if="selectedAttribute.value === '0'" v-translate>NO</i>
                                               </div>
 
                                               <div class="col-md-12" v-else>
@@ -496,7 +549,9 @@
         userFirstName: '',
         userLastName: '',
         userEmail: '',
-        userDateOfBirth: ''
+        userDateOfBirth: '',
+        selectedUsageYear: '',
+        selectedUsageMonth: ''
       }
     },
     components: {
@@ -571,7 +626,14 @@
         }
       },
       isStepOneFinished () {
-        return (this.selectedCategory !== '' && this.selectedSubCategory !== '' && this.selectedYearIndex !== '' && this.selectedConditionIndex !== '')
+        return (
+          this.selectedCategory !== '' &&
+            this.selectedSubCategory !== '' &&
+            this.selectedYearIndex !== '' &&
+            this.selectedConditionIndex !== '' &&
+            this.selectedUsageYear !== '' &&
+            this.selectedUsageMonth !== ''
+        )
       },
       isStepTwoFinished () {
         var isFinished = true

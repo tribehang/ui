@@ -73,13 +73,14 @@ export default {
     return process.env.NODE_AWS_BUCKET_LINK + 'sales/' + $saleId + '/' + $saleImageId + '.jpg'
   },
   addItem (context) {
-    var data = {
+    let data = {
       'category_id': context.selectedSubCategory.id,
       'condition': this.data().availableConditions[context.selectedConditionIndex].value,
       'createYear': this.data().availableCreationYears[context.selectedYearIndex].value,
-      'usageInMonths': 10,
+      'usageInMonths': this.calculateUsageInMonth(context.selectedUsageYear, context.selectedUsageMonth),
       'category_attributes': context.selectedAttributes
     }
+
     Vue.http.post(process.env.NODE_API_HOST + 'sales', data, {'headers': auth.getAuthHeader()}).then(response => {
       if (response.status === 201) {
         this.addImages(context, response.data.data.id)
@@ -88,6 +89,9 @@ export default {
     }, response => {
       console.log('sale creation failed...')
     })
+  },
+  calculateUsageInMonth (years = 0, months = 0) {
+    return parseInt(months) + parseInt(years * 12)
   },
   addImages (context, $saleId) {
     var data = {

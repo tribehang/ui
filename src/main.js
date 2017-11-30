@@ -28,6 +28,9 @@ new Vue({
   locales: {
     fa: {
       'MONTH': 'ماه',
+      'YEAR': 'سال',
+      'YES': 'بلی',
+      'NO': 'خیر',
       'STATUS': 'وضعیت',
       'SL_created': 'در حال بررسی',
       'SL_PRICE_ESTIMATED': 'در حال بررسی',
@@ -114,7 +117,12 @@ new Vue({
       'CURRENT_CONDITION': 'وضعیت کنونی',
       'FURTHER_INFORMATION': 'اطلاعات تکمیلی',
       'PRODUCT_IMAGES': 'عکس های محصول',
-      'SUBMIT': 'تائید'
+      'SUBMIT': 'تائید',
+      'PLEASE_CHOOSE_CATEGORY': 'لطفا دسته بندی کالای خود  را انتخاب کنید',
+      'PLEASE_CHOOSE_SUB_CATEGORY': 'لطفا زیرمجموعه کالای  خود را انتخاب کنید',
+      'PLEASE_CHOOSE_CREATE_YEAR': 'لطفا سال تولید کالای خود را انتخاب کنید',
+      'PLEASE_CHOOSE_CONDITION': 'لطفا وضعیت کنونی کالای خود را انتخاب کنید',
+      'PLEASE_CHOOSE_USAGE': 'لطفا میزان کاردکرد کالای خود را تعیین کنید'
     }
   }
 })
