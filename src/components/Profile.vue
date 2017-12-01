@@ -178,10 +178,10 @@
                                   <br>
 
                                   <ul class="category-attributes">
-                                      <li v-for="(attribute, index) in attributes" >
+                                      <li v-for="(attribute, index) in attributes" v-bind:class="[attribute.problematic ? 'alert alert-warning' : 'well']">
                                           <div v-if="attribute.type === 'boolean'">
                                               <div class="form-group">
-                                                  <label style="line-height: 36px;">{{ attribute.name }} :</label>
+                                                  <label>{{ attribute.name }} :</label>
                                                   <label class="radio-inline control-label radio">
                                                       <input type='radio' :name="attribute.id" value="1" v-model="selectedAttributes[index].value"> بلی
                                                   </label>
@@ -193,9 +193,9 @@
                                           </div>
 
                                           <div v-if="attribute.type === 'select'">
+                                              <label>{{ attribute.name }} :</label>
                                               <div class="form-group">
                                                   <select class="form-control" v-model="selectedAttributes[index].value" v-on:change="handleAttributeChange">
-                                                      <option disabled value="" selected>{{ attribute.name }}</option>
                                                       <option v-for="option in attribute.options.data" :data-attributeIndex="index" :value="option.value">{{ option.name }}</option>
                                                   </select>
                                               </div>
@@ -203,19 +203,24 @@
 
                                           <div v-if="attribute.type === 'integer'">
                                               <div class="form-group">
-                                                  {{attribute.name}} <input v-model="selectedAttributes[index].value" type="number" name="quantity" min="0">
+                                                  <label>{{ attribute.name }} :</label>
+                                                  <label class="control-label">
+                                                      <input v-model="selectedAttributes[index].value" type="number" name="quantity" min="0">
+                                                  </label>
                                               </div>
                                           </div>
 
                                           <div v-if="attribute.type === 'string'">
                                               <div class="form-group">
-                                                  <input  v-model="selectedAttributes[index].value" type="text" class="form-control" :placeholder="attribute.name">
+                                                  <label>{{ attribute.name }} :</label>
+                                                  <input  v-model="selectedAttributes[index].value" type="text" class="form-control">
                                               </div>
                                           </div>
 
                                           <div v-if="attribute.type === 'text'">
+                                              <label>{{ attribute.name }} :</label>
                                               <div class="form-group">
-                                                  <textarea v-model="selectedAttributes[index].value" class="form-control" rows="3" :placeholder="attribute.name"></textarea>
+                                                  <textarea v-model="selectedAttributes[index].value" class="form-control" rows="3"></textarea>
                                               </div>
                                           </div>
                                       </li>
@@ -256,57 +261,73 @@
                               </v-tab>
 
                               <v-tab title="۳. ثبت کالا">
-                                  <h4 v-translate>MAIN_INFORMATION</h4>
 
-                                  <div class="row review-box">
-                                      <div class="col-md-12">
-                                          <div class="col-md-6">
-                                              <span v-translate>CATEGORY</span> : <i>{{ selectedCategory.name }}</i>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <span v-translate>SUB_CATEGORY</span> : <i>{{ selectedSubCategory.name }}</i>
+                                  <div class="panel panel-info">
+                                      <div class="panel-heading" v-translate>MAIN_INFORMATION</div>
+                                      <div class="panel-body">
+                                          <div class="row">
+                                              <table class="table table-hover">
+                                                  <tbody>
+                                                  <tr>
+                                                      <th class="col-md-4" v-translate>CATEGORY</th>
+                                                      <td>{{ selectedCategory.name }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <th class="col-md-4" v-translate>SUB_CATEGORY</th>
+                                                      <td>{{ selectedSubCategory.name }}</td>
+                                                  </tr>
+                                                  <tr v-if="creationYears[selectedYearIndex]">
+                                                      <th class="col-md-4" v-translate>CREATE_YEAR</th>
+                                                      <td>{{ creationYears[selectedYearIndex].title}}</td>
+                                                  </tr>
+                                                  <tr v-if="conditions[selectedConditionIndex]">
+                                                      <th class="col-md-4" v-translate>CURRENT_CONDITION</th>
+                                                      <td>{{ conditions[selectedConditionIndex].title}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <th class="col-md-4" v-translate>SALE_USAGE_IN_MONTHS</th>
+                                                      <td>{{ selectedUsageYear}} <span v-translate>YEAR</span> {{ selectedUsageMonth}} <span v-translate>MONTH</span></td>
+                                                  </tr>
+                                                  </tbody>
+                                              </table>
                                           </div>
                                       </div>
-
-                                      <div class="col-md-12">
-                                          <div class="col-md-6" v-if="creationYears[selectedYearIndex]">
-                                              <span v-translate>CREATE_YEAR</span> : <i>{{ creationYears[selectedYearIndex].title}}</i>
-                                          </div>
-                                          <div class="col-md-6" v-if="conditions[selectedConditionIndex]">
-                                              <span v-translate>CURRENT_CONDITION</span> : <i>{{ conditions[selectedConditionIndex].title}}</i>
-                                          </div>
-                                      </div>
-
-                                      <div class="col-md-12">
-                                          <div class="col-md-6">
-                                              <span v-translate>SALE_USAGE_IN_MONTHS</span> : <i>{{ selectedUsageYear}}</i> <span v-translate>YEAR</span> <i>{{ selectedUsageMonth}}</i> <span v-translate>MONTH</span>
-                                          </div>
-                                      </div>
-
                                   </div>
 
-                                  <h4 v-translate>FURTHER_INFORMATION</h4>
-                                  <div class="row review-box">
-                                      <ul class="category-attributes">
-                                          <li v-for="(selectedAttribute, index) in selectedAttributes" >
-                                              <div class="col-md-12" v-if="selectedAttribute.type === 'select'">
-                                                  <span>{{ selectedAttribute.name }}</span> : <i>{{ selectedAttribute.label }}</i>
-                                              </div>
 
-                                              <div class="col-md-12" v-else-if="selectedAttribute.type === 'boolean'">
-                                                  <span>{{ selectedAttribute.name }}</span> : <i v-if="selectedAttribute.value === '1'" v-translate>YES</i> <i v-if="selectedAttribute.value === '0'" v-translate>NO</i>
-                                              </div>
-
-                                              <div class="col-md-12" v-else>
-                                                  <span>{{ selectedAttribute.name }}</span> : <i>{{ selectedAttribute.value }}</i>
-                                              </div>
-                                          </li>
-                                      </ul>
+                                  <div class="panel panel-info">
+                                      <div class="panel-heading" v-translate>FURTHER_INFORMATION</div>
+                                      <div class="panel-body">
+                                          <div class="row">
+                                              <table class="table table-hover">
+                                                  <tbody>
+                                                  <tr v-for="(selectedAttribute, index) in selectedAttributes" >
+                                                      <th class="col-md-4">{{ selectedAttribute.name }}</th>
+                                                      <td v-if="selectedAttribute.type === 'select'">{{selectedAttribute.label}}</td>
+                                                      <td v-else-if="selectedAttribute.type === 'boolean'"><span v-if="selectedAttribute.value === '1'" v-translate>YES</span> <span v-if="selectedAttribute.value === '0'" v-translate>NO</span></td>
+                                                      <td v-else>{{selectedAttribute.value}}</td>
+                                                  </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
                                   </div>
 
-                                  <h4 v-translate>PRODUCT_IMAGES</h4>
-                                  <div class="row review-box">
-                                      <img :src="imageUploadBase64">
+
+                                  <div class="panel panel-info">
+                                      <div class="panel-heading" v-translate>PRODUCT_IMAGES</div>
+                                      <div class="panel-body">
+                                          <div class="row">
+                                              <table class="table">
+                                                  <tbody>
+                                                  <tr>
+                                                      <th class="col-md-4">{{ selectedSubCategory.name }}</th>
+                                                      <td><img height="150" :src="imageUploadBase64"></td>
+                                                  </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
                                   </div>
 
                                   <div class="row">
@@ -315,6 +336,8 @@
                                           <button type="button" class="btn btn-warning" v-on:click="addSale" v-translate>SUBMIT</button>
                                       </div>
                                   </div>
+
+                                  <br>
                               </v-tab>
                           </vue-tabs>
                       </div>
@@ -855,19 +878,10 @@
     .category-attributes{
         list-style: none;
         padding: 0;
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-        -webkit-column-gap: 60px;
-        -moz-column-gap: 60px;
-        column-gap: 60px;
-        -webkit-column-rule: 1px solid #CCCBCB;
-        -moz-column-rule: 1px solid #CCCBCB;
-        column-rule: 1px solid #CCCBCB;
     }
 
    .category-attributes .form-group{
-        margin-bottom: 50px;
+        margin-bottom: 0px;
     }
 
    .vue-tabs a {
@@ -932,4 +946,19 @@
        padding: 2px 8px;
        border-radius: 5px;
    }
+
+   .tab-container .panel{
+       margin-top:30px;
+   }
+
+   .tab-container .panel-heading{
+       font-size: 17px;
+       padding:5px 15px;
+       color: #444;
+       background-color: #aae0ec;
+   }
+
+   .tab-container .panel-body{
+        padding:0px 15px;
+    }
 </style>
