@@ -34,5 +34,14 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  staging: {
+    env: require('./staging.env'),
+    port: 80,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {},
+    cssSourceMap: false
   }
 }
