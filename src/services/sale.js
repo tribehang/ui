@@ -5,6 +5,7 @@ import appointment from '../services/appointment'
 const SALE_MAIN_CATEGORIES_API = 'categories?filter[active]=1&filter[parent_id]='
 const SALE_SUB_CATEGORIES_API = 'categories?filter[active]=1&filter[parent_id]='
 const SALE_API = 'sales'
+const SALE_IMAGE_API = 'sale_images'
 
 export default {
   data () {
@@ -52,9 +53,11 @@ export default {
     })
   },
   getCategoryAttributes (context, $categoryId = 'none') {
-    Vue.http.get(process.env.NODE_API_HOST + 'categories/' + $categoryId + '?include=attributes', {'headers': auth.getAuthHeader()}).then(response => {
+    Vue.http.get(process.env.NODE_API_HOST + 'categories/' + $categoryId + '?include=attributes,saleUploads', {'headers': auth.getAuthHeader()}).then(response => {
       context.attributes = response.data.data.attributes.data
-      var attributes = []
+      context.saleUploads = response.data.data.saleUploads.data
+      context.saleUploadsCount = response.data.data.saleUploads.data.length
+      let attributes = []
       $.each(response.data.data.attributes.data, function (index, value) {
         attributes[index] = {
           id: value.id,
@@ -70,7 +73,7 @@ export default {
     })
   },
   getSaleImageLink ($saleId, $saleImageId) {
-    return process.env.NODE_AWS_BUCKET_LINK + 'sales/' + $saleId + '/' + $saleImageId + '.jpg'
+    return process.env.NODE_AWS_BUCKET_LINK + SALE_API + '/' + $saleId + '/' + $saleImageId + '.jpg'
   },
   addItem (context) {
     let data = {
@@ -81,7 +84,7 @@ export default {
       'category_attributes': context.selectedAttributes
     }
 
-    Vue.http.post(process.env.NODE_API_HOST + 'sales', data, {'headers': auth.getAuthHeader()}).then(response => {
+    Vue.http.post(process.env.NODE_API_HOST + SALE_API, data, {'headers': auth.getAuthHeader()}).then(response => {
       if (response.status === 201) {
         this.addImages(context, response.data.data.id)
       }
@@ -94,13 +97,14 @@ export default {
     return parseInt(months) + parseInt(years * 12)
   },
   addImages (context, $saleId) {
-    var data = {
+    let data = {
       'sale_id': $saleId,
-      'images': [
-        context.imageUploadBase64
-      ]
+      'images': context.imageUploadBase64
     }
-    Vue.http.post(process.env.NODE_API_HOST + 'sale_images', data, {'headers': auth.getAuthHeader()}).then(response => {
+
+    console.log(context.imageUploadBase64)
+
+    Vue.http.post(process.env.NODE_API_HOST + SALE_IMAGE_API, data, {'headers': auth.getAuthHeader()}).then(response => {
       if (response.status === 201) {
         window.location.hash = '#items'
         location.reload()

@@ -226,16 +226,18 @@
                                       </li>
                                   </ul>
 
-                                  <div class="row">
-                                      <div class="col-md-6">
+
+                                  <div class="row" v-if="saleUploads !== ''">
+                                      <h4 v-translate>PRODUCT_IMAGES</h4>
+                                      <div v-for="saleUpload in saleUploads" class="col-md-6">
                                           <br>
                                           <div class="form-group">
-                                              <h4 v-translate>PRODUCT_IMAGES</h4>
+
                                               <vue-base64-file-upload
                                                       class="image-upload-thumbnail"
-                                                      accept="image/png,image/jpeg"
+                                                      accept="image/jpg,image/jpeg"
                                                       image-class="v1-image"
-                                                      placeholder="برای ارسال عکس اینجا را کلیک کنید"
+                                                      :placeholder="saleUpload.name"
                                                       input-class="v1-image"
                                                       :max-size="customImageMaxSize"
                                                       @size-exceeded="onSizeExceeded"
@@ -318,14 +320,9 @@
                                       <div class="panel-heading" v-translate>PRODUCT_IMAGES</div>
                                       <div class="panel-body">
                                           <div class="row">
-                                              <table class="table">
-                                                  <tbody>
-                                                  <tr>
-                                                      <th class="col-md-4">{{ selectedSubCategory.name }}</th>
-                                                      <td><img height="150" :src="imageUploadBase64"></td>
-                                                  </tr>
-                                                  </tbody>
-                                              </table>
+                                              <div v-for="base64 in imageUploadBase64" style="display: inline-block; margin: 15px;">
+                                                  <img height="150" :src="base64">
+                                              </div>
                                           </div>
                                       </div>
                                   </div>
@@ -450,7 +447,7 @@
                           <div class="panel-body my-sales">
                               <div class="row">
                                   <div class="col-sm-3">
-                                      <img :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">
+                                      <img v-if="sale.images.data[0]" :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">
                                   </div>
                                   <div class="col-sm-3">
                                       <i class="fa fa-question-circle-o"></i>
@@ -552,10 +549,12 @@
         stepOneError: '',
         stepTwoError: '',
         customImageMaxSize: 2,
-        imageUploadBase64: '',
+        imageUploadBase64: [],
         categories: '',
         subCategories: '',
         attributes: '',
+        saleUploads: '',
+        saleUploadsCount: 0,
         selectedCategory: '',
         selectedSubCategory: '',
         selectedYearIndex: '',
@@ -585,7 +584,7 @@
     },
     methods: {
       updateUser () {
-        var dateOfBirth = $('#date_of_birth').attr('datevalueprop') ? $('#date_of_birth').attr('datevalueprop') : this.userDateOfBirth
+        let dateOfBirth = $('#date_of_birth').attr('datevalueprop') ? $('#date_of_birth').attr('datevalueprop') : this.userDateOfBirth
         user.updateUser(this.userFirstName, this.userLastName, this.userEmail, dateOfBirth)
       },
       deleteAddress (addressId) {
@@ -603,10 +602,14 @@
       getSaleAppointmentLink (saleId) {
         return '/sale/' + saleId + '/appointment'
       },
+      getUploadedImages () {
+        return this.imageUploadBase64.slice(-2)
+      },
       onFile (file) {
+
       },
       onLoad (dataUri) {
-        this.imageUploadBase64 = dataUri
+        this.imageUploadBase64.push(dataUri)
       },
       onSizeExceeded (size) {
         alert(`Image ${size}Mb size exceeds limits of ${this.customImageMaxSize}Mb!`)
@@ -621,8 +624,8 @@
         sale.getSubCategories(this, this.selectedCategory.id)
       },
       getProductName () {
-        var year = this.creationYears[this.selectedYearIndex] ? this.creationYears[this.selectedYearIndex].title : ''
-        var condition = this.conditions[this.selectedConditionIndex] ? this.conditions[this.selectedConditionIndex].title : ''
+        let year = this.creationYears[this.selectedYearIndex] ? this.creationYears[this.selectedYearIndex].title : ''
+        let condition = this.conditions[this.selectedConditionIndex] ? this.conditions[this.selectedConditionIndex].title : ''
         return this.selectedCategory.name + ' ' + this.selectedSubCategory.name + ' ' + year + ' ' + condition
       },
       showStepOne () {
@@ -659,14 +662,14 @@
         )
       },
       isStepTwoFinished () {
-        var isFinished = true
+        let isFinished = true
         $.each(this.selectedAttributes, function (index, attribute) {
           if (attribute.value.length === 0) {
             isFinished = false
           }
         })
 
-        if (this.imageUploadBase64 === '') {
+        if (this.imageUploadBase64.length !== this.saleUploadsCount) {
           isFinished = false
         }
 
@@ -682,8 +685,8 @@
         $('.left-vertical-tabs ul li:nth-child(3)').click()
       },
       handleAttributeChange (e) {
-        var label = e.target[e.target.options.selectedIndex].label
-        var attributeIndex = e.target.options[e.target.options.selectedIndex].dataset.attributeindex
+        let label = e.target[e.target.options.selectedIndex].label
+        let attributeIndex = e.target.options[e.target.options.selectedIndex].dataset.attributeindex
         this.selectedAttributes[attributeIndex].label = label
       },
       checkUrlHash () {
@@ -694,7 +697,7 @@
         jQuery('.tabcontent')[0].style.display = 'block'
       },
       openTab (hash, targetDiv, event) {
-        var i, tabcontent
+        let i, tabcontent
 
         tabcontent = jQuery('.tabcontent')
         for (i = 0; i < tabcontent.length; i++) {
