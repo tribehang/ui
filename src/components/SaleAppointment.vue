@@ -90,9 +90,17 @@
                                 {{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )
                             </label>
                         </div>
-                    </div>
 
-                    <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
+                        <div>
+                            <div v-if="isUserHasAddress">
+                                <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
+                            </div>
+                            <div v-else>
+                                <h4 v-translate>APPOINTMENT_NO_ADDRESS_ERROR_MESSAGE</h4>
+                                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#add-new-address-modal" v-translate>ADD_NEW_ADDRESS</button>
+                            </div>
+                        </div>
+                    </div>
                 </label>
             </div>
 
@@ -113,6 +121,84 @@
             <a href="/profile#items" v-translate class="btn btn-success" style="float: left;">BACK_TO_ITEMS</a>
 
         </div>
+
+        <div class="modal fade" id="add-new-address-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" v-translate>ADD_NEW_ADDRESS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 v-translate>NEW_ADDRESS_INFORMATION</h4>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 bold" for="state" v-translate>STATE</label>
+                                <div class="col-sm-10">
+                                    <label class="col-md-6">
+                                        <select class="form-control" v-model="addressState">
+                                            <option value="تهران">تهران</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 bold" for="city" v-translate>CITY</label>
+                                <div class="col-sm-10">
+                                    <label class="col-md-6">
+                                        <select class="form-control" v-model="addressCity">
+                                            <option value="تهران">تهران</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 bold" for="contact_number" v-translate>CONTACT_NUMBER</label>
+                                <div class="col-sm-10">
+                                    <label class="col-md-6">
+                                        <input v-model="addressPhoneNumber" type="text" class="form-control" id="contact_number" name="contact_number">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 bold" for="postal_code" v-translate>POSTAL_CODE</label>
+                                <div class="col-sm-10">
+                                    <label class="col-md-6">
+                                        <input v-model="addressPostcode" type="text" class="form-control" id="postal_code" name="postal_code">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 bold" for="full_address" v-translate>FULL_ADDRESS</label>
+                                <div class="col-sm-10">
+                                    <label class="col-md-12">
+                                        <input v-model="addressAddress" type="text" class="form-control" id="full_address" name="full_address">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <button type="button" class="btn btn-success" v-on:click="createAddress">
+                                <span v-translate>REGISTER_NEW_ADDRESS</span>
+                            </button>
+
+                            <button type="button"  data-dismiss="modal" class="btn btn-warning">
+                                <span v-translate>CANCEL</span>
+                            </button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" v-translate>CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -122,6 +208,7 @@
   import appointment from '../services/appointment'
   import user from '../auth/user'
   import PDatePicker from '@/components/PDatePicker'
+  import profile from '../services/profile'
 
   export default {
     components: {'pdatepicker': PDatePicker},
@@ -141,10 +228,19 @@
         selectedLocationId: '',
         selectedAddress: '',
         selectedAddressId: '',
-        saleAppointment: ''
+        saleAppointment: '',
+        isUserHasAddress: false,
+        addressState: 'تهران',
+        addressCity: 'تهران',
+        addressAddress: '',
+        addressPostcode: '',
+        addressPhoneNumber: ''
       }
     },
     methods: {
+      createAddress () {
+        profile.createAddress(this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
+      },
       updateAddress () {
         user.getUserAddress(this, this.selectedAddressId)
       },
@@ -152,7 +248,9 @@
         return this.selectedHour === undefined ? 0 : this.selectedHour.length
       },
       changeHour () {
-        console.log('handle hour')
+        if (this.user.addresses.data.length > 0) {
+          this.isUserHasAddress = true
+        }
       },
       onClickDateChosen (saleId, chosenDate) {
         appointment.updateDayChosenForSale(this, chosenDate, saleId)

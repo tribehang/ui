@@ -369,7 +369,7 @@
                       <div class="container" v-if="toShowAddAddressForm === true">
                           <hr>
                           <h4 v-translate>NEW_ADDRESS_INFORMATION</h4>
-                          <form class="form-horizontal" action="/action_page.php">
+                          <form class="form-horizontal">
                               <div class="form-group">
                                   <label class="control-label col-sm-2 bold" for="state" v-translate>STATE</label>
                                   <div class="col-sm-10">
@@ -591,7 +591,7 @@
         profile.deleteAddress(this, addressId)
       },
       createAddress () {
-        profile.createAddress(this, this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
+        profile.createAddress(this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
       },
       cancelAddNewAddressForm () {
         this.toShowAddAddressForm = false

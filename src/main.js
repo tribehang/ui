@@ -122,7 +122,8 @@ new Vue({
       'PLEASE_CHOOSE_SUB_CATEGORY': 'لطفا زیرمجموعه کالای  خود را انتخاب کنید',
       'PLEASE_CHOOSE_CREATE_YEAR': 'لطفا سال تولید کالای خود را انتخاب کنید',
       'PLEASE_CHOOSE_CONDITION': 'لطفا وضعیت کنونی کالای خود را انتخاب کنید',
-      'PLEASE_CHOOSE_USAGE': 'لطفا میزان کاردکرد کالای خود را تعیین کنید'
+      'PLEASE_CHOOSE_USAGE': 'لطفا میزان کاردکرد کالای خود را تعیین کنید',
+      'APPOINTMENT_NO_ADDRESS_ERROR_MESSAGE': 'هیچ آدرسی برای شما ثبت نشده است. لطفا آدرس جدید خود را ثبت کنید.'
     }
   }
 })

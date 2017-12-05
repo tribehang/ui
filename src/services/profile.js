@@ -8,7 +8,7 @@ export default {
     return {
     }
   },
-  createAddress (context, state, city, address, postcode, phoneNumber) {
+  createAddress (state, city, address, postcode, phoneNumber) {
     var addressData = {
       'state': state,
       'city': city,
