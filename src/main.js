@@ -59,11 +59,14 @@ new Vue({
       'MINIMUM_PRICE': 'حداقل قیمت',
       'MAXIMUM_PRICE': 'حداکثر قیمت ',
       'ADD_NEW_ADDRESS': '  افزودن آدرس جدید',
+      'ADD_NEW_BANK_ACCOUNT': '  افزودن حساب بانکی جدید',
       'NEW_ADDRESS_INFORMATION': 'اطلاعات آدرس جدید',
+      'BANK_ACCOUNT_INFORMATION': 'اطلاعات حساب بانکی ',
       'STATE': 'استان',
       'CITY': 'شهر',
       'FULL_ADDRESS': 'آدرس کامل',
       'REGISTER_NEW_ADDRESS': 'ثبت آدرس جدید',
+      'REGISTER_BANK_ACCOUNT': 'ثبت حساب بانکی ',
       'CANCEL': 'انصراف',
       'NAME': 'نام',
       'FAMILY_NAME': 'نام خانوادگی',
@@ -71,6 +74,7 @@ new Vue({
       'DATE_OF_BIRTH': 'تاریخ تولد',
       'UPDATE_PROFILE_INFORMATION': 'ویرایش اطلاعات پروفایل',
       'MY_ADDRESSES': 'آدرسهای من',
+      'MY_BANK_ACCOUNT': 'اطلاعات حساب بانکی',
       'SELL_NEW_ITEM': 'فروش کالای جدید',
       'VIEW_SOLD_ITEMS': 'مشاهده کالای ثبت شده',
       'BACK_TO_ITEMS': 'بازگشت به کالاهای فروخته شده',
@@ -123,7 +127,16 @@ new Vue({
       'PLEASE_CHOOSE_CREATE_YEAR': 'لطفا سال تولید کالای خود را انتخاب کنید',
       'PLEASE_CHOOSE_CONDITION': 'لطفا وضعیت کنونی کالای خود را انتخاب کنید',
       'PLEASE_CHOOSE_USAGE': 'لطفا میزان کاردکرد کالای خود را تعیین کنید',
-      'APPOINTMENT_NO_ADDRESS_ERROR_MESSAGE': 'هیچ آدرسی برای شما ثبت نشده است. لطفا آدرس جدید خود را ثبت کنید.'
+      'APPOINTMENT_NO_ADDRESS_ERROR_MESSAGE': 'هیچ آدرسی برای شما ثبت نشده است. لطفا آدرس جدید خود را ثبت کنید.',
+      'APPOINTMENT_NO_BANK_ACCOUNT_ERROR_MESSAGE': 'هیچ حساب بانکی برای شما ثبت نشده است. لطفا اطلاعات حساب بانکی خود را وارد کنید',
+      'FULL_NAME': 'نام و نام خانوادگی',
+      'BANK_NAME': 'نام بانک',
+      'BANK_ACCOUNT_NUMBER': 'شماره حساب',
+      'BANK_ACCOUNT_CARD_NUMBER': 'شماره کارت',
+      'BANK_ACCOUNT_SHABA': 'شماره شبا',
+      'DELETE_BANK_ACCOUNT': 'حذف اطلاعات بانکی',
+      'CHOOSE_YOUR_ADDRESS': 'لطفا یک آدرس را انتخاب کنبد.',
+      'CHOOSE_YOUR_BANK_ACCOUNT': 'لطفا حساب بانکی را انتخاب کنبد.'
     }
   }
 })

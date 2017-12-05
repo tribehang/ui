@@ -9,6 +9,7 @@
               <button id="my-profile-tab-btn" v-translate class="tablinks active" v-on:click="openTab('my-profile', 'tab-update-profile', $event)">UPDATE_PROFILE_INFORMATION</button>
               <button id="sell-new-item-tab-btn" v-translate class="tablinks" v-on:click="openTab('sell-new-item', 'tab-sell-new-item', $event)">SELL_NEW_ITEM</button>
               <button id="my-addresses-tab-btn" v-translate class="tablinks" v-on:click="openTab('my-addresses', 'tab-my-addresses', $event)">MY_ADDRESSES</button>
+              <button id="my-bank-account-tab-btn" v-translate class="tablinks" v-on:click="openTab('my-bank-account', 'tab-my-bank-account', $event)">MY_BANK_ACCOUNT</button>
               <button id="items-tab-btn" v-translate class="tablinks" v-on:click="openTab('items', 'tab-view-sold-items', $event)">VIEW_SOLD_ITEMS</button>
           </div>
 
@@ -435,6 +436,130 @@
               </div>
           </div>
 
+          <div id="tab-my-bank-account" class="tabcontent">
+              <div class="panel panel-default">
+                  <div class="panel-heading" v-translate>MY_BANK_ACCOUNT</div>
+                  <div class="panel-body">
+                      <div v-if="user.bankAccounts">
+                          <div v-for="bankAccount in user.bankAccounts.data">
+                              <form class="form-horizontal">
+
+                                  <div class="row">
+                                      <div class="col-sm-2">
+                                          <label class="bold" v-translate>FULL_NAME</label>
+                                      </div>
+                                      <div class="col-sm-4">
+                                          {{bankAccount.fullName}}
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-2">
+                                          <label class="bold" v-translate>BANK_NAME</label>
+                                      </div>
+                                      <div class="col-sm-4">
+                                          {{bankAccount.bankName}}
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-2">
+                                          <label class="bold" v-translate>BANK_ACCOUNT_NUMBER</label>
+                                      </div>
+                                      <div class="col-sm-4">
+                                          {{bankAccount.bankAccount}}
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-2">
+                                          <label class="bold" v-translate>BANK_ACCOUNT_CARD_NUMBER</label>
+                                      </div>
+                                      <div class="col-sm-4">
+                                          {{bankAccount.bankCard}}
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-2">
+                                          <label class="bold" v-translate>BANK_ACCOUNT_SHABA</label>
+                                      </div>
+                                      <div class="col-sm-4">
+                                          {{bankAccount.shabaNumber}}
+                                      </div>
+                                  </div>
+
+                                  <br>
+
+                                  <button type="button" class="btn btn-danger" v-on:click="deleteBankAccount(bankAccount.id)">
+                                      <span v-translate>DELETE_BANK_ACCOUNT</span>
+                                  </button>
+
+                              </form>
+                          </div>
+                      </div>
+
+                      <div class="container" v-if="toShowAddBankAccountForm()">
+                          <h4 v-translate>BANK_ACCOUNT_INFORMATION</h4>
+                          <form class="form-horizontal">
+
+                              <div class="form-group">
+                                  <label class="control-label col-sm-2 bold" for="bank_account_fullname" v-translate>FULL_NAME</label>
+                                  <div class="col-sm-10">
+                                      <label class="col-md-4">
+                                          <input v-model="bankAccountFullName" type="text" class="form-control" id="bank_account_fullname" name="bank_account_fullname">
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label class="control-label col-sm-2 bold" for="bank_account_bank_name" v-translate>BANK_NAME</label>
+                                  <div class="col-sm-10">
+                                      <label class="col-md-4">
+                                          <input v-model="bankAccountBankName" type="text" class="form-control" id="bank_account_bank_name" name="bank_account_bank_name">
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label class="control-label col-sm-2 bold" for="bank_account_number" v-translate>BANK_ACCOUNT_NUMBER</label>
+                                  <div class="col-sm-10">
+                                      <label class="col-md-4">
+                                          <input v-model="bankAccountNumber" type="text" class="form-control" id="bank_account_number" name="bank_account_number">
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label class="control-label col-sm-2 bold" for="bank_account_card_number" v-translate>BANK_ACCOUNT_CARD_NUMBER</label>
+                                  <div class="col-sm-10">
+                                      <label class="col-md-4">
+                                          <input v-model="bankAccountCardNumber" type="text" class="form-control" id="bank_account_card_number" name="bank_account_card_number">
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label class="control-label col-sm-2 bold" for="bank_account_shaba" v-translate>BANK_ACCOUNT_SHABA</label>
+                                  <div class="col-sm-10">
+                                      <label class="col-md-4">
+                                          <input v-model="bankAccountShaba" type="text" class="form-control" id="bank_account_shaba" name="bank_account_shaba">
+                                      </label>
+                                  </div>
+                              </div>
+
+                              <br>
+
+                              <button type="button" class="btn btn-success" v-on:click="createBankAccount">
+                                  <span v-translate>REGISTER_BANK_ACCOUNT</span>
+                              </button>
+
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
           <div id="tab-view-sold-items" class="tabcontent">
               <div class="container">
                   <div v-for="items in user.sales">
@@ -573,7 +698,12 @@
         userEmail: '',
         userDateOfBirth: '',
         selectedUsageYear: '',
-        selectedUsageMonth: ''
+        selectedUsageMonth: '',
+        bankAccountFullName: '',
+        bankAccountBankName: '',
+        bankAccountNumber: '',
+        bankAccountCardNumber: '',
+        bankAccountShaba: ''
       }
     },
     components: {
@@ -588,16 +718,25 @@
         user.updateUser(this.userFirstName, this.userLastName, this.userEmail, dateOfBirth)
       },
       deleteAddress (addressId) {
-        profile.deleteAddress(this, addressId)
+        profile.deleteAddress(addressId)
+      },
+      deleteBankAccount (bankAccountId) {
+        profile.deleteBankAccount(bankAccountId)
       },
       createAddress () {
         profile.createAddress(this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
+      },
+      createBankAccount () {
+        profile.createBankAccount(this.bankAccountFullName, this.bankAccountBankName, this.bankAccountNumber, this.bankAccountCardNumber, this.bankAccountShaba)
       },
       cancelAddNewAddressForm () {
         this.toShowAddAddressForm = false
       },
       showAddAddressForm () {
         this.toShowAddAddressForm = true
+      },
+      toShowAddBankAccountForm () {
+        return this.user.bankAccounts && this.user.bankAccounts.data.length === 0
       },
       getSaleAppointmentLink (saleId) {
         return '/sale/' + saleId + '/appointment'

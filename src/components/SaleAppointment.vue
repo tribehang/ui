@@ -81,23 +81,68 @@
                 </div>
             </div>
             <div class="row" v-if="sale.saleStatus === 'PRICE_ESTIMATED'">
-                <label v-if="daysHours[sale.id]" class="form-group">
+                <label v-if="daysHours[sale.id]" class="form-group col-md-12">
 
                     <div v-if="getSelectedHourLength() > 0">
-                        <div v-for="address in user.addresses.data">
-                            <input type="radio" :value="address.id" v-model="selectedAddressId" v-on:change="updateAddress">
-                            <label>
-                                {{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )
-                            </label>
+                        <h4 v-if="userHasAddress" v-translate>CHOOSE_YOUR_ADDRESS</h4>
+                        <div>
+                            <div class="radio" v-for="address in user.addresses.data">
+                                <label><input type="radio" name="address" :value="address.id" v-model="selectedAddressId" v-on:change="updateAddress">{{ address.state }}, {{ address.city }}, {{ address.address }}, <span v-translate>POSTAL_CODE</span> {{ address.postcode }} , (<span v-translate>CONTACT_NUMBER</span> : {{ address.phoneNumber }} )</label>
+                            </div>
                         </div>
 
+                        <hr>
+                        <h4 v-if="userHasBankAccount" v-translate>CHOOSE_YOUR_BANK_ACCOUNT</h4>
                         <div>
-                            <div v-if="isUserHasAddress">
-                                <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
+                            <div class="radio" v-for="bankAccount in user.bankAccounts.data">
+                                <label class="col-md-12"><input type="radio" name="bankAccount" :value="bankAccount.id" v-model="selectedBankAccountId">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-2 bold" v-translate>FULL_NAME</div>
+                                            <div class="col-md-4 bold">{{ bankAccount.fullName }}</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2 bold" v-translate>BANK_NAME</div>
+                                            <div class="col-md-4 bold">{{ bankAccount.bankName }}</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2 bold" v-translate>BANK_ACCOUNT_NUMBER</div>
+                                            <div class="col-md-4 bold">{{ bankAccount.bankAccount }}</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2 bold" v-translate>BANK_ACCOUNT_CARD_NUMBER</div>
+                                            <div class="col-md-4 bold">{{ bankAccount.bankCard }}</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2 bold" v-translate>BANK_ACCOUNT_SHABA</div>
+                                            <div class="col-md-4 bold">{{ bankAccount.shabaNumber }}</div>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
-                            <div v-else>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div v-if="userHasAddress === false">
                                 <h4 v-translate>APPOINTMENT_NO_ADDRESS_ERROR_MESSAGE</h4>
                                 <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#add-new-address-modal" v-translate>ADD_NEW_ADDRESS</button>
+                            </div>
+
+                            <br>
+
+                            <div v-if="userHasBankAccount === false">
+                                <h4 v-translate>APPOINTMENT_NO_BANK_ACCOUNT_ERROR_MESSAGE</h4>
+                                <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#add-new-bank-account-modal" v-translate>ADD_NEW_BANK_ACCOUNT</button>
+                            </div>
+
+                            <div v-else class="row">
+                                <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
                             </div>
                         </div>
                     </div>
@@ -199,6 +244,80 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="add-new-bank-account-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" v-translate>ADD_NEW_BANK_ACCOUNT</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 v-translate>BANK_ACCOUNT_INFORMATION</h4>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 bold" for="bank_account_fullname" v-translate>FULL_NAME</label>
+                                <div class="col-sm-9">
+                                    <label class="col-md-8">
+                                        <input v-model="bankAccountFullName" type="text" class="form-control" id="bank_account_fullname" name="bank_account_fullname">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 bold" for="bank_account_bank_name" v-translate>BANK_NAME</label>
+                                <div class="col-sm-9">
+                                    <label class="col-md-8">
+                                        <input v-model="bankAccountBankName" type="text" class="form-control" id="bank_account_bank_name" name="bank_account_bank_name">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 bold" for="bank_account_number" v-translate>BANK_ACCOUNT_NUMBER</label>
+                                <div class="col-sm-9">
+                                    <label class="col-md-8">
+                                        <input v-model="bankAccountNumber" type="text" class="form-control" id="bank_account_number" name="bank_account_number">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 bold" for="bank_account_card_number" v-translate>BANK_ACCOUNT_CARD_NUMBER</label>
+                                <div class="col-sm-9">
+                                    <label class="col-md-8">
+                                        <input v-model="bankAccountCardNumber" type="text" class="form-control" id="bank_account_card_number" name="bank_account_card_number">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 bold" for="bank_account_shaba" v-translate>BANK_ACCOUNT_SHABA</label>
+                                <div class="col-sm-9">
+                                    <label class="col-md-8">
+                                        <input v-model="bankAccountShaba" type="text" class="form-control" id="bank_account_shaba" name="bank_account_shaba">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <button type="button" class="btn btn-success" v-on:click="createBankAccount">
+                                <span v-translate>REGISTER_BANK_ACCOUNT</span>
+                            </button>
+
+                            <button type="button"  data-dismiss="modal" class="btn btn-warning">
+                                <span v-translate>CANCEL</span>
+                            </button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" v-translate>CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -228,18 +347,28 @@
         selectedLocationId: '',
         selectedAddress: '',
         selectedAddressId: '',
+        selectedBankAccountId: '',
         saleAppointment: '',
-        isUserHasAddress: false,
+        userHasAddress: false,
+        userHasBankAccount: false,
         addressState: 'تهران',
         addressCity: 'تهران',
         addressAddress: '',
         addressPostcode: '',
-        addressPhoneNumber: ''
+        addressPhoneNumber: '',
+        bankAccountFullName: '',
+        bankAccountBankName: '',
+        bankAccountNumber: '',
+        bankAccountCardNumber: '',
+        bankAccountShaba: ''
       }
     },
     methods: {
       createAddress () {
         profile.createAddress(this.addressState, this.addressCity, this.addressAddress, this.addressPostcode, this.addressPhoneNumber)
+      },
+      createBankAccount () {
+        profile.createBankAccount(this.bankAccountFullName, this.bankAccountBankName, this.bankAccountNumber, this.bankAccountCardNumber, this.bankAccountShaba)
       },
       updateAddress () {
         user.getUserAddress(this, this.selectedAddressId)
@@ -249,7 +378,11 @@
       },
       changeHour () {
         if (this.user.addresses.data.length > 0) {
-          this.isUserHasAddress = true
+          this.userHasAddress = true
+        }
+
+        if (this.user.bankAccounts.data.length > 0) {
+          this.userHasBankAccount = true
         }
       },
       onClickDateChosen (saleId, chosenDate) {
