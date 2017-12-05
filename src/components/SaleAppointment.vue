@@ -8,7 +8,16 @@
 
                 <div class="row" v-if="sale.saleStatus">
                     <div class="col-sm-3">
-                        <img :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">
+                        <section class="center slider" style="position: relative; left: -15px;" v-if="sale.images.data[0]">
+                            <slick ref="slick" :options="slickOptions">
+                                <div class="pro-cart" v-for="saleImage in sale.images.data">
+                                    <div>
+                                        <img :src="getSaleImageLink(sale.id, saleImage.id)" class="img-thumbnail"/>
+                                    </div>
+                                </div>
+                            </slick>
+                        </section>
+                        <!--<img :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">-->
                     </div>
                     <div class="col-sm-3">
                         <i class="fa fa-question-circle-o"></i>
@@ -322,15 +331,19 @@
 </template>
 
 <script>
+  require('slick-carousel/slick/slick.css')
+  require('slick-carousel/slick/slick-theme.css')
+
   import sale from '../services/sale'
   import moment from 'moment'
   import appointment from '../services/appointment'
   import user from '../auth/user'
   import PDatePicker from '@/components/PDatePicker'
   import profile from '../services/profile'
+  import Slick from 'vue-slick'
 
   export default {
-    components: {'pdatepicker': PDatePicker},
+    components: {'pdatepicker': PDatePicker, Slick},
     data () {
       return {
         saleId: this.$route.params.sale_id,
@@ -360,7 +373,11 @@
         bankAccountBankName: '',
         bankAccountNumber: '',
         bankAccountCardNumber: '',
-        bankAccountShaba: ''
+        bankAccountShaba: '',
+        slickOptions: {
+          dots: true,
+          slidesToShow: 1
+        }
       }
     },
     methods: {
@@ -453,5 +470,19 @@
         display: inline-block;
         width: 15px;
         margin-left: 10px;
+    }
+
+    .slick-next, .slick-prev{
+        background-size: 90% !important;
+        height: 23px !important;
+        width: 23px !important;
+    }
+
+    .slick-next{
+        right: -20px;
+    }
+
+    .slick-prev{
+        left: -20px;
     }
 </style>

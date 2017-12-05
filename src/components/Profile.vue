@@ -562,6 +562,7 @@
 
           <div id="tab-view-sold-items" class="tabcontent">
               <div class="container">
+
                   <div v-for="items in user.sales">
                       <div class="panel panel-default" v-for="sale in items" >
                           <div class="panel-heading">
@@ -572,7 +573,15 @@
                           <div class="panel-body my-sales">
                               <div class="row">
                                   <div class="col-sm-3">
-                                      <img v-if="sale.images.data[0]" :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">
+                                      <section class="center slider" style="position: relative; left: -15px;" v-if="sale.images.data[0]">
+                                          <slick ref="slick" :options="slickOptions">
+                                              <div class="pro-cart" v-for="saleImage in sale.images.data">
+                                                  <div>
+                                                      <img :src="getSaleImageLink(sale.id, saleImage.id)" class="img-thumbnail"/>
+                                                  </div>
+                                              </div>
+                                          </slick>
+                                      </section>
                                   </div>
                                   <div class="col-sm-3">
                                       <i class="fa fa-question-circle-o"></i>
@@ -656,6 +665,9 @@
 </template>
 
 <script>
+  require('slick-carousel/slick/slick.css')
+  require('slick-carousel/slick/slick-theme.css')
+
   import Vue from 'vue'
   import VueBase64FileUpload from 'vue-base64-file-upload'
   import {VueTabs, VTab} from 'vue-nav-tabs'
@@ -666,6 +678,7 @@
   import sale from '../services/sale'
   import profile from '../services/profile'
   import PDatePicker from '@/components/PDatePicker'
+  import Slick from 'vue-slick'
 
   export default {
     data () {
@@ -703,14 +716,19 @@
         bankAccountBankName: '',
         bankAccountNumber: '',
         bankAccountCardNumber: '',
-        bankAccountShaba: ''
+        bankAccountShaba: '',
+        slickOptions: {
+          dots: true,
+          slidesToShow: 1
+        }
       }
     },
     components: {
       VueTabs,
       VTab,
       VueBase64FileUpload,
-      'pdatepicker': PDatePicker
+      'pdatepicker': PDatePicker,
+      Slick
     },
     methods: {
       updateUser () {
@@ -1103,4 +1121,18 @@
    .tab-container .panel-body{
         padding:0px 15px;
     }
+
+   .slick-next, .slick-prev{
+       background-size: 90% !important;
+       height: 23px !important;
+       width: 23px !important;
+   }
+
+   .slick-next{
+       right: -20px;
+   }
+
+   .slick-prev{
+       left: -20px;
+   }
 </style>
