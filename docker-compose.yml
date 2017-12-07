@@ -5,6 +5,6 @@ services:
     image: semsari/frontend:develop
     mem_limit: 2048m
     volumes:
-      - .:/opt/app
+      - .:/var/www/html
     ports:
       - "80:80"

@@ -2,10 +2,11 @@
 
 npm install
 
-if [ "$APP_ENV" = "production" ]; then
-  npm run
-elif [ "$APP_ENV" = "staging" ]; then
-  npm run staging
-else
+if [ "$APP_ENV" = "development" ]; then
   npm run dev
+else
+  npm run build
+  echo "Starting webserver (nginx)...";
+  nginx -t
+  nginx -g "daemon off;"
 fi

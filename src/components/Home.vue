@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <section id="header">
       <div class="container">
         <div class="row head-One">
@@ -513,16 +513,12 @@
   }
 </script>
 
-<style>
+<style scoped>
   .slick-next{
     right: -28px;
   }
 
   .navbar-default .navbar-nav > li > a{color:#fff !important;}
-
-  .fix-row {
-    display: none;
-  }
 
   .fa-exclamation-triangle:before, .fa-check-circle-o:before{
     margin-left:5px;
