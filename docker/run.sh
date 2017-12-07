@@ -3,9 +3,9 @@
 npm install
 
 if [ "$APP_ENV" = "production" ]; then
-  npm run
+  npm run build
 elif [ "$APP_ENV" = "staging" ]; then
-  npm run staging
+  npm run build
 else
   npm run dev
 fi
