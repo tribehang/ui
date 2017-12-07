@@ -524,6 +524,10 @@
     margin-left:5px;
   }
 
+  .tab-content{
+    width: 100%;
+  }
+
   .bg-danger, .bg-success{
     padding: 10px
   }

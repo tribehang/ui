@@ -882,7 +882,7 @@
   }
 </script>
 
-<style scoped>
+<style>
    .dl-horizontal dt{
        text-align: right;
        margin-bottom: 10px;
