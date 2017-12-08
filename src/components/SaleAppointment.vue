@@ -150,7 +150,14 @@
                                 <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#add-new-bank-account-modal" v-translate>ADD_NEW_BANK_ACCOUNT</button>
                             </div>
 
-                            <div v-else class="row">
+                            <div v-else>
+
+                                <div class="checkbox">
+                                    <label class="checkbox-inline">
+                                        <input v-model="terms_conditions" v-bind:true-value=1 v-bind:false-value=0 style="left: 0px; top: -10px;" type="checkbox">
+                                    </label><span v-translate>SALE_TERMS_CONDITION</span>
+                                </div>
+
                                 <button v-on:click="setAppointment" v-translate v-if="getSelectedHourLength() > 0" type="button" class="btn btn-info" style="float: right;">CONFIRM</button>
                             </div>
                         </div>
@@ -374,6 +381,7 @@
         bankAccountNumber: '',
         bankAccountCardNumber: '',
         bankAccountShaba: '',
+        terms_conditions: 0,
         slickOptions: {
           dots: true,
           slidesToShow: 1
@@ -457,6 +465,11 @@
 </script>
 
 <style scoped>
+    .checkbox{
+        margin-top: 100px;
+        margin-bottom: 40px;
+    }
+
     .container {
         background-color: #ffffff;
         margin-bottom: 20px;
