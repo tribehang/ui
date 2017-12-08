@@ -204,14 +204,10 @@
 </template>
 
 <script>
-  require('slick-carousel/slick/slick.css')
-  require('slick-carousel/slick/slick-theme.css')
-
-  import Slick from 'vue-slick'
   import VueGallery from 'vue-gallery'
 
   export default {
-    components: { Slick, 'gallery': VueGallery },
+    components: { 'gallery': VueGallery },
     data () {
       return {
         images: [
@@ -220,11 +216,7 @@
           'https://images-na.ssl-images-amazon.com/images/I/416V6IJmaWL._SL500_AC_SS350_.jpg',
           'https://images-na.ssl-images-amazon.com/images/I/41wZGEqrqZL._SL500_AC_SS350_.jpg'
         ],
-        index: null,
-        slickOptions: {
-          dots: true,
-          slidesToShow: 5
-        }
+        index: null
       }
     },
     methods: {

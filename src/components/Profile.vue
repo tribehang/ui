@@ -665,9 +665,6 @@
 </template>
 
 <script>
-  require('slick-carousel/slick/slick.css')
-  require('slick-carousel/slick/slick-theme.css')
-
   import Vue from 'vue'
   import VueBase64FileUpload from 'vue-base64-file-upload'
   import {VueTabs, VTab} from 'vue-nav-tabs'
@@ -678,7 +675,6 @@
   import sale from '../services/sale'
   import profile from '../services/profile'
   import PDatePicker from '@/components/PDatePicker'
-  import Slick from 'vue-slick'
 
   export default {
     data () {
@@ -716,19 +712,14 @@
         bankAccountBankName: '',
         bankAccountNumber: '',
         bankAccountCardNumber: '',
-        bankAccountShaba: '',
-        slickOptions: {
-          dots: true,
-          slidesToShow: 1
-        }
+        bankAccountShaba: ''
       }
     },
     components: {
       VueTabs,
       VTab,
       VueBase64FileUpload,
-      'pdatepicker': PDatePicker,
-      Slick
+      'pdatepicker': PDatePicker
     },
     methods: {
       updateUser () {
@@ -1121,18 +1112,4 @@
    .tab-container .panel-body{
         padding:0px 15px;
     }
-
-   .slick-next, .slick-prev{
-       background-size: 90% !important;
-       height: 23px !important;
-       width: 23px !important;
-   }
-
-   .slick-next{
-       right: -20px;
-   }
-
-   .slick-prev{
-       left: -20px;
-   }
 </style>

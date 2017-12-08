@@ -11,6 +11,7 @@ require('jquery/dist/jquery.min.js')
 require('bootstrap/dist/js/bootstrap.min.js')
 require('./assets/css/font-awesome.min.css')
 require('vue-nav-tabs/themes/vue-tabs.css')
+require('swiper/dist/css/swiper.css')
 
 Vue.use(vueResource)
 Vue.use(VueTranslate)

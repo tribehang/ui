@@ -338,19 +338,15 @@
 </template>
 
 <script>
-  require('slick-carousel/slick/slick.css')
-  require('slick-carousel/slick/slick-theme.css')
-
   import sale from '../services/sale'
   import moment from 'moment'
   import appointment from '../services/appointment'
   import user from '../auth/user'
   import PDatePicker from '@/components/PDatePicker'
   import profile from '../services/profile'
-  import Slick from 'vue-slick'
 
   export default {
-    components: {'pdatepicker': PDatePicker, Slick},
+    components: {'pdatepicker': PDatePicker},
     data () {
       return {
         saleId: this.$route.params.sale_id,
@@ -381,11 +377,7 @@
         bankAccountNumber: '',
         bankAccountCardNumber: '',
         bankAccountShaba: '',
-        terms_conditions: 0,
-        slickOptions: {
-          dots: true,
-          slidesToShow: 1
-        }
+        terms_conditions: 0
       }
     },
     methods: {
@@ -483,19 +475,5 @@
         display: inline-block;
         width: 15px;
         margin-left: 10px;
-    }
-
-    .slick-next, .slick-prev{
-        background-size: 90% !important;
-        height: 23px !important;
-        width: 23px !important;
-    }
-
-    .slick-next{
-        right: -20px;
-    }
-
-    .slick-prev{
-        left: -20px;
     }
 </style>
