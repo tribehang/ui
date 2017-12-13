@@ -139,7 +139,8 @@ new Vue({
       'CHOOSE_YOUR_ADDRESS': 'لطفا یک آدرس را انتخاب کنبد.',
       'CHOOSE_YOUR_BANK_ACCOUNT': 'لطفا حساب بانکی را انتخاب کنبد.',
       'SALE_TERMS_CONDITION': ' ضمن پذیرش قوانین و مقررات وب‌سایت، تایید می نمایم که حداقل قیمت داده شده در صورت نهایی شدن را پذیرفته ام',
-      'MORE_INFORMATION': 'توضیحات بیشتر'
+      'MORE_INFORMATION': 'توضیحات بیشتر',
+      'CURRENCY_NAME': 'تومان'
     }
   }
 })

@@ -213,7 +213,7 @@
               <div class="tab-content myTabContent">
                 <section class="center slider">
                   <swiper :options="swiperOption">
-                    <swiper-slide class="f-width pro-cart" v-for="item in latestIphoneSevens" :key="item.id">
+                    <swiper-slide class="f-width pro-cart" v-for="item in latestArticlesByCategory" :key="item.id">
                       <div class="f-width pro-pic">
                         <img src="../assets/images/product.png" height="100" width="75"/>
                       </div>
@@ -279,7 +279,7 @@
         registerSuccess: '',
         loginError: '',
         latestArticles: [],
-        latestIphoneSevens: [],
+        latestArticlesByCategory: [],
         swiperOption: {
           slidesPerView: 3,
           spaceBetween: 30,
@@ -335,8 +335,8 @@
     },
     beforeMount () {
       this.getUser()
-      article.getLatestArticles(this)
-      article.getLatestArticlesByCategory(this, 'iphone7')
+      article.getLatestArticles(this, 10)
+      article.getLatestArticlesByCategory(this, 'iphone7', 10)
     },
     mounted () {
       this.checkMainTabs()
