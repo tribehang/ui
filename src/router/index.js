@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import Profile from '@/components/Profile'
-import ProductDetail from '@/components/ProductDetail'
+import ArticleDetail from '@/components/ArticleDetail'
 import SaleAppointment from '@/components/SaleAppointment'
 import NotFound from '@/components/NotFound'
 
@@ -40,9 +40,9 @@ export default new Router({
       }
     },
     {
-      path: '/details',
-      name: 'ProductDetail',
-      component: ProductDetail
+      path: '/article/:article_id',
+      name: 'ArticleDetail',
+      component: ArticleDetail
     },
     {
       path: '*',

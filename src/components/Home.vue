@@ -171,23 +171,24 @@
                   <swiper :options="swiperOption">
                     <swiper-slide class="f-width pro-cart" v-for="item in latestArticles" :key="item.id">
                       <div class="f-width pro-pic">
-                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <img src="../assets/images/product.png" height="100" width="75"/>
+                      </div>
                       <div class="f-width pro-ttl">
-                        <a href="#">{{item.id}}</a>
+                        <a :href="getArticleLink(item.id)">{{item.category.data.name}}</a>
                       </div>
                       <div class="f-width pro-time">
                         <i class="fa fa-clock-o"></i>
-                        <span class="bold black">کارکرد : </span>
-                        <span>1 سال</span>
+                        <span class="bold black">سال : </span>
+                        <span>{{item.createYear}}</span>
                       </div>
                       <div class="f-width pro-price">
                         <i class="fa fa-money"></i>
                         <span class="bold black">قیمت :</span>
-                        <span>1350000 تومان</span>
+                        <span>{{item.price}}</span> <span>تومان</span>
                       </div>
                       <div class="f-width pro-buy-more">
-                        <a href="#" class="pro-more">توضیحات بیشتر</a>
-                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        <a :href="getArticleLink(item.id)" class="pro-more" v-translate>MORE_INFORMATION</a>
+                        <a :href="getArticleLink(item.id)" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                       </div>
                     </swiper-slide>
                     <div class="swiper-pagination" slot="pagination"></div>
@@ -205,65 +206,33 @@
         <div class="row">
           <div class="col-xs-12">
             <ul class="nav nav-tabs">
-              <li class="categories-tablinks active" id="iphone5" v-on:click="openTab('categories', 'tab-iphone5', $event)">iphone5</li>
-              <li class="categories-tablinks" id="iphone5s" v-on:click="openTab('categories', 'tab-iphone5s', $event)">iphone5s</li>
+              <li class="categories-tablinks active" id="iphone7" v-on:click="openTab('categories', 'tab-iphone', $event)">iphone 7</li>
+              <li class="categories-tablinks hidden" id="iphone5s" v-on:click="openTab('categories', 'tab-iphone5s', $event)">iphone5s</li>
             </ul>
-            <div id="tab-iphone5" class="categories-tabcontent">
+            <div id="tab-iphone7" class="categories-tabcontent">
               <div class="tab-content myTabContent">
                 <section class="center slider">
                   <swiper :options="swiperOption">
-                    <swiper-slide class="f-width pro-cart" v-for="item in latestArticles" :key="item.id">
+                    <swiper-slide class="f-width pro-cart" v-for="item in latestIphoneSevens" :key="item.id">
                       <div class="f-width pro-pic">
-                        <img src="../assets/images/product.png" height="100" width="75"/></div>
+                        <img src="../assets/images/product.png" height="100" width="75"/>
+                      </div>
                       <div class="f-width pro-ttl">
-                        <a href="#">{{item.id}}</a>
+                        <a :href="getArticleLink(item.id)">{{item.category.data.name}}</a>
                       </div>
                       <div class="f-width pro-time">
                         <i class="fa fa-clock-o"></i>
-                        <span class="bold black">کارکرد : </span>
-                        <span>1 سال</span>
+                        <span class="bold black">سال : </span>
+                        <span>{{item.createYear}}</span>
                       </div>
                       <div class="f-width pro-price">
                         <i class="fa fa-money"></i>
                         <span class="bold black">قیمت :</span>
-                        <span>1350000 تومان</span>
+                        <span>{{item.price}}</span> <span>تومان</span>
                       </div>
                       <div class="f-width pro-buy-more">
-                        <a href="#" class="pro-more">توضیحات بیشتر</a>
-                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
-                      </div>
-                    </swiper-slide>
-                    <div class="swiper-pagination" slot="pagination"></div>
-                    <div class="swiper-button-prev" slot="button-prev"></div>
-                    <div class="swiper-button-next" slot="button-next"></div>
-                  </swiper>
-                </section>
-              </div>
-            </div>
-
-            <div id="tab-iphone5s" class="categories-tabcontent">
-              <div class="tab-content myTabContent">
-                <section class="center slider">
-                  <swiper :options="swiperOption">
-                    <swiper-slide class="f-width pro-cart" v-for="item in latestArticles" :key="item.id">
-                      <div class="f-width pro-pic">
-                        <img src="../assets/images/product.png" height="100" width="75"/></div>
-                      <div class="f-width pro-ttl">
-                        <a href="#">{{item.id}}</a>
-                      </div>
-                      <div class="f-width pro-time">
-                        <i class="fa fa-clock-o"></i>
-                        <span class="bold black">کارکرد : </span>
-                        <span>1 سال</span>
-                      </div>
-                      <div class="f-width pro-price">
-                        <i class="fa fa-money"></i>
-                        <span class="bold black">قیمت :</span>
-                        <span>20000000 تومان</span>
-                      </div>
-                      <div class="f-width pro-buy-more">
-                        <a href="#" class="pro-more">توضیحات بیشتر</a>
-                        <a href="" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
+                        <a :href="getArticleLink(item.id)" class="pro-more" v-translate>MORE_INFORMATION</a>
+                        <a :href="getArticleLink(item.id)" class="pro-buy"><i class="fa fa-shopping-cart"></i></a>
                       </div>
                     </swiper-slide>
                     <div class="swiper-pagination" slot="pagination"></div>
@@ -310,6 +279,7 @@
         registerSuccess: '',
         loginError: '',
         latestArticles: [],
+        latestIphoneSevens: [],
         swiperOption: {
           slidesPerView: 3,
           spaceBetween: 30,
@@ -325,6 +295,9 @@
       }
     },
     methods: {
+      getArticleLink (itemId) {
+        return '/article/' + itemId
+      },
       getUser () {
         user.getHomeUserData(this)
       },
@@ -363,6 +336,7 @@
     beforeMount () {
       this.getUser()
       article.getLatestArticles(this)
+      article.getLatestArticlesByCategory(this, 'iphone7')
     },
     mounted () {
       this.checkMainTabs()
