@@ -13,7 +13,6 @@ export default {
 
     Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + '?' + query).then(response => {
       context.latestArticles = response.data.data
-      console.log(response.data.data)
     }, response => {
       context.latestArticles = []
     })
@@ -24,7 +23,6 @@ export default {
 
     Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + '?' + query).then(response => {
       context.latestArticlesByCategory = response.data.data
-      console.log(response.data.data)
     }, response => {
       context.latestArticles = []
     })

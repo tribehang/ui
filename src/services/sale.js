@@ -39,14 +39,14 @@ export default {
     })
   },
   getCategories (context) {
-    Vue.http.get(process.env.NODE_API_HOST + SALE_MAIN_CATEGORIES_API, {'headers': auth.getAuthHeader()}).then(response => {
+    Vue.http.get(process.env.NODE_API_HOST + SALE_MAIN_CATEGORIES_API).then(response => {
       context.categories = response.data.data
     }, response => {
       context.categories = []
     })
   },
   getSubCategories (context, $subCategoryId = 'none') {
-    Vue.http.get(process.env.NODE_API_HOST + SALE_SUB_CATEGORIES_API + $subCategoryId, {'headers': auth.getAuthHeader()}).then(response => {
+    Vue.http.get(process.env.NODE_API_HOST + SALE_SUB_CATEGORIES_API + $subCategoryId).then(response => {
       context.subCategories = response.data.data
     }, response => {
       context.categories = []
