@@ -132,7 +132,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <button v-on:click="getIndex()" type="button" class="btn btn-success" v-translate style="float: right;">CONFIRM</button>
+                          <button v-on:click="search()" type="button" class="btn btn-success" v-translate style="float: right;">SEARCH</button>
                         </div>
                       </div>
                     </div>
@@ -310,6 +310,7 @@
   import article from '../services/article'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import vueSlider from 'vue-slider-component'
+  import router from './../router'
 
   export default {
     components: {
@@ -334,6 +335,7 @@
         },
         value: [1000000, 3000000],
         max: 5000000,
+        multiplier: 100000,
         show: false,
         formatter: '{value} تومان',
         bgStyle: {
@@ -379,8 +381,18 @@
       }
     },
     methods: {
-      getIndex () {
-        console.log(this.$refs.slider.getIndex())
+      search () {
+        let minPrice = this.$refs.slider.getIndex()[0] * this.multiplier
+        let maxPrice = this.$refs.slider.getIndex()[1] * this.multiplier
+        let price = 'price[min]=' + minPrice + '&price[max]=' + maxPrice
+        let minCreateYear = this.creationYears[this.$refs.slider2.getIndex()[0]]
+        let maxCreateYear = this.creationYears[this.$refs.slider2.getIndex()[1]]
+        let createYear = '&createYear[min]=' + minCreateYear + '&createYear[max]=' + maxCreateYear
+        let category = this.selectedCategory === '' ? '' : '&category=' + this.selectedCategory.id
+        let subCategory = this.selectedSubCategory === '' ? '' : '&filter[category_id]=' + this.selectedSubCategory.id
+        let condition = this.selectedConditionIndex === '' ? '' : '&filter[condition]=' + sale.data().availableConditions[this.selectedConditionIndex].value
+
+        router.push('/search?' + price + createYear + category + subCategory + condition)
       },
       toggleShow (value = false) {
         if (value === true) {

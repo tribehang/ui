@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import Profile from '@/components/Profile'
+import Search from '@/components/Search'
 import ArticleDetail from '@/components/ArticleDetail'
 import SaleAppointment from '@/components/SaleAppointment'
 import NotFound from '@/components/NotFound'
@@ -37,6 +38,14 @@ export default new Router({
       component: Profile,
       meta: {
         breadcrumbs: 'کنترل پنل'
+      }
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search,
+      meta: {
+        breadcrumbs: 'جستجو'
       }
     },
     {

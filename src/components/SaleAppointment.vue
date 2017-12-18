@@ -17,7 +17,6 @@
                                 </div>
                             </slick>
                         </section>
-                        <!--<img :src="getSaleImageLink(sale.id, sale.images.data[0].id)" alt="imageThumbnail" class="img-thumbnail">-->
                     </div>
                     <div class="col-sm-3">
                         <i class="fa fa-question-circle-o"></i>

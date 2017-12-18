@@ -11,7 +11,7 @@ export default {
   getLatestArticles (context, size) {
     let query = '?page[size]=' + size + '&filter[publishStatus]=' + ARTICLE_PUBLISH_STATUS + '&sort=-created_at'
 
-    Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + '?' + query).then(response => {
+    Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + query).then(response => {
       context.latestArticles = response.data.data
     }, response => {
       context.latestArticles = []
@@ -21,7 +21,7 @@ export default {
     let query = '?page[size]=' + size + '&filter[publishStatus]=' + ARTICLE_PUBLISH_STATUS + '&sort=-created_at' +
     '&relation_filter[category.slug]=' + categorySlug
 
-    Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + '?' + query).then(response => {
+    Vue.http.get(process.env.NODE_API_HOST + ARTICLE_API + query).then(response => {
       context.latestArticlesByCategory = response.data.data
     }, response => {
       context.latestArticles = []
