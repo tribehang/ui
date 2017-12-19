@@ -39,9 +39,6 @@
           </div>
         </div>
 
-
-
-
         <div class="row head-two">
           <div class="col-xs-12">
             <h1 v-translate>COMPANY_SLOGAN</h1>
@@ -88,55 +85,7 @@
                     </div>
                   </div>
                   <div role="tabpanel" id="buy" class="fade" aria-labelledby="buy-tab" v-if="show">
-
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <select v-model="selectedCategory" class="form-control" v-on:change="changeSubCategories">
-                            <option value="" selected v-translate>دسته بندی</option>
-                            <option v-for="category in categories" :value="category">{{ category.name }}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <vue-slider width="150%" ref="slider" v-model="value" :formatter="formatter" :max="max" :bgStyle="bgStyle" :interval="100000"></vue-slider>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <select v-model="selectedSubCategory" class="form-control">
-                            <option disabled value="" v-translate>PLEASE_CHOOSE_SUB_CATEGORY</option>
-                            <option v-for="subCategory in subCategories" :value="subCategory">{{ subCategory.name }}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <vue-slider width="150%" tooltip="hover" :piecewiseStyle="piecewiseStyle" :style="style" ref="slider2" :piecewise="piecewise" :piecewiseLabel="piecewiseLabel" :data="creationYears" v-model="firstYear" :bgStyle="bgStyle"></vue-slider>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <select v-model="selectedConditionIndex" class="form-control">
-                            <option disabled value="" v-translate="">PLEASE_CHOOSE_CONDITION</option>
-                            <option v-for="(condition, index) in conditions" :value="index">{{ condition.title }}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <button v-on:click="search()" type="button" class="btn btn-success" v-translate style="float: right;">SEARCH</button>
-                        </div>
-                      </div>
-                    </div>
-
+                    <search-box></search-box>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="register" aria-labelledby="register-tab">
                     <form autocomplete="off" class="login">
@@ -304,44 +253,21 @@
 </template>
 
 <script>
-  import sale from '../services/sale'
   import user from '../auth/user'
   import auth from '../auth'
   import article from '../services/article'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import vueSlider from 'vue-slider-component'
-  import router from './../router'
+  import SearchBox from '@/components/SearchBox'
 
   export default {
     components: {
       swiper,
       swiperSlide,
-      vueSlider
+      'search-box': SearchBox
     },
     data () {
       return {
-        piecewise: true,
-        piecewiseLabel: true,
-        firstYear: [2013, 2015],
-        creationYears: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
-        style: {
-          'marginLeft': '10%'
-        },
-        piecewiseStyle: {
-          'backgroundColor': '#ccc',
-          'visibility': 'visible',
-          'width': '12px',
-          'height': '12px'
-        },
-        value: [1000000, 3000000],
-        max: 5000000,
-        multiplier: 100000,
         show: false,
-        formatter: '{value} تومان',
-        bgStyle: {
-          'backgroundColor': '#fff',
-          'boxShadow': 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)'
-        },
         userFirstName: 'کاربر',
         userActionName: 'ورود',
         userActionLink: '/login',
@@ -371,29 +297,10 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }
-        },
-        categories: [],
-        subCategories: [],
-        selectedCategory: '',
-        selectedSubCategory: '',
-        selectedConditionIndex: '',
-        conditions: sale.data().availableConditions
+        }
       }
     },
     methods: {
-      search () {
-        let minPrice = this.$refs.slider.getIndex()[0] * this.multiplier
-        let maxPrice = this.$refs.slider.getIndex()[1] * this.multiplier
-        let price = 'price[min]=' + minPrice + '&price[max]=' + maxPrice
-        let minCreateYear = this.creationYears[this.$refs.slider2.getIndex()[0]]
-        let maxCreateYear = this.creationYears[this.$refs.slider2.getIndex()[1]]
-        let createYear = '&createYear[min]=' + minCreateYear + '&createYear[max]=' + maxCreateYear
-        let category = this.selectedCategory === '' ? '' : '&category=' + this.selectedCategory.id
-        let subCategory = this.selectedSubCategory === '' ? '' : '&filter[category_id]=' + this.selectedSubCategory.id
-        let condition = this.selectedConditionIndex === '' ? '' : '&filter[condition]=' + sale.data().availableConditions[this.selectedConditionIndex].value
-
-        router.push('/search?' + price + createYear + category + subCategory + condition)
-      },
       toggleShow (value = false) {
         if (value === true) {
           this.show = true
@@ -437,16 +344,12 @@
       checkMainTabs () {
         jQuery('.categories-tabcontent').hide()
         jQuery('.categories-tabcontent')[0].style.display = 'block'
-      },
-      changeSubCategories () {
-        sale.getSubCategories(this, this.selectedCategory.id)
       }
     },
     beforeMount () {
       this.getUser()
       article.getLatestArticles(this, 10)
       article.getLatestArticlesByCategory(this, 'iphone7', 10)
-      sale.getCategories(this)
     },
     mounted () {
       this.checkMainTabs()
@@ -499,14 +402,5 @@
   .swiper-button-next{
     background-size: 70%;
     left: 0px;
-  }
-
-  #buy .row{
-    margin-bottom: 20px;
-    margin-top: 25px;
-  }
-
-  #buy .row .col-md-3{
-    margin-right: 30px;
   }
 </style>

@@ -1,5 +1,11 @@
 <template>
-    <div>
+    <div class="container" >
+        <div class="search-box" id="sticky" v-sticky="{ zIndex: 1, stickyTop: 0 }">
+            <div>
+                <search-box></search-box>
+            </div>
+        </div>
+
         <div v-for="article in articles" :key="article.id" class="row">
             <div class="col-md-3">
                 <div style="text-align: center">
@@ -33,8 +39,16 @@
 <script>
 
 import search from '../services/search'
+import SearchBox from '@/components/SearchBox'
+import VueSticky from 'vue-sticky'
 
 export default {
+  components: {
+    'search-box': SearchBox
+  },
+  directives: {
+    'sticky': VueSticky
+  },
   name: 'Search',
   data () {
     return {
@@ -55,7 +69,14 @@ export default {
 <style scoped>
     .row {
         border: 1px solid #9a9797;
-        margin: 10px;
+        margin: 10px 0px;
         padding: 10px;
+    }
+
+    .search-box{
+        background: #FFF;
+        padding: 35px 25px 1px 0px;
+        border: 1px solid #CCC;
+        margin-bottom: 20px;
     }
 </style>
