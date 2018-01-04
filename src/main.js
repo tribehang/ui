@@ -6,6 +6,8 @@ import VueTranslate from 'vue-translate-plugin'
 
 require('bootstrap/dist/css/bootstrap.min.css')
 require('bootstrap/dist/js/bootstrap.min')
+require('./assets/css/main-style.css')
+require('./assets/css/style.css')
 
 Vue.use(vueResource)
 Vue.use(VueTranslate)
