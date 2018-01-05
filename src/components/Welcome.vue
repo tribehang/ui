@@ -1,6 +1,30 @@
 <template>
     <div>
-        <div class="home-pro" style="margin-top: 40px;" v-if="this.$route.name === 'Home'">
+        <div id="main-wrapper">
+            <div class="toolbar navbar-fixed-top">
+                <div class="uou-block-1a blog">
+                    <div class="container">
+                        <div class="search">
+                            <ul class="authentication">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="#">TribeHang ?</a></li>
+                            </ul>
+                        </div>
+                        <ul class="social">
+                            <li><a href="#" class="fa fa-facebook"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-google-plus"></a></li>
+                        </ul>
+                        <ul class="authentication">
+                            <li><a href="/">Login</a></li>
+                            <li><a href="#">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-pro">
             <div class="banr-head">
                 <div class="container">
                     <div class="row">
@@ -111,9 +135,6 @@
 import auth from '../services/auth'
 
 export default {
-  name: 'Welcome',
-  props: {
-  },
   data () {
     return {
       signUpFullName: '',
@@ -171,8 +192,6 @@ export default {
         margin-top:0px;
         color: #FFFFFF;
     }
-
-
 
     .banr-head .login-sec .uou-tabs form{
         padding:30px;

@@ -3227,3 +3227,10 @@ CANVAS PAGE STYLE
 }
 @media (max-width: 767px) {
 }
+
+
+.toolbar .uou-block-1a {
+	-webkit-box-shadow: 1px -1px 5px 0px #000000c4;
+	-moz-box-shadow: 1px -1px 5px 0px #000000c4;
+	box-shadow: 1px -1px 5px 0px #000000c4;
+}

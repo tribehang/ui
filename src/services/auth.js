@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import router from './../router'
 
 const REFRESH_TOKEN_PATH = 'auth/refresh_token'
 const LOGIN_PATH = 'auth/signin'
@@ -14,7 +15,7 @@ export default {
   logout () {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
-    window.location.href = '/'
+    router.push('/')
   },
 
   signIn (context, email, password) {
@@ -30,7 +31,7 @@ export default {
     Vue.http.post(process.env.NODE_APP_GATEWAY_HOST + LOGIN_PATH, credentials).then(response => {
       localStorage.setItem('access_token', response.data.access_token)
       localStorage.setItem('refresh_token', response.data.refresh_token)
-      location.reload()
+      router.push('/')
     }, response => {
       context.signInErrorMessage = 'Login Failed!'
     })
@@ -55,12 +56,15 @@ export default {
   getUser (context) {
     if (localStorage.getItem('access_token') !== null) {
       Vue.http.get(process.env.NODE_APP_GATEWAY_HOST + USER_PATH, {'headers': this.getAuthHeader()}).then(response => {
-        context.user = response.data
+        context.user = response.data.data
       }, response => {
         localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         context.user = ''
+        router.push('/welcome')
       })
+    } else {
+      router.push('/welcome')
     }
   },
   refreshToken (context) {
