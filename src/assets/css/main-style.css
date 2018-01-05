@@ -122,6 +122,7 @@ button, select {
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
 	-webkit-appearance: button;
 	cursor: pointer;
+	outline: none;
 }
 button[disabled], html input[disabled] {
 	cursor: default;
@@ -6124,7 +6125,7 @@ p i {
 }
 @media (max-width: 767px) {
 .uou-block-1a {
-	display: none;
+	/*display: none;*/
 }
 }
 /* Block 1b */

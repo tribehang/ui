@@ -1,21 +1,18 @@
 <template>
   <div>
-Home Page
   </div>
 </template>
 
 <script>
+  import auth from '../services/auth'
+  
   export default {
-    components: {
-    },
     data () {
       return {
       }
     },
-    methods: {
+    beforeMount () {
+      auth.logout()
     }
   }
 </script>
-
-<style scoped>
-</style>
