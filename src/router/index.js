@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Welcome from '@/components/Welcome'
 import Logout from '@/components/Logout'
 import NotFound from '@/components/NotFound'
+import SettingsAccount from '@/components/SettingsAccount'
 
 Vue.use(Router)
 
@@ -24,6 +25,16 @@ export default new Router({
       path: '/logout',
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/settings',
+      name: 'SettingsAccount',
+      component: SettingsAccount
+    },
+    {
+      path: '/settings/account',
+      name: 'SettingsAccount',
+      component: SettingsAccount
     },
     {
       path: '*',

@@ -3015,13 +3015,13 @@ CANVAS PAGE STYLE
 .profile-usermenu .nav-links li.active a {
 	color: #0099fe !important;
 	background-color: #f6f9fb;
-	border-left: 2px solid #0099fe;
+	border-left: 2px solid #0099fe2b;
 	margin-left: 0px;
 }
 .profile-usermenu .nav-links li a:hover {
 	color: #0099fe !important;
 	background-color: #f6f9fb;
-	border-left: 2px solid #0099fe;
+	border-left: 2px solid #0099fe2b;
 }
 .profile-company-content .network .nav-tabs li a {
 	font-size: 16px;

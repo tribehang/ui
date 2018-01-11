@@ -7,6 +7,9 @@ import VeeValidate from 'vee-validate'
 
 require('bootstrap/dist/css/bootstrap.min.css')
 require('bootstrap/dist/js/bootstrap.min')
+require('superfish/src/css/superfish.css')
+require('superfish/dist/js/hoverIntent.js')
+require('superfish/src/js/superfish.js')
 require('./assets/css/main-style.css')
 require('./assets/css/style.css')
 

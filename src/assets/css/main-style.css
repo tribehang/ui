@@ -172,6 +172,10 @@ table {
 td, th {
 	padding: 0;
 }
+.wrapper {
+	margin-bottom:20px;
+}
+
 .container {
 	margin-right: auto;
 	margin-left: auto;
@@ -208,6 +212,7 @@ td, th {
 	min-height: 1px;
 	padding-left: 15px;
 	padding-right: 15px;
+	background-color: #FFF;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
 	float: left;
@@ -2893,9 +2898,11 @@ hr {
 .sf-menu li {
 	position: relative;
 	z-index: 99;
+	background: none;
 }
 .sf-menu li:hover, .sf-menu li.sfHover {
 	display: block;
+	background: none;
 }
 .sf-menu ul {
 	padding-left: 0;
@@ -7003,7 +7010,7 @@ p i {
 	float: right;
 }
 .uou-block-2b .nav .sf-menu > li {
-	margin-right: 40px;
+	margin-left: 15px !important;
 	z-index: 9999;
 }
 .uou-block-2b .nav .sf-menu > li:last-child {
@@ -14367,11 +14374,11 @@ a:hover, a:focus, a:active, a.active {
 	display: inline-block;
 	width: 100%;
 	background: #fff;
-	box-shadow: 0 0 5px rgba(206, 206, 206, 1);
+	box-shadow: 0 0 5px rgba(206, 206, 206, 1)
 }
 @media (max-width: 992px) {
 .profile-company-content .sidebar {
-	margin-bottom: 30px;
+	margin-bottom: 0px;
 }
 }
 .profile-company-content .sidebar .sidebar-thumbnail {

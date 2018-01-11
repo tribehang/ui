@@ -44,15 +44,15 @@
                                             <form @submit.prevent="validateSignInForm('form-1')" data-vv-scope="form-1">
 
                                                 <div class="column is-12">
-                                                    <input name="email" v-model="signInEmailAddress" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }" type="text" placeholder="Email Address">
-                                                    <i v-show="errors.has('email')" class="fa fa-warning"></i>
-                                                    <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+                                                    <input name="email" v-model="signInEmailAddress" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('form-1.email') }" type="text" placeholder="Email Address">
+                                                    <i v-show="errors.has('form-1.email')" class="fa fa-warning"></i>
+                                                    <span v-show="errors.has('form-1.email')" class="help is-danger">{{ errors.first('form-1.email') }}</span>
                                                 </div>
 
                                                 <div class="column is-12">
-                                                    <input name="password" v-model="signInPassword" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('password') }" type="password" placeholder="Password">
-                                                    <i v-show="errors.has('password')" class="fa fa-warning"></i>
-                                                    <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+                                                    <input name="password" v-model="signInPassword" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('form-1.password') }" type="password" placeholder="Password">
+                                                    <i v-show="errors.has('form-1.password')" class="fa fa-warning"></i>
+                                                    <span v-show="errors.has('form-1.password')" class="help is-danger">{{ errors.first('form-1.password') }}</span>
                                                 </div>
 
 
@@ -80,24 +80,24 @@
                                 <div class="uou-tabs">
                                     <div class="content">
                                         <div id="register" class="active">
-                                            <form @submit.prevent="validateSignUpForm">
+                                            <form @submit.prevent="validateSignUpForm('form-2')" data-vv-scope="form-2">
                                                 <h4>New to TribeHang ?</h4>
                                                 <div class="column is-12">
-                                                    <input name="name" v-model="signUpFullName" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" placeholder="Full Name">
-                                                    <i v-show="errors.has('name')" class="fa fa-warning"></i>
-                                                    <span v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
+                                                    <input name="name" v-model="signUpFullName" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('form-2.name') }" type="text" placeholder="Full Name">
+                                                    <i v-show="errors.has('form-2.name')" class="fa fa-warning"></i>
+                                                    <span v-show="errors.has('form-2.name')" class="help is-danger">{{ errors.first('form-2.name') }}</span>
                                                 </div>
 
                                                 <div class="column is-12">
-                                                    <input name="email" v-model="signUpEmailAddress" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }" type="text" placeholder="Email Address">
-                                                    <i v-show="errors.has('email')" class="fa fa-warning"></i>
-                                                    <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+                                                    <input name="email" v-model="signUpEmailAddress" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('form-2.email') }" type="text" placeholder="Email Address">
+                                                    <i v-show="errors.has('form-2.email')" class="fa fa-warning"></i>
+                                                    <span v-show="errors.has('form-2.email')" class="help is-danger">{{ errors.first('form-2.email') }}</span>
                                                 </div>
 
                                                 <div class="column is-12">
-                                                    <input name="password" v-model="signUpPassword" v-validate="'required|min:6'" :class="{'input': true, 'is-danger': errors.has('password') }" type="password" placeholder="Password">
-                                                    <i v-show="errors.has('password')" class="fa fa-warning"></i>
-                                                    <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
+                                                    <input name="password" v-model="signUpPassword" v-validate="'required|min:6'" :class="{'input': true, 'is-danger': errors.has('form-2.password') }" type="password" placeholder="Password">
+                                                    <i v-show="errors.has('form-2.password')" class="fa fa-warning"></i>
+                                                    <span v-show="errors.has('form-2.password')" class="help is-danger">{{ errors.first('form-2.password') }}</span>
                                                 </div>
 
 
@@ -148,8 +148,8 @@ export default {
     }
   },
   methods: {
-    validateSignUpForm () {
-      this.$validator.validateAll().then((result) => {
+    validateSignUpForm (scope) {
+      this.$validator.validateAll(scope).then((result) => {
         if (result) {
           this.signUp()
         }
