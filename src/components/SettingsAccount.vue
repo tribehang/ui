@@ -4,10 +4,10 @@
 
     <div class="container">
       <div class="compny-profile">
-        <div class="profile-company-content" data-bg-color="fff">
+        <div class="profile-company-content" style="background: none;">
           <div class="container">
             <div class="row">
-              <div class="col-md-4" style="padding: 0px; background: none;">
+              <div class="col-md-4" style="padding: 0px;">
                 <div class="sidebar">
                   <h5 class="main-title">{{user.name}}</h5>
                   <div class="sidebar-thumbnail"> <img src="https://avatarfiles.alphacoders.com/643/thumb-64385.png" alt=""> </div>
@@ -61,7 +61,6 @@
 
 <style scoped>
   .profile-company-content {
-    background: none;
     padding-top: 20px;
   }
 </style>
