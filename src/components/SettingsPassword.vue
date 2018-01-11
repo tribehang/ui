@@ -7,45 +7,41 @@
         <div class="profile-company-content" style="background: none;">
           <div class="container">
             <div class="row">
-              <settingsSideBar :user="user" section="account"></settingsSideBar>
+              <settingsSideBar :user="user" section="password"></settingsSideBar>
 
               <div class="col-md-7" style="margin-left: 30px; padding: 0px;">
                 <div class="profile-company-content sidebar" style="margin-bottom: 0px;">
 
                   <div class="setting_content">
-                    <h5>Account</h5>
+                    <h5>Password</h5>
+                    <i>Change your password or recover your current one.</i>
                     <hr>
                     <div class="row">
                       <div class="col-md-4">
-                        Username
+                        Current Password
                       </div>
                       <div class="col-md-8">
-                        <input type="text" placeholder="Username">
+                        <input type="password" style="margin-bottom: 0px;">
+                        <i><a href="#">Forgot your password?</a></i>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                        New Password
+                      </div>
+                      <div class="col-md-8">
+                        <input type="password">
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-4">
-                        Email
+                        Verify Password
                       </div>
                       <div class="col-md-8">
-                        <input type="text"  disabled :value="user.email">
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="setting_content">
-                    <h5>Content</h5>
-                    <hr>
-                    <div class="row">
-                      <div class="col-md-4">
-                        Country
-                      </div>
-                      <div class="col-md-8">
-                        <select name="country">
-                          <option value="DE">Germany</option>
-                        </select>
+                        <input type="password">
                       </div>
                     </div>
                   </div>

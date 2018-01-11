@@ -5,6 +5,7 @@ import Welcome from '@/components/Welcome'
 import Logout from '@/components/Logout'
 import NotFound from '@/components/NotFound'
 import SettingsAccount from '@/components/SettingsAccount'
+import SettingsPassword from '@/components/SettingsPassword'
 
 Vue.use(Router)
 
@@ -28,13 +29,27 @@ export default new Router({
     },
     {
       path: '/settings',
-      name: 'SettingsAccount',
-      component: SettingsAccount
+      name: 'Account',
+      component: SettingsAccount,
+      meta: {
+        section: 'account'
+      }
     },
     {
       path: '/settings/account',
       name: 'SettingsAccount',
-      component: SettingsAccount
+      component: SettingsAccount,
+      meta: {
+        section: 'account'
+      }
+    },
+    {
+      path: '/settings/password',
+      name: 'SettingsPassword',
+      component: SettingsPassword,
+      meta: {
+        section: 'password'
+      }
     },
     {
       path: '*',
