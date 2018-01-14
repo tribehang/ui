@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="row" style="text-align: center;" v-if="userImageBase64 !== ''">
-                    <button class="btn btn-default">Save Image</button>
+                    <button class="btn btn-default" v-on:click="saveUserProfileImage()">Save Image</button>
                     <hr>
                 </div>
                 <div class="sidebar-information">
@@ -37,6 +37,7 @@
 
 <script>
 import VueBase64FileUpload from 'vue-base64-file-upload'
+import account from '../services/account'
 
 export default {
   components: {
@@ -53,9 +54,14 @@ export default {
       userImageBase64: ''
     }
   },
-  mounted () {
-    jQuery('.sidebar-thumbnail').hover(function () {
-    })
+  updated () {
+    let profileImageSelector = jQuery('.user-upload-thumbnail input[type="text"]')
+
+    profileImageSelector.css('background-image', 'url(' + account.getUserProfileImageUri(this.user) + ')')
+
+    if (this.userImageBase64 !== '') {
+      profileImageSelector.css('background-image', 'url(' + this.userImageBase64 + ')')
+    }
   },
   methods: {
     isActiveSection (section) {
@@ -64,6 +70,9 @@ export default {
     onLoad (dataUri) {
       this.userImageBase64 = dataUri
       jQuery('.user-upload-thumbnail input[type="text"]').css('background-image', 'url(' + dataUri + ')')
+    },
+    saveUserProfileImage () {
+      account.setUserProfileImage(this.userImageBase64)
     }
   }
 }
@@ -84,7 +93,6 @@ export default {
     }
 
     .user-upload-thumbnail input[type="text"]{
-        background-image: url(https://avatarfiles.alphacoders.com/643/thumb-64385.png);
         height: 300px;
         color: #00000003;
         background-position: center;
