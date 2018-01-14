@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-md-4" style="padding: 0px;">
+        <div class="col-md-3" style="padding: 0px;">
             <div class="sidebar">
                 <h5 class="main-title">{{user.name}}</h5>
                 <div class="sidebar-thumbnail">
@@ -93,7 +93,8 @@ export default {
     }
 
     .user-upload-thumbnail input[type="text"]{
-        height: 300px;
+        height: 240px;
+        width: 240px !important;
         color: #00000003;
         background-position: center;
         background-repeat: no-repeat;
@@ -101,6 +102,7 @@ export default {
     }
 
     .profile-company-content .sidebar .sidebar-thumbnail {
-        height:310px;
+        height:250px;
+        width: 250px;
     }
 </style>

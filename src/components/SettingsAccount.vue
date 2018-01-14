@@ -8,10 +8,8 @@
           <div class="container">
             <div class="row">
               <settingsSideBar :user="user" section="account"></settingsSideBar>
-
               <div class="col-md-7" style="margin-left: 30px; padding: 0px;">
                 <div class="profile-company-content sidebar" style="margin-bottom: 0px;">
-
                   <div class="setting_content">
                     <h5>Account</h5>
                     <hr>
@@ -33,7 +31,6 @@
                       </div>
                     </div>
                   </div>
-
 
                   <div class="setting_content">
                     <h5>Content</h5>

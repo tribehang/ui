@@ -15,12 +15,18 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'TribeHang'
+      }
     },
     {
       path: '/welcome',
       name: 'Welcome',
-      component: Welcome
+      component: Welcome,
+      meta: {
+        title: 'Welcome to TribeHang'
+      }
     },
     {
       path: '/logout',
@@ -32,7 +38,8 @@ export default new Router({
       name: 'Account',
       component: SettingsAccount,
       meta: {
-        section: 'account'
+        section: 'account',
+        title: 'Account'
       }
     },
     {
@@ -40,7 +47,8 @@ export default new Router({
       name: 'SettingsAccount',
       component: SettingsAccount,
       meta: {
-        section: 'account'
+        section: 'account',
+        title: 'Account'
       }
     },
     {

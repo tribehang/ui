@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-      <div  class="wrapper" style="margin-top: 60px;">
+
+      <vue-headful :title="this.$route.meta.title" />
+
+      <div  class="wrapper" style="margin-top: 40px;">
           <router-view></router-view>
       </div>
 
@@ -17,8 +20,11 @@
 </template>
 
 <script>
+  import vueHeadful from 'vue-headful'
+
   export default {
     components: {
+      'vue-headful': vueHeadful
     },
     data () {
       return {
