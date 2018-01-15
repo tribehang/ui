@@ -1,14 +1,12 @@
 <template>
   <div>
-    <userTopHeader :user="user"></userTopHeader>
-
+    <userTopHeader :user="user"/>
     <div class="container">
       <div class="compny-profile">
         <div class="profile-company-content" style="background: none;">
           <div class="container">
             <div class="row">
-              <settingsSideBar :user="user" section="password"></settingsSideBar>
-
+              <settingsSideBar :user="user" section="password"/>
               <div class="col-md-7" style="margin-left: 30px; padding: 0px;">
                 <div class="profile-company-content sidebar" style="margin-bottom: 0px;">
 

@@ -53,6 +53,13 @@ export default {
       context.signUpErrorMessage = 'Account creation Failed!'
     })
   },
+  updateUser (data) {
+    Vue.http.patch(process.env.NODE_APP_GATEWAY_HOST + USER_PATH, data, {'headers': this.getAuthHeader()}).then(response => {
+      location.reload()
+    }, response => {
+      console.log('update failed!')
+    })
+  },
   getUser (context) {
     if (localStorage.getItem('access_token') !== null) {
       Vue.http.get(process.env.NODE_APP_GATEWAY_HOST + USER_PATH, {'headers': this.getAuthHeader()}).then(response => {

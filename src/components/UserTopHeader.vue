@@ -6,7 +6,13 @@
                     <div class="container">
                         <div class="search">
                             <ul class="authentication">
-                                <li><a href="/profile">{{user.name}}</a></li>
+                                <li>
+                                    <a :href="getUserLink()">
+                                        <div class="user-thumbnail">
+                                            {{this.getUserProfileThumbnailLink()}}
+                                        </div>
+                                    </a>
+                                </li>
                                 <li><a href="/">TribeHang</a></li>
                             </ul>
                         </div>
@@ -34,6 +40,8 @@
 
 <script>
 
+import account from '../services/account'
+
 export default {
   name: 'UserTopHeader',
   props: {
@@ -43,9 +51,22 @@ export default {
     return {
     }
   },
-  mounted () {
+  updated () {
+    let profileImageSelector = jQuery('.user-thumbnail')
+
+    profileImageSelector.css('background-image', 'url(' + account.getUserProfileImageUri(this.user) + ')')
   },
   methods: {
+    getUserProfileThumbnailLink () {
+      account.getUserProfileImageUriByUserProfileImageId(this.user.id, this.getUserProfileImageId())
+    },
+    getUserProfileImageId () {
+      return this.user.profileImage ? this.user.profileImage.data.id : ''
+    },
+    getUserLink () {
+      let link = this.user.username ? this.user.username : this.user.id
+      return '/' + link
+    }
   }
 }
 </script>
@@ -97,7 +118,7 @@ export default {
 
     .btn-hang{
         padding: 8px 15px;
-        line-height: 18px;
+        line-height: 12px;
         color: #FFF !important;
         text-transform: none;
         position: relative;
@@ -108,5 +129,14 @@ export default {
 
     .btn-hang:hover{
         background-color: #1da1f2e6
+    }
+
+    .user-thumbnail {
+        width: 25px;
+        height: 25px;
+        border-radius: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 </style>

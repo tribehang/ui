@@ -11,6 +11,13 @@ export default {
       return process.env.NODE_APP_S3 + '/' + process.env.NODE_APP_S3_BUCKET + '/' + process.env.NODE_APP_S3_USER_PROFILE_BUCKET + '/' + user.id + '/' + user.profileImage.data.id + '.jpg'
     }
   },
+  getUserProfileImageUriByUserProfileImageId (userId, userProfileImageId = '') {
+    if (userProfileImageId === '') {
+      return process.env.NODE_APP_S3 + '/' + process.env.NODE_APP_S3_BUCKET + '/' + process.env.NODE_APP_S3_USER_PROFILE_BUCKET + '/noavatar-profile.jpg'
+    } else {
+      return process.env.NODE_APP_S3 + '/' + process.env.NODE_APP_S3_BUCKET + '/' + process.env.NODE_APP_S3_USER_PROFILE_BUCKET + '/' + userId + '/' + userProfileImageId + '.jpg'
+    }
+  },
   setUserProfileImage (imageBase64) {
     let data = {}
 

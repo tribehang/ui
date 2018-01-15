@@ -56,13 +56,17 @@ export default new Router({
       name: 'SettingsPassword',
       component: SettingsPassword,
       meta: {
-        section: 'password'
+        section: 'password',
+        title: 'Account'
       }
     },
     {
       path: '*',
       name: 'NotFound',
-      component: NotFound
+      component: NotFound,
+      meta: {
+        title: 'Page not found!'
+      }
     }
   ]
 })

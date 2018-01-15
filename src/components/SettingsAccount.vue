@@ -1,13 +1,12 @@
 <template>
   <div>
-    <userTopHeader :user="user"></userTopHeader>
-
+    <userTopHeader :user="user"/>
     <div class="container">
       <div class="compny-profile">
         <div class="profile-company-content" style="background: none;">
           <div class="container">
             <div class="row">
-              <settingsSideBar :user="user" section="account"></settingsSideBar>
+              <settingsSideBar :user="user" section="account" />
               <div class="col-md-7" style="margin-left: 30px; padding: 0px;">
                 <div class="profile-company-content sidebar" style="margin-bottom: 0px;">
                   <div class="setting_content">
@@ -18,7 +17,7 @@
                         Username
                       </div>
                       <div class="col-md-8">
-                        <input type="text" placeholder="Username">
+                        <input type="text" v-model="user.username" placeholder="Username" :value="user.username">
                       </div>
                     </div>
 
@@ -49,7 +48,7 @@
 
                   <div class="row" style="text-align: center;">
                     <br>
-                    <button class="btn btn-primary">Save Changes</button>
+                    <button class="btn btn-primary" v-on:click="updateUser()">Save Changes</button>
                   </div>
                 </div>
 
@@ -75,6 +74,13 @@
     data () {
       return {
         user: ''
+      }
+    },
+    methods: {
+      updateUser () {
+        let data = {}
+        data['username'] = this.user.username
+        auth.updateUser(data)
       }
     },
     beforeCreate () {

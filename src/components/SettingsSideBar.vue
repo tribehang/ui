@@ -2,7 +2,9 @@
     <div>
         <div class="col-md-3" style="padding: 0px;">
             <div class="sidebar">
-                <h5 class="main-title">{{user.name}}</h5>
+                <h5 class="main-title">{{user.name}}
+                    <i v-if="user.username"><a :href="getUserLink()">@{{user.username}}</a></i></h5>
+
                 <div class="sidebar-thumbnail">
                     <vue-base64-file-upload
                             class="user-upload-thumbnail"
@@ -73,6 +75,9 @@ export default {
     },
     saveUserProfileImage () {
       account.setUserProfileImage(this.userImageBase64)
+    },
+    getUserLink () {
+      return '/' + this.user.username
     }
   }
 }
@@ -104,5 +109,11 @@ export default {
     .profile-company-content .sidebar .sidebar-thumbnail {
         height:250px;
         width: 250px;
+    }
+
+    .sidebar h5 i {
+        color: #09f;
+        font-size: 15px;
+        display: block;
     }
 </style>
